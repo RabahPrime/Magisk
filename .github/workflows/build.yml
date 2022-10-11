@@ -1,19 +1,7 @@
 name: Magisk Build
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - 'app/**'
-      - 'native/**'
-      - 'stub/**'
-      - 'buildSrc/**'
-      - 'build.py'
-      - 'gradle.properties'
-      - '.github/workflows/build.yml'
-  pull_request:
-    branches: [ master ]
-  workflow_dispatch:
+  workflow_dispatch
 
 jobs:
   build:
@@ -22,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        os: [ ubuntu-latest ]
     env:
       NDK_CCACHE: ccache
       CCACHE_DIR: ${{ github.workspace }}/.ccache
@@ -80,10 +68,6 @@ jobs:
 
       - name: Set up NDK
         run: python build.py -v ndk
-
-      - name: Build release
-        run: |
-          python build.py -vr all
 
       - name: Build debug
         run: |

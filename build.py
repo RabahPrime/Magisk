@@ -168,7 +168,7 @@ def load_config(args):
     commit_hash = cmd_out(['git', 'rev-parse', '--short=8', 'HEAD'])
 
     # Default values
-    config['version'] = commit_hash
+    config['version'] = f'{commit_hash}-delta'
     config['outdir'] = 'out'
 
     # Load prop files

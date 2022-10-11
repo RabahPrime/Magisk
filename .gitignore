@@ -1,8 +1,6 @@
 out
 *.zip
-*.jks
 *.apk
-/config.prop
 /update.sh
 /dict.txt
 
