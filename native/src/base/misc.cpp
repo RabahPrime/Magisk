@@ -242,11 +242,7 @@ vector<string_view> split_view(string_view s, string_view delims) {
 
 #undef vsnprintf
 int vssprintf(char *dest, size_t size, const char *fmt, va_list ap) {
-    if (size > 0) {
-        *dest = 0;
-        return std::min(vsnprintf(dest, size, fmt, ap), (int) size - 1);
-    }
-    return -1;
+    return std::min(vsnprintf(dest, size, fmt, ap), (int) size - 1);
 }
 
 int ssprintf(char *dest, size_t size, const char *fmt, ...) {
