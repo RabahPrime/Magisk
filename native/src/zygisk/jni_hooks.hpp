@@ -294,31 +294,4 @@ const JNINativeMethod nativeForkSystemServer_methods[] = {
 };
 constexpr int nativeForkSystemServer_methods_num = std::size(nativeForkSystemServer_methods);
 
-unique_ptr<JNINativeMethod[]> hookAndSaveJNIMethods(const char *className, const JNINativeMethod *methods, int numMethods) {
-    unique_ptr<JNINativeMethod[]> newMethods;
-    int clz_id = -1;
-    int hook_cnt = 0;
-    do {
-        if (className == "com/android/internal/os/Zygote"sv) {
-            clz_id = 0;
-            hook_cnt = 3;
-            break;
-        }
-    } while (false);
-    if (hook_cnt) {
-        newMethods = make_unique<JNINativeMethod[]>(numMethods);
-        memcpy(newMethods.get(), methods, sizeof(JNINativeMethod) * numMethods);
-    }
-    auto &class_map = (*jni_method_map)[className];
-    for (int i = 0; i < numMethods; ++i) {
-        if (hook_cnt && clz_id == 0) {
-            HOOK_JNI(nativeForkAndSpecialize)
-            HOOK_JNI(nativeSpecializeAppProcess)
-            HOOK_JNI(nativeForkSystemServer)
-        }
-        class_map[methods[i].name][methods[i].signature] = methods[i].fnPtr;
-    }
-    return newMethods;
-}
-
 } // namespace

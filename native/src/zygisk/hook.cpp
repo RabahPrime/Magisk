@@ -22,6 +22,7 @@
 #include "memory.hpp"
 #include "module.hpp"
 #include "deny/deny.hpp"
+#include "method_callback.h"
 
 using namespace std;
 using jni_hook::hash_map;
@@ -116,6 +117,7 @@ struct HookContext {
 #undef DCL_PRE_POST
 
 // Global variables
+ZygiskCallback *method_callbacks;
 vector<tuple<dev_t, ino_t, const char *, void **>> *plt_hook_list;
 map<string, vector<JNINativeMethod>, StringCmp> *jni_hook_list;
 hash_map<xstring, tree_map<xstring, tree_map<xstring, void *>>> *jni_method_map;
@@ -127,25 +129,6 @@ JNINativeInterface *new_functions;
 
 } // namespace
 
-#define HOOK_JNI(method)                                                                     \
-if (methods[i].name == #method##sv) {                                                        \
-    int j = 0;                                                                               \
-    for (; j < method##_methods_num; ++j) {                                                  \
-        if (strcmp(methods[i].signature, method##_methods[j].signature) == 0) {              \
-            jni_hook_list->try_emplace(className).first->second.push_back(methods[i]);       \
-            method##_orig = methods[i].fnPtr;                                                \
-            newMethods[i] = method##_methods[j];                                             \
-            ZLOGI("replaced %s#" #method "\n", className);                                   \
-            --hook_cnt;                                                                      \
-            break;                                                                           \
-        }                                                                                    \
-    }                                                                                        \
-    if (j == method##_methods_num) {                                                         \
-        ZLOGE("unknown signature of %s#" #method ": %s\n", className, methods[i].signature); \
-    }                                                                                        \
-    continue;                                                                                \
-}
-
 // JNI method hook definitions, auto generated
 #include "jni_hooks.hpp"
 
@@ -153,41 +136,11 @@ if (methods[i].name == #method##sv) {                                           
 
 namespace {
 
-jclass gClassRef;
-jmethodID class_getName;
-string get_class_name(JNIEnv *env, jclass clazz) {
-    if (!gClassRef) {
-        jclass cls = env->FindClass("java/lang/Class");
-        gClassRef = (jclass) env->NewGlobalRef(cls);
-        env->DeleteLocalRef(cls);
-        class_getName = env->GetMethodID(gClassRef, "getName", "()Ljava/lang/String;");
-    }
-    auto nameRef = (jstring) env->CallObjectMethod(clazz, class_getName);
-    const char *name = env->GetStringUTFChars(nameRef, nullptr);
-    string className(name);
-    env->ReleaseStringUTFChars(nameRef, name);
-    std::replace(className.begin(), className.end(), '.', '/');
-    return className;
-}
-
 #define DCL_HOOK_FUNC(ret, func, ...) \
 ret (*old_##func)(__VA_ARGS__);       \
 ret new_##func(__VA_ARGS__)
 
-jint env_RegisterNatives(
-        JNIEnv *env, jclass clazz, const JNINativeMethod *methods, jint numMethods) {
-    auto className = get_class_name(env, clazz);
-    ZLOGV("JNIEnv->RegisterNatives [%s]\n", className.data());
-    auto newMethods = hookAndSaveJNIMethods(className.data(), methods, numMethods);
-    return old_functions->RegisterNatives(env, clazz, newMethods.get() ?: methods, numMethods);
-}
-
-DCL_HOOK_FUNC(int, jniRegisterNativeMethods,
-        JNIEnv *env, const char *className, const JNINativeMethod *methods, int numMethods) {
-    ZLOGV("jniRegisterNativeMethods [%s]\n", className);
-    auto newMethods = hookAndSaveJNIMethods(className, methods, numMethods);
-    return old_jniRegisterNativeMethods(env, className, newMethods.get() ?: methods, numMethods);
-}
+int (* jniRegisterNativeMethods)(JNIEnv *env, const char *className, const JNINativeMethod *methods, int numMethods);
 
 // Skip actual fork and return cached result if applicable
 DCL_HOOK_FUNC(int, fork) {
@@ -299,55 +252,6 @@ DCL_HOOK_FUNC(int, selinux_android_setcontext,
 
 // -----------------------------------------------------------------
 
-// The original android::AppRuntime virtual table
-void **gAppRuntimeVTable;
-
-// This method is a trampoline for hooking JNIEnv->RegisterNatives
-void onVmCreated(void *self, JNIEnv* env) {
-    ZLOGD("AppRuntime::onVmCreated\n");
-
-    // Restore virtual table
-    auto new_table = *reinterpret_cast<void***>(self);
-    *reinterpret_cast<void***>(self) = gAppRuntimeVTable;
-    delete[] new_table;
-
-    new_functions = new JNINativeInterface();
-    memcpy(new_functions, env->functions, sizeof(*new_functions));
-    new_functions->RegisterNatives = &env_RegisterNatives;
-
-    // Replace the function table in JNIEnv to hook RegisterNatives
-    old_functions = env->functions;
-    env->functions = new_functions;
-}
-
-template<int N>
-void vtable_entry(void *self, JNIEnv* env) {
-    // The first invocation will be onVmCreated. It will also restore the vtable.
-    onVmCreated(self, env);
-    // Call original function
-    reinterpret_cast<decltype(&onVmCreated)>(gAppRuntimeVTable[N])(self, env);
-}
-
-void hookVirtualTable(void *self) {
-    ZLOGD("hook AndroidRuntime virtual table\n");
-
-    // We don't know which entry is onVmCreated, so overwrite every one
-    // We also don't know the size of the vtable, but 8 is more than enough
-    auto new_table = new void*[8];
-    new_table[0] = reinterpret_cast<void*>(&vtable_entry<0>);
-    new_table[1] = reinterpret_cast<void*>(&vtable_entry<1>);
-    new_table[2] = reinterpret_cast<void*>(&vtable_entry<2>);
-    new_table[3] = reinterpret_cast<void*>(&vtable_entry<3>);
-    new_table[4] = reinterpret_cast<void*>(&vtable_entry<4>);
-    new_table[5] = reinterpret_cast<void*>(&vtable_entry<5>);
-    new_table[6] = reinterpret_cast<void*>(&vtable_entry<6>);
-    new_table[7] = reinterpret_cast<void*>(&vtable_entry<7>);
-
-    // Swizzle C++ vtable to hook virtual function
-    gAppRuntimeVTable = *reinterpret_cast<void***>(self);
-    *reinterpret_cast<void***>(self) = new_table;
-}
-
 #undef DCL_HOOK_FUNC
 
 // -----------------------------------------------------------------
@@ -383,7 +287,7 @@ void hookJniNativeMethods(JNIEnv *env, const char *clz, JNINativeMethod *methods
     if (hooks.empty())
         return;
 
-    old_jniRegisterNativeMethods(env, clz, hooks.data(), hooks.size());
+    jniRegisterNativeMethods(env, clz, hooks.data(), hooks.size());
 }
 
 ZygiskModule::ZygiskModule(int id, void *handle, void *entry)
@@ -913,10 +817,30 @@ static void hook_register(dev_t dev, ino_t inode, const char *symbol, void *new_
 #define PLT_HOOK_REGISTER(DEV, INODE, NAME) \
     PLT_HOOK_REGISTER_SYM(DEV, INODE, #NAME, NAME)
 
+#define HOOK_ZYGOTE(func) \
+    method_callbacks->AddCallback("com/android/internal/os/Zygote", func##_methods_num, func##_methods, (void**) &func##_orig)
+
 void hook_functions() {
+    if (!ZygiskCallback::InitSymbols()) {
+        LOGE("Failed to init MethodCallback symbols");
+        return;
+    }
+
+    default_new(method_callbacks);
     default_new(plt_hook_list);
     default_new(jni_hook_list);
     default_new(jni_method_map);
+
+    HOOK_ZYGOTE(nativeForkAndSpecialize);
+    HOOK_ZYGOTE(nativeSpecializeAppProcess);
+    HOOK_ZYGOTE(nativeForkSystemServer);
+    method_callbacks->SetOnRegisterListener([](const char* clazz, const char* name, const char* signature, void* fn, bool replace) {
+        auto &class_map = jni_method_map->operator[](clazz);
+        class_map[name][signature] = fn;
+        if (replace) {
+            jni_hook_list->try_emplace(clazz).first->second.emplace_back(JNINativeMethod{name, signature, fn});
+        }
+    });
 
     ino_t android_runtime_inode = 0;
     dev_t android_runtime_dev = 0;
@@ -930,7 +854,6 @@ void hook_functions() {
 
     PLT_HOOK_REGISTER(android_runtime_dev, android_runtime_inode, fork);
     PLT_HOOK_REGISTER(android_runtime_dev, android_runtime_inode, unshare);
-    PLT_HOOK_REGISTER(android_runtime_dev, android_runtime_inode, jniRegisterNativeMethods);
     PLT_HOOK_REGISTER(android_runtime_dev, android_runtime_inode, selinux_android_setcontext);
     PLT_HOOK_REGISTER_SYM(android_runtime_dev, android_runtime_inode, "__android_log_close", android_log_close);
     hook_commit();
@@ -941,42 +864,22 @@ void hook_functions() {
             [](auto &t) { return *std::get<3>(t) == nullptr;}),
             plt_hook_list->end());
 
-    if (old_jniRegisterNativeMethods == nullptr) {
-        do {
-            ZLOGD("jniRegisterNativeMethods not hooked, using fallback\n");
-
-            constexpr char sig[] = "_ZN7android14AndroidRuntime10getRuntimeEv";
-            auto *GetRuntime = (void*(*)()) dlsym(RTLD_DEFAULT, sig);
-            if (GetRuntime == nullptr) {
-                ZLOGE("GetRuntime is nullptr\n");
-                break;
-            }
-            hookVirtualTable(GetRuntime());
-        } while (false);
-
-        // We still need old_jniRegisterNativeMethods as other code uses it
-        // android::AndroidRuntime::registerNativeMethods(_JNIEnv*, const char*, const JNINativeMethod*, int)
-        constexpr char sig[] = "_ZN7android14AndroidRuntime21registerNativeMethodsEP7_JNIEnvPKcPK15JNINativeMethodi";
-        *(void **) &old_jniRegisterNativeMethods = dlsym(RTLD_DEFAULT, sig);
-    }
+    // We still need old_jniRegisterNativeMethods as other code uses it
+    // android::AndroidRuntime::registerNativeMethods(_JNIEnv*, const char*, const JNINativeMethod*, int)
+    constexpr char sig[] = "_ZN7android14AndroidRuntime21registerNativeMethodsEP7_JNIEnvPKcPK15JNINativeMethodi";
+    *(void **) &jniRegisterNativeMethods = dlsym(RTLD_DEFAULT, sig);
 }
 
 static bool unhook_functions() {
     bool success = true;
 
-    // Restore JNIEnv
-    if (g_ctx->env->functions == new_functions) {
-        g_ctx->env->functions = old_functions;
-        if (gClassRef) {
-            g_ctx->env->DeleteGlobalRef(gClassRef);
-            gClassRef = nullptr;
-            class_getName = nullptr;
-        }
-    }
+    // Drop MethodCallbacks
+    delete method_callbacks;
 
     // Unhook JNI methods
     for (const auto &[clz, methods] : *jni_hook_list) {
-        if (!methods.empty() && old_jniRegisterNativeMethods(
+        ZLOGD("Restore JNI class %s\n", clz.data());
+        if (!methods.empty() && jniRegisterNativeMethods(
                 g_ctx->env, clz.data(), methods.data(), methods.size()) != 0) {
             ZLOGE("Failed to restore JNI hook of class [%s]\n", clz.data());
             success = false;

@@ -43,6 +43,8 @@ LOCAL_SRC_FILES := \
     zygisk/utils.cpp \
     zygisk/hook.cpp \
     zygisk/memory.cpp \
+    zygisk/elf_util.cpp \
+    zygisk/method_callback.cpp \
     zygisk/deny/cli.cpp \
     zygisk/deny/utils.cpp \
     zygisk/deny/revert.cpp
