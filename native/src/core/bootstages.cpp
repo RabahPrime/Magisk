@@ -45,8 +45,10 @@ static bool mount_mirror(const std::string_view from, const std::string_view to)
 
 static void mount_mirrors() {
     LOGI("* Prepare worker\n");
-    auto worker_dir = MAGISKTMP + "/" WORKERDIR;
-    xmount("worker", worker_dir.data(), "tmpfs", 0, "mode=755");
+    if (auto worker_dir = MAGISKTMP + "/" WORKERDIR;
+            xmount(worker_dir.data(), worker_dir.data(), nullptr, MS_BIND, nullptr) == 0) {
+        xmount(nullptr, worker_dir.data(), nullptr, MS_PRIVATE, nullptr);
+    }
 
     LOGI("* Mounting mirrors\n");
     // recursively bind mount / to mirror dir
