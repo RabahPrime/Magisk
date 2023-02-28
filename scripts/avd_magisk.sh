@@ -20,7 +20,7 @@
 #####################################################################
 
 mount_sbin() {
-  mount -t tmpfs -o 'mode=0755' magisk /sbin
+  mount -t tmpfs -o 'mode=0755' tmpfs /sbin
   chcon u:object_r:rootfs:s0 /sbin
 }
 
@@ -114,7 +114,7 @@ else
   # Android Q+ without sbin
   MAGISKTMP=/dev/avd-magisk
   mkdir /dev/avd-magisk
-  mount -t tmpfs -o 'mode=0755' magisk /dev/avd-magisk
+  mount -t tmpfs -o 'mode=0755' tmpfs /dev/avd-magisk
 fi
 
 # Magisk stuff
