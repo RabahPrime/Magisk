@@ -272,6 +272,7 @@
     <string name="settings_new_zygisk_loader_summary">Sử dụng cách mới để tải Zygisk. Tính năng này chỉ là thử nghiệm và nó có thể phá vỡ hooking module</string>
     <string name="settings_logcat_monitor_title">Theo dõi logcat</string>
     <string name="settings_logcat_monitor_summary">Theo dõi logcat thay vì ptrace Zygote để phát hiện các ứng dụng khởi động. Ít bị phát hiện hơn nhưng không tin cậy.</string>
-    <string name="settings_logcat_monitor_no_need">No need when Zygisk is enabled</string>
+    <string name="su_request_string1">Cho phép&#160;</string>
+    <string name="su_request_string2">&#160;truy cập quyền Superuser?</string>
 
 </resources>
