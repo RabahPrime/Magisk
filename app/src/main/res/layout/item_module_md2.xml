@@ -63,7 +63,7 @@
                     android:textAppearance="@style/AppearanceFoundation.Title"
                     android:textColor="?android:textColorPrimary"
                     android:textStyle="bold"
-                    android:textSize="30sp"
+                    android:textSize="17sp"
                     app:layout_constraintEnd_toStartOf="@+id/module_indicator"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

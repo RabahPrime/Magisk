@@ -59,7 +59,7 @@
                         android:textAppearance="@style/AppearanceFoundation.Title"
                         android:textIsSelectable="false"
                         android:textStyle="bold"
-                        android:textSize="24sp"
+                        android:textSize="16sp"
                         app:layout_constraintEnd_toStartOf="@+id/policy_indicator"
                         app:layout_constraintStart_toEndOf="@+id/policy_app_icon"
                         app:layout_constraintTop_toTopOf="@+id/policy_app_icon"
