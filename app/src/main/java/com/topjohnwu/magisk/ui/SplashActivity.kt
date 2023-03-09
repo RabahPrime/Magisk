@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.topjohnwu.magisk.BuildConfig.APPLICATION_ID
 import com.topjohnwu.magisk.R
@@ -30,15 +29,13 @@ import kotlinx.coroutines.launch
 abstract class SplashActivity<Binding : ViewDataBinding> : NavigationActivity<Binding>() {
 
     companion object {
-        private var splashShown = false
+        private var skipSplash = false
     }
-
-    private var needShowMainUI = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Foundation)
 
-        if (isRunningAsStub && !splashShown) {
+        if (isRunningAsStub && !skipSplash) {
             // Manually apply splash theme for stub
             theme.applyStyle(R.style.StubSplashTheme, true)
         }
@@ -47,11 +44,11 @@ abstract class SplashActivity<Binding : ViewDataBinding> : NavigationActivity<Bi
 
         if (!isRunningAsStub) {
             val splashScreen = installSplashScreen()
-            splashScreen.setKeepOnScreenCondition { !splashShown }
+            splashScreen.setKeepOnScreenCondition { !skipSplash }
         }
 
-        if (splashShown) {
-            doShowMainUI(savedInstanceState)
+        if (skipSplash) {
+            showMainUI(savedInstanceState)
         } else {
             Shell.getShell(Shell.EXECUTOR) {
                 if (isRunningAsStub && !it.isRoot) {
@@ -61,11 +58,6 @@ abstract class SplashActivity<Binding : ViewDataBinding> : NavigationActivity<Bi
                 preLoad(savedInstanceState)
             }
         }
-    }
-
-    private fun doShowMainUI(savedInstanceState: Bundle?) {
-        needShowMainUI = false
-        showMainUI(savedInstanceState)
     }
 
     abstract fun showMainUI(savedInstanceState: Bundle?)
@@ -92,13 +84,6 @@ abstract class SplashActivity<Binding : ViewDataBinding> : NavigationActivity<Bi
             }
             setCancelable(false)
             show()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (needShowMainUI) {
-            doShowMainUI(null)
         }
     }
 
@@ -131,16 +116,12 @@ abstract class SplashActivity<Binding : ViewDataBinding> : NavigationActivity<Bi
         RootUtils.Connection.await()
 
         runOnUiThread {
-            splashShown = true
+            skipSplash = true
             if (isRunningAsStub) {
                 // Re-launch main activity without splash theme
                 relaunch()
             } else {
-                if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
-                    doShowMainUI(savedState)
-                } else {
-                    needShowMainUI = true
-                }
+                showMainUI(savedState)
             }
         }
     }
@@ -159,4 +140,5 @@ abstract class SplashActivity<Binding : ViewDataBinding> : NavigationActivity<Bi
             Shell.cmd("(pm uninstall $pkg)& >/dev/null 2>&1").exec()
         }
     }
+
 }
