@@ -135,7 +135,6 @@ static int boot_state = FLAG_NONE;
 
 bool zygisk_enabled = false;
 bool sulist_enabled = false;
-bool new_zygisk_enabled = false;
 
 static const char *F2FS_SYSFS_PATH = nullptr;
 
@@ -640,7 +639,6 @@ static void post_fs_data() {
         get_db_settings(dbs, ZYGISK_CONFIG);
         get_db_settings(dbs, WHITELIST_CONFIG);
         get_db_settings(dbs, DENYLIST_CONFIG);
-        get_db_settings(dbs, NEW_ZYGISK_CONFIG);
 
         if(coreonly_mode){
             LOGI("** Core-only mode, ignore modules\n");
@@ -649,7 +647,6 @@ static void post_fs_data() {
             disable_modules();
             // we still allow zygisk
             zygisk_enabled = dbs[ZYGISK_CONFIG];
-            new_zygisk_enabled = dbs[NEW_ZYGISK_CONFIG];
             sulist_enabled = dbs[DENYLIST_CONFIG] && dbs[WHITELIST_CONFIG];
             initialize_denylist();
             prepare_modules();
@@ -663,7 +660,6 @@ static void post_fs_data() {
 
         zygisk_enabled = dbs[ZYGISK_CONFIG];
         sulist_enabled = dbs[DENYLIST_CONFIG] && dbs[WHITELIST_CONFIG];
-        new_zygisk_enabled = dbs[NEW_ZYGISK_CONFIG];
         initialize_denylist();
         handle_modules();
     }
