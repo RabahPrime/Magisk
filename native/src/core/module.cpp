@@ -226,6 +226,44 @@ public:
 };
 
 static void inject_magisk_bins(root_node *system) {
+    auto fp = open_file("/proc/filesystems", "re");
+    if (fp != nullptr) {
+        char buf[1024];
+        while (fgets(buf, sizeof(buf), fp.get())) {
+            buf[strlen(buf)-1] = '\0';
+            if (strcmp(buf + 6, "overlay") == 0) {
+                //MAGISKTMP/.magisk/overlayfs/system/bin
+                auto upperdir = MAGISKTMP + "/" OVERLAYDIR "/system/bin";
+                mkdirs(upperdir.data(), 0755);
+                clone_attr("/system/bin", upperdir.data());
+
+                for (auto file : {"magisk32", "magisk64", "magisk", "magiskpolicy", "supolicy"}) {
+                    auto src = MAGISKTMP + "/"s + file;
+                    auto dest = upperdir + "/"s + file;
+                    if (access(src.data(),F_OK) == 0){
+                        link(src.data(), dest.data());
+                    }
+                }
+                for (int i = 0; applet_names[i]; ++i) {
+                    auto src = MAGISKTMP + "/"s + applet_names[i];
+                    auto dest = upperdir + "/"s + applet_names[i];
+                    if (access(src.data(),F_OK) == 0){
+                        link(src.data(), dest.data());
+                    }
+                }
+
+                string opts = "lowerdir="s + upperdir + ":/system/bin";
+                if (!xmount("overlay", "/system/bin", "overlay", MS_RDONLY, opts.data())) {
+                    VLOGD("mount", "overlay", "/system/bin");
+                    xmount("overlay", string(MAGISKTMP + "/" MIRRDIR "/system/bin").data(), "overlay", MS_RDONLY, opts.data());
+                    return;
+                }
+                rm_rf(upperdir.data());
+                break;
+            }
+        }
+    }
+
     auto bin = system->get_child<inter_node>("bin");
     if (!bin) {
         bin = new inter_node("bin");
@@ -536,7 +574,6 @@ static void foreach_module(Func fn) {
 static void collect_modules(bool open_zygisk) {
     foreach_module([=](int dfd, dirent *entry, int modfd) {
         if (faccessat(modfd, "remove", F_OK, 0) == 0) {
-        	
             LOGI("%s: remove\n", entry->d_name);
             auto uninstaller = MODULEROOT + "/"s + entry->d_name + "/uninstall.sh";
             if (access(uninstaller.data(), F_OK) == 0)

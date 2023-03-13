@@ -29,6 +29,7 @@ extern std::string  MAGISKTMP;
 #define ROOTMNT     ROOTOVL  "/.mount_list"
 #define ZYGISKBIN   INTLROOT "/zygisk"
 #define SELINUXMOCK INTLROOT "/selinux"
+#define OVERLAYDIR  INTLROOT "/overlayfs"
 
 constexpr const char *applet_names[] = { "su", "resetprop", "magiskhide", nullptr };
 

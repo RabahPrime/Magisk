@@ -112,7 +112,7 @@ void revert_unmount(int pid) {
     // unmount sekeleton node
     lazy_unmount(MAGISKTMP.data());
     for (auto &info : parse_mount_info("self")) {
-        if (info.root.starts_with("/" INTLROOT "/")) {
+        if (info.root.starts_with("/" INTLROOT "/") || str_contains(info.fs_option, MAGISKTMP)) {
             targets.emplace_back(info.target);
         }
     }
