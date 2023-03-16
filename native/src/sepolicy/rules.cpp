@@ -69,7 +69,7 @@ void sepolicy::magisk_rules() {
         }
 
         // Allow these processes to access MagiskSU
-        vector<const char *> clients{ "init", "shell", "update_engine", "appdomain" };
+        vector<const char *> clients{ "shell", "update_engine", "appdomain" };
         for (auto type : clients) {
             if (!exists(type))
                 continue;
@@ -143,6 +143,10 @@ void sepolicy::magisk_rules() {
     allow("kernel", SEPOL_PROC_DOMAIN, "fd", "use");
     allow("init", SEPOL_PROC_DOMAIN, "process", ALL);
     allow("init", "su", "process", ALL);
+    allow("init", SEPOL_EXEC_TYPE, "file", "read");
+    allow("init", SEPOL_EXEC_TYPE, "file", "open");
+    allow("init", SEPOL_EXEC_TYPE, "file", "getattr");
+    allow("init", SEPOL_EXEC_TYPE, "file", "execute");
 
     // suRights
     allow("servicemanager", SEPOL_PROC_DOMAIN, "dir", "search");

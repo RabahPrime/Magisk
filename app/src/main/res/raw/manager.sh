@@ -418,10 +418,10 @@ on post-fs-data
     mkdir $MAGISKTMP/.magisk/mirror 700
     mkdir $MAGISKTMP/.magisk/block 700
     copy $MAGISKSYSTEMDIR/config $MAGISKTMP/.magisk/config
-    rm /dev/.magisk_unblock
     exec u:r:su:s0 root root -- $MAGISKTMP/magisk --auto-selinux --post-fs-data
-    wait /dev/.magisk_unblock 40
-    rm /dev/.magisk_unblock
+
+on property:vold.decrypt=trigger_restart_framework
+    exec u:r:su:s0 root root -- $MAGISKTMP/magisk --auto-selinux --service
 
 on nonencrypted
     exec u:r:su:s0 root root -- $MAGISKTMP/magisk --auto-selinux --service
