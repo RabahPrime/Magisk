@@ -8,5 +8,12 @@
     </style>
 
     <style name="Theme.AppTheme" parent="Base.V27.Theme.AppTheme" />
+    <style name="Base.V27.Theme.Foundation" parent="Base.V23.Theme.Foundation">
+        <item name="android:navigationBarDividerColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.Foundation.Light" parent="Base.V27.Theme.Foundation.Light" />
+
+    <style name="Theme.Foundation" parent="Base.V27.Theme.Foundation" />
 
 </resources>
