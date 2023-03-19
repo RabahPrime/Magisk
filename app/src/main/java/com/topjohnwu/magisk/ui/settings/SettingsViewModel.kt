@@ -123,6 +123,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
             is Hide -> viewModelScope.launch { HideAPK.hide(view.activity, item.value) }
             Restore -> viewModelScope.launch { HideAPK.restore(view.activity) }
             SuList -> if (SuList.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
+            CoreOnly -> if (CoreOnly.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
             else -> Unit
         }
     }
