@@ -5,6 +5,39 @@
 
 #### This is not an officially supported Google product
 
+## Changelog over Magisk Delta commit c28c6e7cef0b254bda4ebb2a6896152458371c9c
+
+- New Home UI
+- Merge Follow Us and Support Us cardviews
+- Move Settings to navigation bar from topbar
+- Add icons to setting entries
+- Rewrite some cardviews
+- Improve Core-only mode desc. with snackbar
+- Move fonts and cardviews to MD3 specifications (mostly)
+- & tiny tweaks i don't exactly remember
+
+
+## Known bugs
+- Module remove button turns pink when an update applied to module
+- Slide in/out anims for subfragments (conf. sulist, install magisk)
+- Some setting entrys icons are missing (etc. tapjacking)
+- For some dumb reason GitHub Actions can't pull submodules (so it can't build the app) 
+
+ 
+## Roadmap
+- Add Material You theming options
+- Switch to MD3 specifications more
+- Shrink/Extend anims for extended FABs
+- Switch to CollapsingToolbarLayout for root fragments
+- Add semi-transparent borders to viewcards
+- Switch to MD3 menus fır setting items
+- Update some icons
+- Translate missing strings with DeepL or something
+
+
+Contact: https://t.me/ripsivis
+
+
 ## Introduction
 
 Magisk is a suite of open source software for customizing Android, supporting devices higher than Android 5.0.<br>
