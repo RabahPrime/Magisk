@@ -47,7 +47,6 @@
     <string name="flash_screen_title">Installation</string>
 
     <!--Superuser-->
-    <string name="su_request_title">Superuser-förfrågan</string>
     <string name="touch_filtered_warning">Eftersom en app döljer, eller ritar över en begäran om superuser, så kan inte Magisk verifera ditt svar</string>
     <string name="deny">Neka</string>
     <string name="prompt">Fråga</string>
@@ -107,11 +106,7 @@
     <string name="update_available">Uppdatering tillgänglig</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Temaläge</string>
-    <string name="settings_dark_mode_message">Välj det läge som bäst passar din stil!</string>
-    <string name="settings_dark_mode_light">Alltid ljus</string>
-    <string name="settings_dark_mode_system">Följ systeminställningar</string>
-    <string name="settings_dark_mode_dark">Alltid mörk</string>
+    <string name="settings_dark_theme_system">Följ systeminställningar</string>
     <string name="settings_download_path_title">Nedladdningsmapp</string>
     <string name="settings_download_path_message">Filer kommer att spara till %1$s</string>
     <string name="settings_hide_app_title">Göm Magisk-appen</string>

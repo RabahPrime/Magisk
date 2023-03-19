@@ -51,7 +51,6 @@
     <string name="flash_screen_title">インストール</string>
 
     <!--Superuser-->
-    <string name="su_request_title">スーパーユーザー権限の要求</string>
     <string name="touch_filtered_warning">他のアプリがスーパーユーザー権限の要求ダイアログを隠しているため、Magisk はあなたの応答を確認できません。</string>
     <string name="deny">拒否</string>
     <string name="prompt">尋ねる</string>
@@ -115,11 +114,7 @@
     <string name="module_empty">モジュールをインストールしていません</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">テーマ</string>
-    <string name="settings_dark_mode_message">あなたの好きなスタイルを選びましょう！</string>
-    <string name="settings_dark_mode_light">ライトモード</string>
-    <string name="settings_dark_mode_system">システムに合わせる</string>
-    <string name="settings_dark_mode_dark">ダークモード</string>
+    <string name="settings_dark_theme_system">システムに合わせる</string>
     <string name="settings_download_path_title">ファイルの保存場所</string>
     <string name="settings_download_path_message">ファイルは %1$s に保存されます</string>
     <string name="settings_hide_app_title">Magisk アプリを隠す</string>

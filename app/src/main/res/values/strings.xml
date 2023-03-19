@@ -23,11 +23,13 @@
     <string name="home_notice_content">Download Magisk ONLY from the official GitHub page. Files from unknown sources can be malicious!</string>
     <string name="home_support_title">Support Us</string>
     <string name="home_follow_title">Follow Us</string>
+    <string name="home_follow_and_support_title">Follow &amp; Support Us</string>
     <string name="home_item_source">Source</string>
     <string name="home_support_content">Magisk is, and always will be, free, and open source. You can however show us that you care by making a donation.</string>
     <string name="home_installed_version">Installed</string>
     <string name="home_latest_version">Latest</string>
     <string name="invalid_update_channel">Invalid Update Channel</string>
+    <string name="uninstall">Uninstall</string>
     <string name="uninstall_magisk_title">Uninstall Magisk</string>
     <string name="uninstall_magisk_msg">All modules will be disabled/removed!\nRoot will be removed!\nAny internal storage unencrypted through the use of Magisk will be re-encrypted!</string>
 
@@ -51,13 +53,11 @@
     <string name="flash_screen_title">Installation</string>
 
     <!--Superuser-->
-    <string name="su_request_title">Superuser Request</string>
-    <string name="su_request_string1">Allow&#160;</string>
-    <string name="su_request_string2">&#160;to get SuperUser privileges?</string>
+    <string name="su_request_string">Allow <![CDATA[<b>%1$s</b>]]> to have superuser privileges?</string>
     <string name="touch_filtered_warning">Because an app is obscuring a Superuser request, Magisk can\'t verify your response</string>
-    <string name="deny">Deny</string>
+    <string name="deny">Don\'t allow</string>
     <string name="prompt">Prompt</string>
-    <string name="grant">Grant</string>
+    <string name="grant">Allow</string>
     <string name="su_warning">Grants full access to your device.\nDeny if you\'re not sure!</string>
     <string name="forever">Forever</string>
     <string name="once">Once</string>
@@ -117,18 +117,20 @@
     <string name="module_empty">No module installed</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Theme Mode</string>
-    <string name="settings_dark_mode_message">Select mode which best suits your style!</string>
-    <string name="settings_dark_mode_light">Always Light</string>
-    <string name="settings_dark_mode_system">Follow System</string>
-    <string name="settings_dark_mode_dark">Always Dark</string>
+    <string name="settings_dark_theme_title">Dark Theme</string>
+    <string name="settings_dark_theme_dark">Always On</string>
+    <string name="settings_dark_theme_light">Always Off</string>
+    <string name="settings_dark_theme_system">Follow System</string>
+    <string name="settings_theme_color">Theme Color</string>
     <string name="settings_download_path_title">Download path</string>
-    <string name="settings_download_path_message">Files will be saved to %1$s</string>
+    <string name="settings_download_path_message">Files will be saved to\n%1$s</string>
     <string name="settings_hide_app_title">Hide the Magisk app</string>
     <string name="settings_hide_app_summary">Install a proxy app with a random package ID and custom app label</string>
     <string name="settings_restore_app_title">Restore the Magisk app</string>
     <string name="settings_restore_app_summary">Unhide the app and restore the original APK</string>
     <string name="language">Language</string>
+    <string name="language_translate">Participate in the translation</string>
+    <string name="language_translate_description">Help us translate the app into your language</string>
     <string name="system_default">(System Default)</string>
     <string name="settings_check_update_title">Check Updates</string>
     <string name="settings_check_update_summary">Periodically check for updates in the background</string>
@@ -262,7 +264,7 @@
     <string name="settings_anti_bootloop_title">Bootloop Protection</string>
     <string name="settings_anti_bootloop_summary">Reboot into core-only mode if zygote process failed to start for many times</string>
     <string name="settings_coreonly_title">Core-only mode</string>
-    <string name="settings_coreonly_summary">Only core features such as MagiskSU (Root access) and MagiskHide are available and no modules will load in Core-only mode. Reboot is required to take effect.</string>
+    <string name="settings_coreonly_summary">Only core features such as MagiskSU (root access) and MagiskHide are available and no modules will load in this mode.</string>
     <string name="settings_clean_hidelist_title">Clean up hide list</string>
     <string name="settings_clean_hidelist_summary">Remove all non-existing and uninstalled apps from hidelist</string>
     <string name="settings_clean_hidelist_toast">Hidelist is now clean</string>
@@ -279,5 +281,19 @@
     <string name="settings_logcat_monitor_title">Monitor logcat</string>
     <string name="settings_logcat_monitor_summary">Monitor logcat instead of ptrace to detect the creation of app process. It\'s less detectable than ptrace but unrealiable.</string>
     <string name="settings_logcat_monitor_no_need">No need when Zygisk is enabled</string>
+
+    <!-- Theme Colors -->
+    <string name="color_dynamic">Dynamic</string>
+    <string name="color_dynamic_black">Dynamic Black</string>
+    <string name="color_carmine">Carmine</string>
+    <string name="color_blush">Blush</string>
+    <string name="color_magenta">Magenta</string>
+    <string name="color_lavender">Lavender</string>
+    <string name="color_periwinkle">Periwinkle</string>
+    <string name="color_cerulean">Cerulean</string>
+    <string name="color_turquoise">Turquoise</string>
+    <string name="color_viridian">Viridian</string>
+    <string name="color_chartreuse">Chartreuse</string>
+    <string name="color_citrine">Citrine</string>
 
 </resources>

@@ -47,7 +47,6 @@
     <string name="flash_screen_title">Instalacija</string>
 
     <!--Superuser-->
-    <string name="su_request_title">Superuser zahtjev</string>
     <string name="deny">Odbij</string>
     <string name="prompt">Upit</string>
     <string name="grant">Odobri</string>
@@ -104,11 +103,7 @@
     <string name="update_available">Ažuriranje dostupno</string>
 
     <!--Settings -->
-    <string name="settings_dark_mode_title">Teme</string>
-    <string name="settings_dark_mode_message">Odaberite temu koja najbolje odgovara vašem stilu!</string>
-    <string name="settings_dark_mode_light">Uvijek svijetla</string>
-    <string name="settings_dark_mode_system">Prati sustav</string>
-    <string name="settings_dark_mode_dark">Uvijek crna</string>
+    <string name="settings_dark_theme_system">Prati sustav</string>
     <string name="settings_download_path_title">Putanja preuzimanja</string>
     <string name="settings_download_path_message">Datoteke će biti spremljene u %1$s</string>
     <string name="language">Jezik</string>

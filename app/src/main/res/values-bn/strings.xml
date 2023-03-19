@@ -51,7 +51,6 @@
     <string name="flash_screen_title">স্থাপন</string>
 
     <!--Superuser-->
-    <string name="su_request_title">সুপার ইউজার অনুরোধ/স্ট্রিং</string>
     <string name="touch_filtered_warning">যেহেতু একটি অ্যাপ সুপার ব্যবহারকারীর অনুরোধকে অস্পষ্ট করছে, ম্যাজিস্ক আপনার প্রতিক্রিয়া যাচাই করতে পারে না</string>
     <string name="deny">অস্বীকার করুন</string>
     <string name="prompt">শীঘ্র</string>
@@ -114,11 +113,7 @@
     <string name="module_empty">কোন মডিউল ইনস্টল করা নেই</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">থিম মোড</string>
-    <string name="settings_dark_mode_message">আপনার শৈলী সবচেয়ে উপযুক্ত মোড নির্বাচন করুন!</string>
-    <string name="settings_dark_mode_light">সবসময় আলো</string>
-    <string name="settings_dark_mode_system">সিস্টেম অনুসরণ করুন</string>
-    <string name="settings_dark_mode_dark">সবসময় অন্ধকার</string>
+    <string name="settings_dark_theme_system">সিস্টেম অনুসরণ করুন</string>
     <string name="settings_download_path_title">পাথ ডাউনলোড করুন</string>
     <string name="settings_download_path_message">ফাইলগুলি %1$s এ সংরক্ষণ করা হবে৷</string>
     <string name="settings_hide_app_title">ম্যাজিস্ক অ্যাপটি লুকান</string>

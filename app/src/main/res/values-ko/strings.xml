@@ -50,7 +50,6 @@
     <string name="flash_screen_title">설치과정</string>
 
     <!--Superuser-->
-    <string name="su_request_title">슈퍼유저 요청</string>
     <string name="touch_filtered_warning">앱이 슈퍼유저 요청을 가려, Magisk에서 응답을 확인할 수 없습니다.</string>
     <string name="deny">일괄 거부</string>
     <string name="prompt">수동 허가</string>
@@ -113,11 +112,7 @@
     <string name="zygisk_module_unloaded">호환성 문제로 인해 Zygisk 모듈이 로드되지 않았습니다.</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">테마 선택</string>
-    <string name="settings_dark_mode_message">원하는 테마 모드를 선택하세요!</string>
-    <string name="settings_dark_mode_light">기본</string>
-    <string name="settings_dark_mode_system">시스템 설정값</string>
-    <string name="settings_dark_mode_dark">다크 모드</string>
+    <string name="settings_dark_theme_system">시스템 설정값</string>
     <string name="settings_download_path_title">다운로드 경로</string>
     <string name="settings_download_path_message">파일이 %1$s에 저장됩니다</string>
     <string name="settings_hide_app_title">Magisk 앱 숨기기</string>

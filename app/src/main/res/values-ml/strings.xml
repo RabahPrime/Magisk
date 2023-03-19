@@ -51,7 +51,6 @@
     <string name="flash_screen_title">ഇൻസ്റ്റലേഷൻ</string>
 
     <!--Superuser-->
-    <string name="su_request_title">സൂപ്പർയൂസർ അഭ്യർത്ഥന</string>
     <string name="touch_filtered_warning">ഒരു ആപ്പ് ഒരു സൂപ്പർയൂസർ അഭ്യർത്ഥന മറയ്ക്കുന്നതിനാൽ, മജിസ്‌ക്-ന് നിങ്ങളുടെ പ്രതികരണം പരിശോധിക്കാൻ കഴിയില്ല</string>
     <string name="deny">നിഷേധിക്കുക</string>
     <string name="prompt">പ്രോംപ്റ്റ്</string>
@@ -115,11 +114,7 @@
     <string name="module_empty">മൊഡ്യൂൾ ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">തീം മോഡ്</string>
-    <string name="settings_dark_mode_message">നിങ്ങളുടെ ശൈലിക്ക് ഏറ്റവും അനുയോജ്യമായ മോഡ് തിരഞ്ഞെടുക്കുക!</string>
-    <string name="settings_dark_mode_light">എപ്പോഴും ലൈറ്റ്</string>
-    <string name="settings_dark_mode_system">സിസ്റ്റം തീം</string>
-    <string name="settings_dark_mode_dark">എപ്പോഴും ഡാർക്ക്</string>
+    <string name="settings_dark_theme_system">സിസ്റ്റം തീം</string>
     <string name="settings_download_path_title">ഡൗൺലോഡ് സ്ഥലം</string>
     <string name="settings_download_path_message">ഫയലുകൾ %1$s-ലേക്ക് സേവ് ചെയ്യപ്പെടും</string>
     <string name="settings_hide_app_title">മജിസ്‌ക് ആപ്പ് മറയ്ക്കുക</string>

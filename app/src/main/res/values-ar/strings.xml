@@ -46,7 +46,6 @@
     <string name="reboot_delay_toast">إعادة التشغيل بعد ٥ ثواني…</string>
     <string name="flash_screen_title">التثبيت</string>
     <!--Superuser-->
-    <string name="su_request_title">طلبات صلاحية الروت</string>
     <string name="deny">رفض</string>
     <string name="prompt">طلب</string>
     <string name="grant">سماح</string>
@@ -99,11 +98,7 @@
     <string name="update_available">التحديث متوفر</string>
     <string name="external_rw_permission_denied">امنحني إذن الولوج للذاكرة الداخلية</string>
     <!--Settings -->
-    <string name="settings_dark_mode_title">وضعية الِسمات</string>
-    <string name="settings_dark_mode_message">حدد الوضع الذي يناسب ذوقك!</string>
-    <string name="settings_dark_mode_light">الوضع المضيء</string>
-    <string name="settings_dark_mode_system">اتبّع النظام</string>
-    <string name="settings_dark_mode_dark">وضع الظلام</string>
+    <string name="settings_dark_theme_system">اتبّع النظام</string>
     <string name="settings_download_path_title">مسار التحميل</string>
     <string name="settings_download_path_message">ستحمل الملفات إلى %1$s</string>
     <string name="language">اللغة</string>

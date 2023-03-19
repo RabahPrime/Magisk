@@ -51,7 +51,6 @@
     <string name="flash_screen_title">Εγκατάσταση</string>
 
     <!--Superuser-->
-    <string name="su_request_title">Αίτημα υπερχρήστη</string>
     <string name="touch_filtered_warning">Επειδή μια εφαρμογή αποκρύπτει ένα αίτημα υπερχρήστη, το Magisk δεν μπορεί να επαληθεύσει την απάντησή σας</string>
     <string name="deny">Άρνηση</string>
     <string name="prompt">Προτροπή</string>
@@ -115,11 +114,7 @@
     <string name="module_empty">Δεν υπάρχουν εγκατεστημένες επεκτάσεις</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Λειτουργία θέματος</string>
-    <string name="settings_dark_mode_message">Επιλέξτε τη λειτουργία που ταιριάζει καλύτερα στο στυλ σας!</string>
-    <string name="settings_dark_mode_light">Πάντα Light</string>
-    <string name="settings_dark_mode_system">Ακολούθησε το σύστημα</string>
-    <string name="settings_dark_mode_dark">Πάντα Dark</string>
+    <string name="settings_dark_theme_system">Ακολούθησε το σύστημα</string>
     <string name="settings_download_path_title">Διαδρομή λήψης</string>
     <string name="settings_download_path_message">Τα αρχεία θα αποθηκευτούν στο %1$s</string>
     <string name="settings_hide_app_title">Απόκρυψη της εφαρμογής Magisk</string>

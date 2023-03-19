@@ -48,7 +48,6 @@
     <string name="flash_screen_title">Installasjon</string>
 
     <!--Superuser-->
-    <string name="su_request_title">Superbrukerforespørsel</string>
     <string name="touch_filtered_warning">Fordi et program tilslører en superbrukerforespørsel kan ikke Magisk bekrefte</string>
     <string name="deny">Avslå</string>
     <string name="prompt">Spør</string>
@@ -108,11 +107,7 @@
     <string name="update_available">Oppgradering tilgjengelig</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Draktmodus</string>
-    <string name="settings_dark_mode_message">Velg det snittet som kler deg best.</string>
-    <string name="settings_dark_mode_light">Alltid lys</string>
-    <string name="settings_dark_mode_system">Følg systemet</string>
-    <string name="settings_dark_mode_dark">Alltid mørk</string>
+    <string name="settings_dark_theme_system">Følg systemet</string>
     <string name="settings_download_path_title">Nedlastingssti</string>
     <string name="settings_download_path_message">Filer vil lagres i %1$s</string>
     <string name="settings_hide_app_title">Skjul Magisk-programmet</string>

@@ -48,7 +48,6 @@
     <string name="flash_screen_title">Instal·lació</string>
 
     <!--Superuser-->
-    <string name="su_request_title">Petició de superusuari</string>
     <string name="touch_filtered_warning">Com que una aplicació està ofuscant la petició de superusuari, Magisk no pot verificar la seva resposta</string>
     <string name="deny">Denegar</string>
     <string name="prompt">Preguntar</string>
@@ -108,11 +107,7 @@
     <string name="update_available">Actualització Disponible</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Mode del tema</string>
-    <string name="settings_dark_mode_message">Seleccioni el mode que més s\'adeqüi al seu estil!</string>
-    <string name="settings_dark_mode_light">Sempre clar</string>
-    <string name="settings_dark_mode_system">Seguir al sistema</string>
-    <string name="settings_dark_mode_dark">Sempre fosc</string>
+    <string name="settings_dark_theme_system">Seguir al sistema</string>
     <string name="settings_download_path_title">Directori de baixades</string>
     <string name="settings_download_path_message">Els arxius es desaran a %1$s</string>
     <string name="settings_hide_app_title">Amagar Magisk Manager</string>

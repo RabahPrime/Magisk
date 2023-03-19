@@ -51,7 +51,6 @@
     <string name="flash_screen_title">Instalare</string>
 
     <!--Superuser-->
-    <string name="su_request_title">Cerere de superutilizator</string>
     <string name="touch_filtered_warning">Deoarece o aplicație ascunde o cerere de superutilizator, Magisk nu îți poate verifica răspunsul</string>
     <string name="deny">Refuză</string>
     <string name="prompt">Solicită</string>
@@ -115,11 +114,7 @@
     <string name="module_empty">Niciun modul instalat</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Mod pentru temă</string>
-    <string name="settings_dark_mode_message">Selectează modul care ți se pliază cel mai bine stilului!</string>
-    <string name="settings_dark_mode_light">Mereu deschis</string>
-    <string name="settings_dark_mode_system">Urmează modul sistemului</string>
-    <string name="settings_dark_mode_dark">Mereu întunecat</string>
+    <string name="settings_dark_theme_system">Urmează modul sistemului</string>
     <string name="settings_download_path_title">Cale de descărcare</string>
     <string name="settings_download_path_message">Fișierele vor fi salvate în %1$s</string>
     <string name="settings_hide_app_title">Ascunde aplicația Magisk</string>

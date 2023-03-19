@@ -27,11 +27,11 @@ class ManagerInstallDialog : MarkDownDialog() {
         super.build(dialog)
         dialog.apply {
             setCancelable(true)
-            setButton(MagiskDialog.ButtonType.POSITIVE) {
+            setButton(MagiskDialog.ButtonType.NEGATIVE) {
                 text = R.string.install
                 onClick { DownloadService.start(activity, Subject.App()) }
             }
-            setButton(MagiskDialog.ButtonType.NEGATIVE) {
+            setButton(MagiskDialog.ButtonType.POSITIVE) {
                 text = android.R.string.cancel
             }
         }

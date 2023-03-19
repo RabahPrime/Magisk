@@ -51,7 +51,6 @@
     <string name="reboot_delay_toast">Reiniciando en 5 segundos…</string>
     <string name="flash_screen_title">Instalación</string>
     <!--Superuser-->
-    <string name="su_request_title">Petición de superusuario</string>
     <string name="touch_filtered_warning">Como otra app está escondiendo la solicitud de superusuario, Magisk no puede verificar tu respuesta</string>
     <string name="deny">Denegar</string>
     <string name="prompt">Preguntar</string>
@@ -109,11 +108,7 @@
     <string name="zygisk_module_unloaded">Módulo Zygisk no cargado debido a incompatibilidad</string>
     <string name="module_empty">Ningún módulo instalado</string>
     <!--Settings -->
-    <string name="settings_dark_mode_title">Modo de tema</string>
-    <string name="settings_dark_mode_message">¡Seleccione el modo que mejor se adapte a su estilo!</string>
-    <string name="settings_dark_mode_light">Siempre claro</string>
-    <string name="settings_dark_mode_system">Seguir al sistema</string>
-    <string name="settings_dark_mode_dark">Siempre oscuro</string>
+    <string name="settings_dark_theme_system">Seguir al sistema</string>
     <string name="settings_download_path_title">Ruta de Descarga</string>
     <string name="settings_download_path_message">Los archivos se guardarán en %1$s</string>
     <string name="settings_hide_app_title">Esconder la app de Magisk</string>

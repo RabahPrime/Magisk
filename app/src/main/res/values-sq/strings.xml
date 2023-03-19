@@ -51,7 +51,6 @@
     <string name="flash_screen_title">Instalimi</string>
 
     <!--Superuser-->
-    <string name="su_request_title">Kërkesë nga superpërdoruesi</string>
     <string name="touch_filtered_warning">Për shkak se një aplikacion po errëson një kërkesë të superpërdoruesit, Magisk nuk mund të verifikojë përgjigjen tuaj</string>
     <string name="deny">Refuzo</string>
     <string name="prompt">Pyet</string>
@@ -115,11 +114,7 @@
     <string name="module_empty">Ska module të instaluar</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Mënyra e temës</string>
-    <string name="settings_dark_mode_message">Zgjidhni mënyrën që i përshtatet më shumë stilit tuaj!</string>
-    <string name="settings_dark_mode_light">Gjithmonë e bardhë</string>
-    <string name="settings_dark_mode_system">Sipas sistemit</string>
-    <string name="settings_dark_mode_dark">Gjithmonë e zezë</string>
+    <string name="settings_dark_theme_system">Sipas sistemit</string>
     <string name="settings_download_path_title">Vendodhje e shkarkimit</string>
     <string name="settings_download_path_message">Shkarkimet do të ruhen në %1$s</string>
     <string name="settings_hide_app_title">Fsheh aplikacionin Magisk</string>

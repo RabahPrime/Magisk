@@ -46,7 +46,6 @@
     <string name="flash_screen_title">ਇੰਸਟਾਲੇਸ਼ਨ</string>
 
     <!--Superuser-->
-    <string name="su_request_title">ਸੁਪਰਯੂਜ਼ਰ ਮੰਗ</string>
     <string name="deny">ਇਨਕਾਰ ਕਰੋ</string>
     <string name="prompt">ਸੰਕੇਤ ਦਿਖਾਓ</string>
     <string name="grant">ਆਗਿਆ ਦਿਓ</string>
@@ -105,11 +104,7 @@
     <string name="update_available">ਅਪਡੇਟ ਉਪਲੱਬਧ ਹੈ</string>
 
     <!--Settings -->
-    <string name="settings_dark_mode_title">ਥੀਮ ਮੋਡ</string>
-    <string name="settings_dark_mode_message">ਕੋਈ ਥੀਮ ਚੁਣੋ ਜੋ ਤੁਹਾਡੀ ਸ਼ੈਲੀ ਦੇ ਅਨੁਕੂਲ ਹੋਵੇ!</string>
-    <string name="settings_dark_mode_light">ਹਮੇਸ਼ਾਂ ਚਿੱਟੇ ਰੰਗ ਦੀ</string>
-    <string name="settings_dark_mode_system">ਸਿਸਟਮ ਦੇ ਅਨੁਸਾਰ</string>
-    <string name="settings_dark_mode_dark">ਹਮੇਸ਼ਾ ਗਹਿਰੇ ਰੰਗ ਦੀ</string>
+    <string name="settings_dark_theme_system">ਸਿਸਟਮ ਦੇ ਅਨੁਸਾਰ</string>
     <string name="settings_download_path_title">ਡਾਊਨਲੋਡ ਮਾਰਗ</string>
     <string name="settings_download_path_message">ਫਾਈਲਾਂ ਨੂੰ %1$s ਵਿੱਚ ਸੇਵ ਕੀਤਾ ਜਾਏਗਾ</string>
     <string name="language">ਭਾਸ਼ਾ</string>

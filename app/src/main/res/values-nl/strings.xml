@@ -47,7 +47,6 @@
     <string name="flash_screen_title">Installatie</string>
 
     <!--Superuser-->
-    <string name="su_request_title">Superuserverzoek</string>
     <string name="deny">Weigeren</string>
     <string name="prompt">Vraag</string>
     <string name="grant">Toestaan</string>
@@ -104,11 +103,7 @@
     <string name="update_available">Update beschikbaar</string>
 
     <!--Settings -->
-    <string name="settings_dark_mode_title">Thema</string>
-    <string name="settings_dark_mode_message">Kies het thema dat het best bij je past!</string>
-    <string name="settings_dark_mode_light">Licht</string>
-    <string name="settings_dark_mode_system">Systeemstandaard</string>
-    <string name="settings_dark_mode_dark">Donker</string>
+    <string name="settings_dark_theme_system">Systeemstandaard</string>
     <string name="settings_download_path_title">Downloadpad</string>
     <string name="settings_download_path_message">Bestanden worden opgeslagen in %1$s</string>
     <string name="language">Taal</string>

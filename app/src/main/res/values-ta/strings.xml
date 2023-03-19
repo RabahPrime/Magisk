@@ -48,7 +48,6 @@
     <string name="flash_screen_title">நிறுவல்</string>
 
     <!--Superuser-->
-    <string name="su_request_title">சூப்பர் யூசர் கோரிக்கை</string>
     <string name="touch_filtered_warning">ஒரு பயன்பாடு ஒரு சூப்பர் யூசர் கோரிக்கையை மறைப்பதால், மேகிஸ்கால் உங்கள் பதிலைச் சரிபார்க்க முடியாது</string>
     <string name="deny">மறு</string>
     <string name="prompt">உடனடி</string>
@@ -108,11 +107,7 @@
     <string name="update_available">புதுப்பிப்பு கிடைக்கிறது</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">தீம் பயன்முறை</string>
-    <string name="settings_dark_mode_message">உங்கள் பாணிக்கு மிகவும் பொருத்தமான பயன்முறையைத் தேர்ந்தெடுக்கவும்!</string>
-    <string name="settings_dark_mode_light">எப்போதும் ஒளி</string>
-    <string name="settings_dark_mode_system">தொலைபேசி அமைப்புகளைப் பின்பற்றவும்</string>
-    <string name="settings_dark_mode_dark">எப்போதும் இருண்டது</string>
+    <string name="settings_dark_theme_system">தொலைபேசி அமைப்புகளைப் பின்பற்றவும்</string>
     <string name="settings_download_path_title">பதிவிறக்க இடம்</string>
     <string name="settings_download_path_message">%1$s ல் கோப்புகள் சேமிக்கப்படும்</string>
     <string name="settings_hide_app_title">மேஜிஸ்க் செயலியை மறைக்கவும்</string>

@@ -51,7 +51,6 @@
     <string name="flash_screen_title">Telepítés</string>
 
     <!--Superuser-->
-    <string name="su_request_title">Superuser kérés</string>
     <string name="touch_filtered_warning">Mivel egy alkalmazás eltakar egy Superuser kérést, a Magisk nem tudja ellenőrizni a válaszod</string>
     <string name="deny">Elutasít</string>
     <string name="prompt">Kérdés</string>
@@ -115,11 +114,7 @@
     <string name="module_empty">Nincs telepített modul</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Téma mód</string>
-    <string name="settings_dark_mode_message">Válaszd ki a stílusodhoz leginkább illő módot!</string>
-    <string name="settings_dark_mode_light">Mindig világos</string>
-    <string name="settings_dark_mode_system">Rendszer követése</string>
-    <string name="settings_dark_mode_dark">Mindig sötét</string>
+    <string name="settings_dark_theme_system">Rendszer követése</string>
     <string name="settings_download_path_title">Letöltési útvonal</string>
     <string name="settings_download_path_message">A fájlok a következő helyre kerülnek: %1$s</string>
     <string name="settings_hide_app_title">A Magisk app elrejtése</string>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.topjohnwu.magisk.core.Config" />
+
+        <variable
+            name="viewModel"
+            type="com.topjohnwu.magisk.ui.module.ModuleViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/module_list"
+            gone="@{viewModel.loading}"
+            app:items="@{viewModel.items}"
+            app:extraBindings="@{viewModel.extraBindings}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:fadeScrollbars="true"
+            android:scrollbarStyle="insideOverlay"
+            android:scrollbars="vertical"
+            android:paddingTop="@dimen/internal_action_bar_size"
+            android:paddingBottom="@dimen/internal_action_bar_size"
+            android:layout_marginBottom="@dimen/l3"
+            app:fitsSystemWindowsInsets="top|bottom"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_module" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                goneUnless="@{viewModel.loading}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loading"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                android:textStyle="bold" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                goneUnless="@{viewModel.loading}"
+                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_marginTop="@dimen/l_50"
+                android:indeterminate="true" />
+
+            <com.google.android.material.textview.MaterialTextView
+                gone="@{viewModel.loading || viewModel.items.size() != 0 }"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/module_empty"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <include
+            layout="@layout/item_module_download"
+            viewModel="@{viewModel}"
+            android:id="@+id/module_download" />
+
+    </FrameLayout>
+
+</layout>

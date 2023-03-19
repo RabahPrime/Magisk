@@ -48,7 +48,6 @@
     <string name="flash_screen_title">ინსტალაცია</string>
 
     <!--Superuser-->
-    <string name="su_request_title">სუპერმომხმარებლის ნებართვის მოთხოვნა</string>
     <string name="touch_filtered_warning">სხვა აპი ხელს უშლის Magisk-ს თქვენი პასუხის დადასტურებაში</string>
     <string name="deny">აკრძალვა</string>
     <string name="prompt">კითხვა</string>
@@ -108,11 +107,7 @@
     <string name="update_available">ხელმისაწვდომია განახლება</string>
 
     <!--Settings -->
-    <string name="settings_dark_mode_title">თემების ჩამონათვალი</string>
-    <string name="settings_dark_mode_message">აირჩიეთ ის რაც ყველაზე ძალიან მოგწონთ!</string>
-    <string name="settings_dark_mode_light">ღია თემა</string>
-    <string name="settings_dark_mode_system">სისტემაზე დაფუძნებული</string>
-    <string name="settings_dark_mode_dark">მუქი თემა</string>
+    <string name="settings_dark_theme_system">სისტემაზე დაფუძნებული</string>
     <string name="settings_download_path_title">გადმოწერის ლოკაცია</string>
     <string name="settings_download_path_message">ფაილები შეინახება %1$s-ში</string>
     <string name="settings_hide_app_title">Magisk-ის აპის დამალვა</string>

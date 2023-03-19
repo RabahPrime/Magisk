@@ -51,7 +51,6 @@
     <string name="flash_screen_title">Inštalácia</string>
 
     <!--Superuser-->
-    <string name="su_request_title">Požiadavka superužívateľa</string>
     <string name="touch_filtered_warning">Pretože aplikácia zakrýva požiadavku superužívateľa, Magisk nemôže overiť vašu odpoveď</string>
     <string name="deny">Zamietnuť</string>
     <string name="prompt">Výzva</string>
@@ -115,11 +114,7 @@
     <string name="module_empty">Nie je nainštalovaný žiadny modul</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Režim motívu</string>
-    <string name="settings_dark_mode_message">Vyberte režim, ktorý najlepšie vyhovuje vášmu štýlu!</string>
-    <string name="settings_dark_mode_light">Vždy svetlý</string>
-    <string name="settings_dark_mode_system">Podľa systému</string>
-    <string name="settings_dark_mode_dark">Vždy tmavý</string>
+    <string name="settings_dark_theme_system">Podľa systému</string>
     <string name="settings_download_path_title">Cesta na sťahovanie</string>
     <string name="settings_download_path_message">Súbory budú uložené do %1$s</string>
     <string name="settings_hide_app_title">Skryť aplikáciu Magisk</string>

@@ -46,7 +46,6 @@
     <string name="flash_screen_title">نصب و راه اندازی</string>
 
     <!--Superuser-->
-    <string name="su_request_title">درخواست کاربر روت</string>
     <string name="deny">رد کردن</string>
     <string name="prompt">درخواست کردن</string>
     <string name="grant">اجازه دادن</string>
@@ -100,11 +99,7 @@
     <string name="update_available">بروزرسانی در دسترس است</string>
 
     <!--Settings -->
-    <string name="settings_dark_mode_title">حالت تم</string>
-    <string name="settings_dark_mode_message">حالت متناسب با سبک زندگی خود را انتخاب کنید!</string>
-    <string name="settings_dark_mode_light">همیشه روشن</string>
-    <string name="settings_dark_mode_system">با توجه به سیستم</string>
-    <string name="settings_dark_mode_dark">همیشه تاریک</string>
+    <string name="settings_dark_theme_system">با توجه به سیستم</string>
     <string name="settings_download_path_title">مسیر دانلود</string>
     <string name="settings_download_path_message">فایل ها در %1$s ذخیره خواهند شد.</string>
     <string name="language">زبان</string>
