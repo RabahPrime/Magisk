@@ -243,8 +243,15 @@ void MagiskInit::patch_ro_root() {
     // Extract magisk
     extract_files(false);
 
+    if (access("/odm/etc/selinux/precompiled_sepolicy", F_OK) == 0) {
+        xmkdirs(ROOTOVL "/odm/etc/selinux", 0755);
+        patch_sepolicy("/odm/etc/selinux/precompiled_sepolicy", ROOTOVL "/odm/etc/selinux/precompiled_sepolicy");
+    } else if (access("/vendor/etc/selinux/precompiled_sepolicy", F_OK) == 0) {
+        xmkdirs(ROOTOVL "/vendor/etc/selinux", 0755);
+        patch_sepolicy("/vendor/etc/selinux/precompiled_sepolicy", ROOTOVL "/vendor/etc/selinux/precompiled_sepolicy");
+    }
     // Oculus Go will use a special sepolicy if unlocked
-    if (access("/sepolicy.unlocked", F_OK) == 0) {
+    else if (access("/sepolicy.unlocked", F_OK) == 0) {
         patch_sepolicy("/sepolicy.unlocked", ROOTOVL "/sepolicy.unlocked");
     } else if ((access(SPLIT_PLAT_CIL, F_OK) != 0 && access("/sepolicy", F_OK) == 0) || !hijack_sepolicy()) {
         patch_sepolicy("/sepolicy", ROOTOVL "/sepolicy");
