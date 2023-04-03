@@ -52,7 +52,7 @@ static pthread_mutex_t data_lock = PTHREAD_MUTEX_INITIALIZER;
 
 atomic<bool> denylist_enforced = false;
 
-static const char *table_name = "hidelist";
+static const char *table_name = "sulist";
 
 // Process monitoring
 pthread_t monitor_thread;
@@ -361,19 +361,13 @@ void ls_list(int client) {
 }
 
 static void update_deny_config() {
-    char sql[64];
-    sprintf(sql, "REPLACE INTO settings (key,value) VALUES('%s',%d)",
-        DB_SETTING_KEYS[DENYLIST_CONFIG], denylist_enforced.load());
-    char *err = db_exec(sql);
-    db_err(err);
+    // dummy
+    return;
 }
 
 void update_sulist_config(bool enable) {
-    char sql[64];
-    sprintf(sql, "REPLACE INTO settings (key,value) VALUES('%s',%d)",
-        DB_SETTING_KEYS[WHITELIST_CONFIG], enable? 1 : 0);
-    char *err = db_exec(sql);
-    db_err(err);
+    // dummy
+    return;
 }
 
 static int new_daemon_thread(void(*entry)()) {
@@ -393,20 +387,14 @@ int enable_deny() {
 
         if (access("/proc/self/ns/mnt", F_OK) != 0) {
             LOGW("The kernel does not support mount namespace\n");
-            sulist_enabled = false;
-            table_name = "hidelist";
-            update_sulist_config(false);
+            //sulist_enabled = false;
             return DenyResponse::NO_NS;
         }
 
         if (procfp == nullptr && (procfp = opendir("/proc")) == nullptr)
             goto daemon_error;
 
-        if (sulist_enabled) {
-            LOGI("* Enable SuList\n");
-        } else {
-            LOGI("* Enable MagiskHide\n");
-        }
+        LOGI("* Enable SuList\n");
 
         denylist_enforced = true;
 
@@ -423,7 +411,7 @@ int enable_deny() {
             monitoring = true;
         }
 
-        if (sulist_enabled) {
+        {
             // Add SystemUI and Settings to sulist because modules might need to modify it
             add_hide_set("com.android.systemui", "com.android.systemui");
             add_hide_set("com.android.settings", "com.android.settings");
@@ -431,43 +419,21 @@ int enable_deny() {
         }
     }
 
-    update_deny_config();
-
     return DenyResponse::OK;
     
     daemon_error:
-    sulist_enabled = false;
-    table_name = "hidelist";
-    update_sulist_config(false);
+    //sulist_enabled = false;
     return DenyResponse::ERROR;
 }
 
 int disable_deny() {
-    // sulist mode cannot be turn off without reboot
-    if (sulist_enabled)
-        return DenyResponse::SULIST_NO_DISABLE;
-
-    if (denylist_enforced) {
-        denylist_enforced = false;
-        LOGI("* Disable MagiskHide\n");
-    }
-    if (monitoring) {
-        pthread_kill(monitor_thread, SIGTERMTHRD);
-        monitoring = false;
-    }
-    update_deny_config();
-
+    // dymmy
     return DenyResponse::OK;
 }
 
 void initialize_denylist() {
-    if (sulist_enabled) table_name = "sulist";
-    if (!denylist_enforced) {
-        db_settings dbs;
-        get_db_settings(dbs, DENYLIST_CONFIG);
-        if (dbs[DENYLIST_CONFIG])
-            enable_deny();
-    }
+    table_name = "sulist";
+    enable_deny();
 }
 
 bool is_deny_target(int uid, string_view process, int max_len) {
@@ -484,7 +450,7 @@ bool is_deny_target(int uid, string_view process, int max_len) {
 
     if (app_id == manager_app_id) {
         // allow manager to access Magisk
-        return (sulist_enabled)? true : false;
+        return true;
     }
 
     if (app_id >= 90000) {
@@ -922,14 +888,11 @@ static int check_pid(int pid) {
     // The hide daemon will resume the process after hiding it
     LOGI("proc_monitor: [%s] PID=[%d] PPID=[%d] UID=[%d]\n", cmdline, pid, ppid, uid);
 
-    if (sulist_enabled) {
+    {
         // mount magisk in sulist mode
         su_daemon(pid);
         return 1;
     }
-    // hide magisk in normal mode
-    revert_daemon(pid);
-    return 1;
 
 not_target:
     kill(pid, SIGCONT);
@@ -951,7 +914,7 @@ static void new_zygote(int pid) {
         return;
 
     LOGI("proc_monitor: zygote PID=[%d]\n", pid);
-    if (sulist_enabled) revert_daemon(pid, -2);
+    revert_daemon(pid, -2);
     zygote_map[pid] = st;
     attach_zygote:
     LOGI("proc_monitor: ptrace zygote PID=[%d]\n", pid);
@@ -1028,8 +991,7 @@ void do_check_fork() {
             //LOGD("proc_monitor: PID=[%d] UID=[%d]\n", pid, st.st_uid);
             if ((st.st_uid % 100000) >= 90000) {
                 PTRACE_LOG("is isolated process\n");
-           	    if (sulist_enabled)
-           	        break;
+           	    break;
                 goto CHECK_PROC;
             }
 
