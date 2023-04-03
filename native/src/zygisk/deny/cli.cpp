@@ -14,21 +14,16 @@ using namespace std;
 
 [[noreturn]] static void usage() {
     fprintf(stderr,
-R"EOF(MagiskHide Config CLI
-Usage: magiskhide [action [arguments...] ]
+R"EOF(SuList Config CLI
+Usage: magisk --sulist [action [arguments...] ]
 Actions:
-   status          Return the MagiskHide status
-   enable          Enable MagiskHide
-   disable         Disable MagiskHide
-   add PKG [PROC]  Add a new target to the hidelist (sulist)
-   rm PKG [PROC]   Remove target(s) from the hidelist (sulist)
-   ls              Print the current hidelist (sulist)
+   status          Return the SuList status
+   add PKG [PROC]  Add a new target to the sulist
+   rm PKG [PROC]   Remove target(s) from the sulist
+   ls              Print the current sulist
    exec CMDs...    Execute commands in isolated mount
                    namespace and do all unmounts
 Magisk Delta specific Actions:
-   sulist          Return the SuList status
-   sulist [enable|disable]
-                   Enable or disable SuList (need reboot)
    version         Print MagiskHide version
    --do-unmount [PID...]
                    Unmount all Magisk modifications
@@ -47,21 +42,7 @@ void denylist_handler(int client, const sock_cred *cred) {
     int res = DenyResponse::ERROR;
 
     switch (req) {
-    case DenyRequest::ENFORCE:
-        res = enable_deny();
-        break;
-    case DenyRequest::DISABLE:
-        res = disable_deny();
-        break;
-    case DenyRequest::ENFORCE_SULIST:
-        update_sulist_config(true);
-        res = DenyResponse::OK;
-        break;
-    case DenyRequest::DISABLE_SULIST:
-        update_sulist_config(false);
-        res = DenyResponse::OK;
-        break;
-    case DenyRequest::ADD:
+	case DenyRequest::ADD:
         res = add_list(client);
         break;
     case DenyRequest::REMOVE:
@@ -74,11 +55,6 @@ void denylist_handler(int client, const sock_cred *cred) {
         if (denylist_enforced){
         	res = DenyResponse::ENFORCED;
 		} else res = DenyResponse::NOT_ENFORCED;
-        break;
-    case DenyRequest::SULIST_STATUS:
-        if (sulist_enabled){
-        	res = DenyResponse::SULIST_ENFORCED;
-		} else res = DenyResponse::SULIST_NOT_ENFORCED;
         break;
     default:
         // Unknown request code
@@ -93,26 +69,15 @@ int denylist_cli(int argc, char **argv) {
         usage();
 
     int req;
-    if (argv[1] == "enable"sv)
-        req = DenyRequest::ENFORCE;
-    else if (argv[1] == "disable"sv)
-        req = DenyRequest::DISABLE;
+    if (argv[1] == "status"sv)
+        req = DenyRequest::STATUS;
     else if (argv[1] == "add"sv){
     	req = DenyRequest::ADD;
     } else if (argv[1] == "rm"sv){
     	req = DenyRequest::REMOVE;
     } else if (argv[1] == "ls"sv)
         req = DenyRequest::LIST;
-    else if (argv[1] == "status"sv)
-        req = DenyRequest::STATUS;
-    else if (argv[1] == "sulist"sv && argc >= 2) {
-    	if (argc >= 3) {
-            if (argv[2] == "enable"sv)
-                req = DenyRequest::ENFORCE_SULIST;
-            else if (argv[2] == "disable"sv)
-                req = DenyRequest::DISABLE_SULIST;
-        } else req = DenyRequest::SULIST_STATUS;
-    } else if (argv[1] == "version"sv) {
+    else if (argv[1] == "version"sv) {
         printf("MAGISKHIDE:%d\n", hide_version);
         return 0;
     } else if (argv[1] == "--do-unmount"sv) {
@@ -154,22 +119,16 @@ int denylist_cli(int argc, char **argv) {
         res = DenyResponse::ERROR;
     switch (res) {
     case DenyResponse::NOT_ENFORCED:
-        fprintf(stderr, "MagiskHide is disabled\n");
-        goto return_code;
-    case DenyResponse::ENFORCED:
-    	fprintf(stderr, "MagiskHide is enabled\n");
-        goto return_code;
-    case DenyResponse::SULIST_NOT_ENFORCED:
         fprintf(stderr, "SuList is not enforced\n");
         return 1;
-    case DenyResponse::SULIST_ENFORCED:
+    case DenyResponse::ENFORCED:
     	fprintf(stderr, "SuList is enforced\n");
         return 0;
     case DenyResponse::ITEM_EXIST:
-        fprintf(stderr, "Target already exists in hidelist\n");
+        fprintf(stderr, "Target already exists in sulist\n");
         goto return_code;
     case DenyResponse::ITEM_NOT_EXIST:
-        fprintf(stderr, "Target does not exist in hidelist\n");
+        fprintf(stderr, "Target does not exist in sulist\n");
         goto return_code;
     case DenyResponse::NO_NS:
         fprintf(stderr, "The kernel does not support mount namespace\n");

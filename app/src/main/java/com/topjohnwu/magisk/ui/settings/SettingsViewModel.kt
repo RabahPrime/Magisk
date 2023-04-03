@@ -60,6 +60,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
         // Magisk
         if (Info.env.isActive) {
             val is_delta = Shell.cmd("is_delta").exec().isSuccess;
+            val is_sulist = Shell.cmd("magisk --sulist status").exec().isSuccess;
             val use_full_magisk = Shell.cmd("use_full_magisk").exec().isSuccess;
             if (use_full_magisk){
                 list.addAll(listOf(
@@ -68,7 +69,10 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
                 ))
                 if (Const.Version.atLeast_24_0()) {
                     if (is_delta){
-                        list.addAll(listOf(AntiBLoop, CoreOnly, MagiskHideClass, DenyList, SuList, DenyListConfig, CleanHideList))
+                        list.addAll(listOf(AntiBLoop, CoreOnly))
+                        if (is_sulist) {
+                            list.addAll(listOf(DenyListConfig, CleanHideList))
+                        }
                     }
                 }
             }
