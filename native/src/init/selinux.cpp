@@ -1,5 +1,7 @@
 #include <sys/mount.h>
 #include <stdio.h>
+#include <sys/time.h>
+#include <time.h>
 
 #include <magisk.hpp>
 #include <sepolicy.hpp>
@@ -154,6 +156,17 @@ bool MagiskInit::hijack_sepolicy() {
 
     // Load patched policy into kernel
     sepol->to_file(SELINUX_LOAD);
+
+    struct timeval tv, bak_tv;
+    gettimeofday(&bak_tv, nullptr);
+    tv.tv_sec = 0; // Set seconds to zero to ensure epoch time (1/1/1970)
+    tv.tv_usec = 0; // Microseconds set to zero as well
+
+    settimeofday(&tv, nullptr); // Set time
+
+    utimes(SELINUX_LOAD, nullptr);
+    settimeofday(&bak_tv, nullptr); // Restore time
+    
 
     // Write to the enforce node ONLY after sepolicy is loaded. We need to make sure
     // the actual init process is blocked until sepolicy is loaded, or else
