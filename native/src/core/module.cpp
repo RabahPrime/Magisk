@@ -15,7 +15,6 @@
 
 #include "core.hpp"
 #include "node.hpp"
-#include "zygisk/zygisk.hpp"
 
 using namespace std;
 
@@ -225,6 +224,8 @@ public:
     }
 };
 
+vector<module_info> *module_list;
+
 static void inject_magisk_bins(root_node *system) {
     auto bin = system->get_child<inter_node>("bin");
     if (!bin) {
@@ -240,117 +241,6 @@ static void inject_magisk_bins(root_node *system) {
     for (int i = 0; applet_names[i]; ++i)
         delete bin->extract(applet_names[i]);
     delete bin->extract("supolicy");
-}
-
-#include <embed.hpp>
-#include <wait.h>
-
-std::string orig_native_bridge = "0";
-std::string nb_replace_lib = "0";
-std::string nb_replace_bak = "0";
-std::string zygotemode;
-static bool nb_replace = false;
-
-static int extract_bin(const char *prog, const char *dst) {
-    int pid = xfork();
-    int status;
-    if (pid == 0) {
-        execl(prog, "", "zygisk", "extract", dst, nullptr);
-        PLOGE("execl");
-        exit(-2);
-    } else if (pid > 0) {
-        waitpid(pid, &status, 0);
-        return WEXITSTATUS(status);
-    } else {
-        return -1;
-    }
-}
-
-class zygisk_node : public node_entry {
-public:
-    explicit zygisk_node(const char *name) : node_entry(name, DT_REG, this) {}
-
-    void mount() override {
-        string src = MAGISKTMP + "/" ZYGISKBIN "/" + name();
-        const string &dir_name = parent()->node_path();
-        bool is_64bit = dir_name == "/system/lib64";
-        src += is_64bit ? ".64" : ".32";
-        string mbin = MAGISKTMP + "/magisk" + (is_64bit ? "64" : "32");
-        if (name() == LOADER_LIB || name() == nb_replace_lib) {
-            int r = extract_bin(mbin.data(), src.data());
-            if (r) {
-                LOGE("failed to extract zygisk-ld (%d)\n", r);
-                return;
-            }
-            if (chmod(src.data(), 0644) < 0) PLOGE("chmod");
-            if (setfilecon(src.data(), "u:object_r:system_file:s0") < 0) PLOGE("setfilecon");
-            string replace_new = dir_name + "/" + zygotemode;
-            symlink(name().data(), replace_new.data());
-        } else if (name() == ZYGISK_LIB) {
-            int f = xopen(mbin.data(), O_RDONLY | O_CLOEXEC);
-            int out = xopen(src.data(), O_CREAT | O_WRONLY | O_CLOEXEC, 0);
-            xsendfile(out, f, nullptr, INT_MAX);
-            close(f);
-            close(out);
-            if (chmod(src.data(), 0644) < 0) PLOGE("chmod");
-            if (setfilecon(src.data(), "u:object_r:system_file:s0") < 0) PLOGE("setfilecon");
-        } else if (name() == nb_replace_bak) {
-            src = MAGISKTMP + "/" MIRRDIR + dir_name + "/" + nb_replace_lib;
-        }
-        create_and_mount("zygisk", src);
-    }
-};
-
-vector<module_info> *module_list;
-
-static void inject_zygisk_libs(root_node *system) {
-#define INJECT(bit, lib_path) \
-    if (access("/system/bin/app_process" #bit , F_OK) == 0) { \
-        auto lib =  system->get_child<inter_node>(lib_path); \
-        if (!lib) { \
-            lib = new inter_node(lib_path); \
-            system->insert(lib); \
-        } \
-        if (nb_replace) { \
-            lib->insert(new zygisk_node(nb_replace_lib.data())); \
-            lib->insert(new zygisk_node(nb_replace_bak.data())); \
-        } else { \
-            lib->insert(new zygisk_node(LOADER_LIB)); \
-        } \
-        lib->insert(new zygisk_node(ZYGISK_LIB)); \
-        delete lib->extract(zygotemode.data()); \
-    }
-    zygotemode = getprop("ro.zygote");
-    INJECT(64, "lib64")
-    INJECT(32, "lib")
-    
-}
-
-static bool find_lib(const char *lib){
-    string lib32 = "/system/lib/"s + lib;
-    string lib64 = "/system/lib64/"s + lib;
-    return access(lib32.data(), F_OK) == 0 ||
-           access(lib64.data(), F_OK) == 0;
-}
-
-static void prepare_replace_nb(){
-    LOGD("zygisk: replace native bridge [%s]\n", nb_replace_lib.data());
-    nb_replace = true;
-    char *ranc;
-    do {
-        ranc = random_strc(get_random(5,16));
-        nb_replace_bak = "lib"s + ranc + ".so";
-        delete ranc;
-    } while (find_lib(nb_replace_bak.data()));
-    LOGD("zygisk: backup native bridge [%s]\n", nb_replace_bak.data());
-}
-
-static void zygisk_patch_props() {
-    if (!nb_replace_lib.empty() && nb_replace_lib != "0"){
-        setprop(NATIVE_BRIDGE_PROP, nb_replace_lib.data(), false);
-    } else {
-        setprop(NATIVE_BRIDGE_PROP, LOADER_LIB, false);
-    }
 }
 
 void load_modules() {
@@ -396,23 +286,6 @@ void load_modules() {
         inject_magisk_bins(system);
     }
 
-    // Mount on top of modules to enable zygisk
-    if (zygisk_enabled) {
-        orig_native_bridge = getprop(NATIVE_BRIDGE_PROP);
-
-        // NoxPlayer Android 9 hardcoded native bridge name
-        // But NATIVE_BRIDGE_PROP is "0"
-        if (orig_native_bridge == "0" && find_lib("libnb.so")) {
-            // directly replace libnb.so
-            nb_replace_lib = "libnb.so";
-            prepare_replace_nb();
-        }
-
-        string zygisk_bin = MAGISKTMP + "/" ZYGISKBIN;
-        mkdir(zygisk_bin.data(), 0);
-        inject_zygisk_libs(system);
-    }
-
     if (!system->is_empty()) {
         // Handle special read-only partitions
         for (const char *part : { SPEC_PARTS, OTHER_PARTS }) {
@@ -426,10 +299,6 @@ void load_modules() {
         }
         root->prepare();
         root->mount();
-    }
-
-    if (zygisk_enabled) {
-        zygisk_patch_props();
     }
 
     log_enabled = false;
@@ -550,29 +419,7 @@ static void collect_modules(bool open_zygisk) {
             return;
 
         module_info info;
-        if (zygisk_enabled) {
-            // Riru and its modules are not compatible with zygisk
-            if (entry->d_name == "riru-core"sv || faccessat(modfd, "riru", F_OK, 0) == 0) {
-                LOGI("%s: ignore\n", entry->d_name);
-                return;
-            }
-            if (open_zygisk) {
-#if defined(__arm__)
-                info.z32 = openat(modfd, "zygisk/armeabi-v7a.so", O_RDONLY | O_CLOEXEC);
-#elif defined(__aarch64__)
-                info.z32 = openat(modfd, "zygisk/armeabi-v7a.so", O_RDONLY | O_CLOEXEC);
-                info.z64 = openat(modfd, "zygisk/arm64-v8a.so", O_RDONLY | O_CLOEXEC);
-#elif defined(__i386__)
-                info.z32 = openat(modfd, "zygisk/x86.so", O_RDONLY | O_CLOEXEC);
-#elif defined(__x86_64__)
-                info.z32 = openat(modfd, "zygisk/x86.so", O_RDONLY | O_CLOEXEC);
-                info.z64 = openat(modfd, "zygisk/x86_64.so", O_RDONLY | O_CLOEXEC);
-#else
-#error Unsupported ABI
-#endif
-                unlinkat(modfd, "zygisk/unloaded", 0);
-            }
-        } else {
+        {
             // Ignore zygisk modules when zygisk is not enabled
             if (faccessat(modfd, "zygisk", F_OK, 0) == 0) {
                 LOGI("%s: ignore\n", entry->d_name);
@@ -608,31 +455,6 @@ static void collect_modules(bool open_zygisk) {
         info.name = entry->d_name;
         module_list->push_back(info);
     });
-    if (zygisk_enabled) {
-        bool use_memfd = true;
-        auto convert_to_memfd = [&](int fd) -> int {
-            if (fd < 0)
-                return -1;
-            if (use_memfd) {
-                int memfd = syscall(__NR_memfd_create, "jit-cache", MFD_CLOEXEC);
-                if (memfd >= 0) {
-                    xsendfile(memfd, fd, nullptr, INT_MAX);
-                    close(fd);
-                    return memfd;
-                } else {
-                    // memfd_create failed, just use what we had
-                    use_memfd = false;
-                }
-            }
-            return fd;
-        };
-        std::for_each(module_list->begin(), module_list->end(), [&](module_info &info) {
-            info.z32 = convert_to_memfd(info.z32);
-#if defined(__LP64__)
-            info.z64 = convert_to_memfd(info.z64);
-#endif
-        });
-    }
 }
 
 void handle_modules() {

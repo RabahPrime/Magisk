@@ -37,11 +37,6 @@ LOCAL_SRC_FILES := \
     su/connect.cpp \
     su/pts.cpp \
     su/su_daemon.cpp \
-    zygisk/entry.cpp \
-    zygisk/main.cpp \
-    zygisk/utils.cpp \
-    zygisk/hook.cpp \
-    zygisk/memory.cpp \
     zygisk/deny/cli.cpp \
     zygisk/deny/utils.cpp \
     zygisk/deny/revert.cpp
@@ -58,13 +53,6 @@ ifdef B_PRELOAD
 include $(CLEAR_VARS)
 LOCAL_MODULE := init-ld
 LOCAL_SRC_FILES := init/preload.c
-include $(BUILD_SHARED_LIBRARY)
-
-include $(CLEAR_VARS)
-LOCAL_STATIC_LIBRARIES := libbase
-LOCAL_MODULE := zygisk-ld
-LOCAL_SRC_FILES := zygisk/loader.cpp
-LOCAL_LDLIBS := -llog
 include $(BUILD_SHARED_LIBRARY)
 
 endif

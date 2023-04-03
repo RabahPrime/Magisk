@@ -133,7 +133,6 @@ enum : int {
 
 static int boot_state = FLAG_NONE;
 
-bool zygisk_enabled = false;
 bool sulist_enabled = false;
 
 static const char *F2FS_SYSFS_PATH = nullptr;
@@ -700,7 +699,6 @@ static void post_fs_data() {
         disable_deny();
         prepare_modules();
     } else {
-        get_db_settings(dbs, ZYGISK_CONFIG);
         get_db_settings(dbs, WHITELIST_CONFIG);
         get_db_settings(dbs, DENYLIST_CONFIG);
 
@@ -710,7 +708,6 @@ static void post_fs_data() {
             boot_state |= FLAG_SAFE_MODE;
             disable_modules();
             // we still allow zygisk
-            zygisk_enabled = dbs[ZYGISK_CONFIG];
             sulist_enabled = dbs[DENYLIST_CONFIG] && dbs[WHITELIST_CONFIG];
             initialize_denylist();
             prepare_modules();
@@ -722,7 +719,6 @@ static void post_fs_data() {
         }
         exec_common_scripts("post-fs-data");
 
-        zygisk_enabled = dbs[ZYGISK_CONFIG];
         sulist_enabled = dbs[DENYLIST_CONFIG] && dbs[WHITELIST_CONFIG];
         initialize_denylist();
         handle_modules();

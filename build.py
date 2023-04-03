@@ -314,9 +314,6 @@ def dump_bin_header(args):
         preload = op.join('native', 'out', arch, 'libinit-ld.so')
         with open(preload, 'rb') as src:
             text = binary_dump(src, 'init_ld_xz')
-        preload = op.join('native', 'out', arch, 'libzygisk-ld.so')
-        with open(preload, 'rb') as src:
-            text += binary_dump(src, 'zygisk_ld', compressor=lambda x: x)
         write_if_diff(op.join(native_gen_path, f'{arch}_binaries.h'), text)
 
 
