@@ -24,7 +24,7 @@
 #include <selinux.hpp>
 
 #include "deny.hpp"
-#include <sys/ptrace.h>
+#include "am_proc_start.hpp"
 
 
 #define SNET_PROC    "com.google.android.gms.unstable"
@@ -58,7 +58,8 @@ static const char *table_name = "sulist";
 pthread_t monitor_thread;
 void proc_monitor();
 static bool monitoring = false;
-static int fork_pid = 0;
+static int fork_pid = 0, fork_uid = 0;
+static char last_process[1024];
 static void do_scan_zygote();
 static int parse_ppid(int pid);
 static bool check_process(int pid, const char *process = 0, const char *context = 0, const char *exe = 0);
@@ -520,15 +521,6 @@ static vector<int> pid_list;
 /********
  * Utils
  ********/
- 
-// #define PTRACE_LOG(fmt, args...) LOGD("PID=[%d] " fmt, pid, ##args)
-#define PTRACE_LOG(...)
-
-static void detach_pid(int pid, int signal = 0) {
-    attaches[pid] = false;
-    ptrace(PTRACE_DETACH, pid, 0, signal);
-    PTRACE_LOG("detach\n");
-}
 
 static inline int read_ns(const int pid, struct stat *st) {
     char path[32];
@@ -837,40 +829,30 @@ static std::string get_process_name(int pid) {
     return std::string(substr);
 }
 
-static int check_pid(int pid) {
+static int check_ns_and_mount(int pid, int puid, const char *cmdline) {
     char path[128];
-    char cmdline[1024];
     int ppid = -1;
     struct stat st;
     sprintf(path, "/proc/%d", pid);
-    if (stat(path, &st)) {
-        // Process died unexpectedly, ignore
+    int uid = 0;
+
+    if (!is_deny_target(puid, cmdline, 95)) {
         return 1;
     }
-    int uid = st.st_uid;
-    if (uid == 0) {
-        return 0;
-    }
 
-    // check cmdline
-    ssprintf(path, sizeof(path), "/proc/%d/cmdline", pid);
-    if (!read_file(path, cmdline, sizeof(cmdline)))
-        // Process died unexpectedly, ignore
-        return 1;
+    do { // wait until process changes uid
+        if (stat(path, &st)) {
+            // Process died unexpectedly, ignore
+            return 1;
+        }
+        uid = st.st_uid;
+        if (uid != 0)
+            break;
+        usleep(100);
+    } while (true);
 
-    // still zygote
-    if (cmdline == "zygote"sv || cmdline == "zygote32"sv || cmdline == "zygote64"sv ||
-        cmdline == "usap32"sv || cmdline == "usap64"sv || cmdline == "<pre-initialized>"sv)
-        return 0;
-
-    detach_pid(pid);
-
-    // stop app process as soon as possible and do check if this process is target or not
+    // stop target process
     kill(pid, SIGSTOP);
-
-    if (!is_deny_target(uid, cmdline, 95)) {
-        goto not_target;
-    }
 
     // Ensure ns is separated
     struct stat ppid_st;
@@ -916,122 +898,39 @@ static void new_zygote(int pid) {
     LOGI("proc_monitor: zygote PID=[%d]\n", pid);
     revert_daemon(pid, -2);
     zygote_map[pid] = st;
-    attach_zygote:
-    LOGI("proc_monitor: ptrace zygote PID=[%d]\n", pid);
-    xptrace(PTRACE_ATTACH, pid);
-    waitpid(pid, nullptr, __WALL | __WNOTHREAD);
-    xptrace(PTRACE_SETOPTIONS, pid, nullptr,
-            PTRACE_O_TRACEFORK | PTRACE_O_TRACEVFORK | PTRACE_O_TRACEEXIT);
-    xptrace(PTRACE_CONT, pid);
 }
 
-#define DETACH_AND_CONT { detach_pid(pid); continue; }
 
-int wait_for_syscall(pid_t pid) {
-    int status;
-    while (1) {
-        ptrace(PTRACE_SYSCALL, pid, 0, 0);
-        PTRACE_LOG("wait for syscall\n");
-        int child = waitpid(pid, &status, 0);
-        if (child < 0)
-            return 1;
-        if (WIFSTOPPED(status) && WSTOPSIG(status) & 0x80) {
-            PTRACE_LOG("make a syscall\n");
-            return 0;
-        }
-        if (WIFSTOPPED(status) && WSTOPSIG(status) == SIGSEGV) {
-            // google chrome?
-            PTRACE_LOG("SIGSEGV from child\n");
-            return 1;
-        }
-        if (WIFEXITED(status)) {
-            PTRACE_LOG("exited\n");
-            return 1;
-        }
-    }
-}
-
-static std::string get_content(int pid, const char *file) {
-    char buf[1024];
-    sprintf(buf, "/proc/%d/%s", pid, file);
-    FILE *fp = fopen(buf, "re");
-    if (fp) {
-        fgets(buf, sizeof(buf), fp);
-        fclose(fp);
-        return std::string(buf);
-    }
-    return std::string("");
-}
-
-void do_check_fork() {
+static void check_process() {
     int pid = fork_pid;
     fork_pid = 0;
     if (pid == 0)
         return;
-    // wait until thread detach this pid
-    for (int i = 0; i < 10000 && ptrace(PTRACE_ATTACH, pid) < 0; i++)
-        usleep(100);
-    bool allow = false;
-    bool checked = false;
-    pid_list.emplace_back(pid);
-    waitpid(pid, 0, 0);
-    xptrace(PTRACE_SETOPTIONS, pid, nullptr, PTRACE_O_TRACESYSGOOD);
-    struct stat st{};
-    char path[128];
-    for (int syscall_num = -1;;) {
-        if (wait_for_syscall(pid) != 0)
-            break;
-        {
-            if (checked) goto CHECK_PROC;
-            sprintf(path, "/proc/%d", pid);
-            stat(path, &st);
-            PTRACE_LOG("UID=[%d]\n", st.st_uid);
-            if (st.st_uid == 0)
-                continue;
-            //LOGD("proc_monitor: PID=[%d] UID=[%d]\n", pid, st.st_uid);
-            if ((st.st_uid % 100000) >= 90000) {
-                PTRACE_LOG("is isolated process\n");
-           	    break;
-                goto CHECK_PROC;
-            }
+    int uid = fork_uid;
+    fork_uid = 0;
+    if (uid == 0)
+        return;
+    string process_name = last_process;
+    check_ns_and_mount(pid, uid, process_name.data());
+}
 
-            // check if UID is on list
-            {
-                auto it = app_id_to_pkgs.find(st.st_uid % 100000);
-                // double check
-                if (it == app_id_to_pkgs.end())
-                    break;
-                int found = false;
-                for (const auto &pkg : it->second) {
-                    if (pkg_to_procs.find(pkg)->second.size() > 0) {
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) break;
-            }
-
-            CHECK_PROC:
-            checked = true;
-            if (!allow && (
-                 // app zygote
-                 strstr(get_content(pid, "attr/current").data(), "u:r:app_zygote:s0") ||
-                 // until pre-initialized
-                 get_content(pid, "cmdline") == "<pre-initialized>"))
-                 allow = true;
-            if (allow && check_pid(pid))
-                break;
-        }
-    }
-    PTRACE_LOG("detach\n");
-    ptrace(PTRACE_DETACH, pid);
-    auto it = find(pid_list.begin(), pid_list.end(), pid);
-    if (it != pid_list.end())
-        pid_list.erase(it);
+void ProcessBuffer(struct logger_entry *buf) {
+    auto *eventData = reinterpret_cast<const unsigned char *>(buf) + buf->hdr_size;
+    auto *event_header = reinterpret_cast<const android_event_header_t *>(eventData);
+    if (event_header->tag != 30014) return;
+    auto *am_proc_start = reinterpret_cast<const android_event_am_proc_start *>(eventData);
+    ssprintf(last_process, sizeof(last_process)-1, "%.*s",
+           am_proc_start->process_name.length, am_proc_start->process_name.data);
+    fork_pid = am_proc_start->pid.data;
+    fork_uid = am_proc_start->uid.data;
+    new_daemon_thread(&check_process);
 }
 
 void proc_monitor() {
     monitor_thread = pthread_self();
+    last_process[0] = '\0';
+    char buf[1024];
+    int logd_crash_count;
 
     // Backup original mask
     sigset_t orig_mask;
@@ -1079,7 +978,7 @@ void proc_monitor() {
         pid_map.clear();
         goto start_monitor;
     }
-    // now ptrace zygote
+    // now monitor zygote
     pthread_sigmask(SIG_SETMASK, &orig_mask, nullptr);
     // First try find existing zygotes
     check_zygote();
@@ -1091,84 +990,63 @@ void proc_monitor() {
     }
     rescan_apps();
 
+    /* Don't need when using am_proc_start
     // On Android Q+, also kill blastula pool and all app zygotes
     if (SDK_INT >= 29) {
         kill_process("usap32", true);
         kill_process("usap64", true);
         kill_process<&proc_context_match>("u:r:app_zygote:s0", true);
     }
+    */
 
-    for (int status;;) {
-        pthread_sigmask(SIG_UNBLOCK, &unblock_set, nullptr);
-        const int pid = waitpid(-1, &status, __WALL | __WNOTHREAD);
-        if (pid < 0) {
-            if (errno == ECHILD) {
-                // Nothing to wait yet, sleep and wait till signal interruption
-                LOGD("proc_monitor: nothing to monitor, wait for signal\n");
-                struct timespec ts = {
-                    .tv_sec = INT_MAX,
-                    .tv_nsec = 0
-                };
-                nanosleep(&ts, nullptr);
-                zygote_map.clear();
-                goto start_monitor;
-            }
+    // am_proc_start monitor
+    for (;;) {
+        bool first;
+        if (__system_property_get("persist.log.tag", buf) && buf[0] != '\0')
+            __system_property_set("persist.log.tag", "");
+
+        unique_ptr<logger_list, decltype(&android_logger_list_free)> logger_list{
+            android_logger_list_alloc(0, 1, 0), &android_logger_list_free};
+        auto *logger = android_logger_open(logger_list.get(), LOG_ID_EVENTS);
+        if (logger != nullptr) [[likely]] {
+            first = true;
+        } else {
             continue;
         }
-
-        pthread_sigmask(SIG_SETMASK, &orig_mask, nullptr);
-
-        if (!WIFSTOPPED(status) /* Ignore if not ptrace-stop */)
-            DETACH_AND_CONT;
-
-        int event = WEVENT(status);
-        int signal = WSTOPSIG(status);
-
-        if (signal == SIGTRAP && event) {
-            unsigned long msg;
-            xptrace(PTRACE_GETEVENTMSG, pid, nullptr, &msg);
-            if (zygote_map.count(pid)) {
-                // Zygote event
-                switch (event) {
-                    case PTRACE_EVENT_FORK:
-                    case PTRACE_EVENT_VFORK:
-                        PTRACE_LOG("zygote forked: [%lu]\n", msg);
-                        attaches[msg] = true;
-                        break;
-                    case PTRACE_EVENT_EXIT:
-                        PTRACE_LOG("zygote exited with status: [%lu]\n", msg);
-                        [[fallthrough]];
-                    default:
-                        zygote_map.erase(pid);
-                        DETACH_AND_CONT;
+        struct log_msg msg{};
+        while (true) {
+            if (android_logger_list_read(logger_list.get(), &msg) <= 0) [[unlikely]] {
+                break;
+            }
+            if (first) [[unlikely]] {
+                first = false;
+                logd_crash_count = 0;
+                continue;
+            }
+            {
+                pthread_sigmask(SIG_SETMASK, &orig_mask, nullptr);
+                if (!is_proc_alive(system_server_pid)) {
+                    zygote_map.clear();
+                    goto start_monitor;
                 }
-            } else {
-                DETACH_AND_CONT;
+                ProcessBuffer(&msg.entry);
+                pthread_sigmask(SIG_UNBLOCK, &unblock_set, nullptr);
             }
-            xptrace(PTRACE_CONT, pid);
-        } else if (signal == SIGSTOP) {
-            if (!attaches[pid]) {
-                // Double check if this is actually a process
-                attaches[pid] = is_process(pid);
-            }
-            if (attaches[pid]) {
-                // This is a process, continue monitoring
-                //LOGD("proc_monitor: SIGSTOP from child PID=[%d]\n", pid);
-                attaches[pid] = false;
-                detach_pid(pid);
-                fork_pid = pid;
-                new_daemon_thread(&do_check_fork);
-            } else {
-                // This is a thread, do NOT monitor
-                PTRACE_LOG("SIGSTOP from thread\n");
-                DETACH_AND_CONT;
-            }
-
-        } else {
-            // Not caused by us, resend signal
-            xptrace(PTRACE_CONT, pid, nullptr, signal);
-            PTRACE_LOG("signal [%d]\n", signal);
         }
+        pthread_sigmask(SIG_SETMASK, &orig_mask, nullptr);
+        if (logd_crash_count >= 30) {
+       	    if (logd_crash_count == 30)
+                LOGE("proc_monitor: restarting logd doesn't help, root access has been lost!\n");
+            goto next;
+        }
+        logd_crash_count++;
+        if (logd_crash_count >= 5) {
+            LOGE("proc_monitor: failed to read logcat, try restart logd...\n");
+        	__system_property_set("ctl.restart", "logd");
+        }
+        next:
+        sleep(1);
+        pthread_sigmask(SIG_UNBLOCK, &unblock_set, nullptr);
     }
 }
 
