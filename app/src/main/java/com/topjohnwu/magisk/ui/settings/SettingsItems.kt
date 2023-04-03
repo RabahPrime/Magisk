@@ -337,14 +337,12 @@ object SuList : BaseSettingsItem.Toggle() {
 }
 
 object DenyListConfig : BaseSettingsItem.Blank() {
-    var status = Shell.cmd("magisk --hide sulist").exec().isSuccess;
+    var status = Shell.cmd("magisk --sulist status").exec().isSuccess;
 
     override val title get() =
-        if (Info.sulist) R.string.settings_sulist_config_title.asText()
-        else R.string.settings_hidelist_config_title.asText()
+        R.string.settings_sulist_config_title.asText()
     override val description get() =
-        if (Info.sulist) R.string.settings_sulist_config_summary.asText()
-        else R.string.settings_hidelist_config_summary.asText()
+        R.string.settings_sulist_config_summary.asText()
     
     
     override fun refresh() {

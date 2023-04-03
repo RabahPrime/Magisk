@@ -65,7 +65,6 @@ struct module_info {
 #endif
 };
 
-extern bool sulist_enabled;
 extern std::vector<module_info> *module_list;
 
 int connect_daemon(int req, bool create = false);

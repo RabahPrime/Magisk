@@ -348,10 +348,7 @@ check_system_magisk(){
 }
 
 clean_hidelist(){
-    local tab=hidelist
-    if [ "$SULISTMODE" == "true" ]; then
-        tab=sulist
-    fi
+    local tab=sulist
     local PACKAGE_NAME="$(magisk --sqlite "SELECT package_name FROM $tab WHERE package_name NOT IN ('isolated')")"
     local PACKAGE_LIST=""
     # isolation service
@@ -374,10 +371,10 @@ clean_hidelist(){
     done
     for s in $PACKAGE_LIST; do
         if [ ! -d "/data/data/$s" ]; then
-            magisk --hide rm "$s"
+            magisk --sulist rm "$s"
             for t in $(echo "$PACKAGE_ISOLIST" | grep "$s"); do
                 t="${t: 8}"
-                magisk --hide rm isolated "$t"
+                magisk --sulist rm isolated "$t"
             done
         fi
     done
