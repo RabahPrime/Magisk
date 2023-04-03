@@ -414,7 +414,7 @@ int enable_deny() {
             denylist_enforced = false;
             goto daemon_error;
         }
-        if (!zygisk_enabled) {
+        {
             auto do_proc_monitor = new_daemon_thread(&proc_monitor);
             if (do_proc_monitor){
                 // cannot start monitor_proc, return daemon error
@@ -451,7 +451,7 @@ int disable_deny() {
         denylist_enforced = false;
         LOGI("* Disable MagiskHide\n");
     }
-    if (!zygisk_enabled && monitoring) {
+    if (monitoring) {
         pthread_kill(monitor_thread, SIGTERMTHRD);
         monitoring = false;
     }

@@ -163,9 +163,6 @@ static void handle_request_async(int client, int code, const sock_cred &cred) {
         if (do_reboot) reboot();
         break;
     }
-    case MainRequest::ZYGISK:
-        zygisk_handler(client, &cred);
-        break;
     default:
         __builtin_unreachable();
     }
@@ -191,7 +188,6 @@ static void handle_request_sync(int client, int code) {
         break;
     case MainRequest::STOP_DAEMON:
         denylist_handler(-client, nullptr);
-        // TODO: clean zygisk props
         write_int(client, 0);
         // Terminate the daemon!
         exit(0);
@@ -266,13 +262,6 @@ static void handle_request(pollfd *pfd) {
         break;
     case MainRequest::REMOVE_MODULES:
         if (!is_root && cred.uid != AID_SHELL) {
-            write_int(client, MainResponse::ACCESS_DENIED);
-            goto done;
-        }
-        break;
-    case MainRequest::ZYGISK:
-        if (!is_zygote && selinux_enabled()) {
-            // Invalid client context
             write_int(client, MainResponse::ACCESS_DENIED);
             goto done;
         }

@@ -35,7 +35,6 @@ enum : int {
     DENYLIST,
     SQLITE_CMD,
     REMOVE_MODULES,
-    ZYGISK,
 
     _STAGE_BARRIER_,
 
@@ -66,10 +65,7 @@ struct module_info {
 #endif
 };
 
-extern bool zygisk_enabled;
 extern bool sulist_enabled;
-extern int app_process_32;
-extern int app_process_64;
 extern std::vector<module_info> *module_list;
 
 int connect_daemon(int req, bool create = false);
@@ -91,7 +87,6 @@ extern "C" void magisk_log_write(int prio, const char *msg, int len);
 void boot_stage_handler(int code);
 void denylist_handler(int client, const sock_cred *cred);
 void su_daemon_handler(int client, const sock_cred *cred);
-void zygisk_handler(int client, const sock_cred *cred);
 
 // Package
 void preserve_stub_apk();
