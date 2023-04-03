@@ -47,7 +47,6 @@
     <string name="reboot_delay_toast">Перезавантаження через 5 секунд…</string>
     <string name="flash_screen_title">Встановлення</string>
     <!--Superuser-->
-    <string name="su_request_title">Запит прав суперкористувача</string>
     <string name="touch_filtered_warning">Magisk не може перевірити вашу відповідь, тому що застосунок заступає вікно запиту прав суперкористувача</string>
     <string name="deny">Відмовити</string>
     <string name="prompt">Запитувати</string>
