@@ -13,7 +13,6 @@ LOCAL_STATIC_LIBRARIES := \
     libnanopb \
     libsystemproperties \
     libphmap \
-    liblsplt \
     libmincrypt \
     libmagisk-rs
 
