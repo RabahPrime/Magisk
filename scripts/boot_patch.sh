@@ -163,7 +163,7 @@ echo "RECOVERYMODE=$RECOVERYMODE" >> config
 # Compress to save precious ramdisk space
 SKIP32="#"
 SKIP64="#"
-if [ -f magisk32 ]; then
+if [ -f magisk32 ] && ! $IS64BIT; then
   ./magiskboot compress=xz magisk32 magisk32.xz
   unset SKIP32
 fi
