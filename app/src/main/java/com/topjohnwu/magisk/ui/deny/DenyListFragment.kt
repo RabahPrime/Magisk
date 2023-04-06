@@ -11,16 +11,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.topjohnwu.magisk.R
 import com.topjohnwu.magisk.arch.BaseFragment
 import com.topjohnwu.magisk.arch.viewModel
-import com.topjohnwu.magisk.databinding.FragmentDenyMd2Binding
+import com.topjohnwu.magisk.databinding.FragmentDenyBinding
 import com.topjohnwu.magisk.ktx.hideKeyboard
 import rikka.recyclerview.addEdgeSpacing
 import rikka.recyclerview.addItemSpacing
 import rikka.recyclerview.fixEdgeEffect
 import com.topjohnwu.magisk.core.Info
 
-class DenyListFragment : BaseFragment<FragmentDenyMd2Binding>() {
+class DenyListFragment : BaseFragment<FragmentDenyBinding>() {
 
-    override val layoutRes = R.layout.fragment_deny_md2
+    override val layoutRes = R.layout.fragment_deny
     override val viewModel by viewModel<DenyListViewModel>()
 
     private lateinit var searchView: SearchView
@@ -42,13 +42,12 @@ class DenyListFragment : BaseFragment<FragmentDenyMd2Binding>() {
         })
 
         binding.appList.apply {
-            addEdgeSpacing(top = R.dimen.l_50, bottom = R.dimen.l1)
-            addItemSpacing(R.dimen.l1, R.dimen.l_50, R.dimen.l1)
+            addItemSpacing(R.dimen.l1, R.dimen.l_75, R.dimen.l1)
             fixEdgeEffect()
         }
     }
 
-    override fun onPreBind(binding: FragmentDenyMd2Binding) = Unit
+    override fun onPreBind(binding: FragmentDenyBinding) = Unit
 
     override fun onBackPressed(): Boolean {
         if (searchView.isIconfiedByDefault && !searchView.isIconified) {
@@ -59,7 +58,7 @@ class DenyListFragment : BaseFragment<FragmentDenyMd2Binding>() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_deny_md2, menu)
+        inflater.inflate(R.menu.menu_deny, menu)
         searchView = menu.findItem(R.id.action_search).actionView as SearchView
         searchView.queryHint = searchView.context.getString(R.string.hide_filter_hint)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
