@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!--Sections-->
     <string name="modules">Moduli</string>
     <string name="superuser">Accesso root</string>
@@ -9,7 +9,6 @@
     <string name="section_home">Home</string>
     <string name="section_theme">Temi</string>
     <string name="denylist">Lista di blocco</string>
-
     <!--Home-->
     <string name="no_connection">Connessione non disponibile</string>
     <string name="app_changelog">Changelog</string>
@@ -19,10 +18,9 @@
     <string name="hide">Hide</string>
     <string name="home_package">Pacchetto</string>
     <string name="home_app_title">App</string>
-
     <string name="home_notice_content">Scarica Magisk SOLTANTO dalla pagina GitHub ufficiale. I file provenienti da fonti sconosciute possono essere dannosi!</string>
     <string name="home_support_title">Supportaci</string>
-    <string name="home_follow_title">Seguici</string>												   
+    <string name="home_follow_title">Seguici</string>
     <string name="home_item_source">Codice sorgente</string>
     <string name="home_support_content">Magisk è, e sempre sarà, gratuito ed open source. Puoi comunque mostrarci il tuo apprezzamento facendo una donazione.</string>
     <string name="home_installed_version">Installata</string>
@@ -30,7 +28,6 @@
     <string name="invalid_update_channel">Canale di aggiornamento non valido</string>
     <string name="uninstall_magisk_title">Disinstalla Magisk</string>
     <string name="uninstall_magisk_msg">Tutti i moduli verranno disabilitati/rimossi!\nIl root verrà rimosso!\nGli spazi di archiviazione interni decriptati tramite l\'uso di Magisk verranno nuovamente criptati!</string>
-
     <!--Install-->
     <string name="keep_force_encryption">Mantieni crittografia forzata</string>
     <string name="keep_dm_verity">Mantieni AVB 2.0/dm-verity</string>
@@ -49,7 +46,6 @@
     <string name="patch_file_msg">Seleziona un\'immagine in formato .img o un file ODIN .tar</string>
     <string name="reboot_delay_toast">Riavvio fra 5 secondi…</string>
     <string name="flash_screen_title">Installazione</string>
-
     <!--Superuser-->
     <string name="su_request_title">Richiesta di accesso root</string>
     <string name="touch_filtered_warning">Magisk non può verificare la tua risposta perché un\'app sta oscurando una richiesta di accesso root</string>
@@ -75,11 +71,9 @@
     <string name="su_revoke_msg">Confermi la revoca dei permessi a %1$s?</string>
     <string name="toast">Toast</string>
     <string name="none">Nessuno</string>
-
     <string name="superuser_toggle_notification">Notifiche</string>
     <string name="superuser_toggle_revoke">Revoca</string>
     <string name="superuser_policy_none">Nessuna app ha ancora chiesto i permessi di root.</string>
-
     <!--Logs-->
     <string name="log_data_none">Non ci sono eventi, prova ad utilizzare un\'app che richiede i permessi di root.</string>
     <string name="log_data_magisk_none">Il registro eventi di Magisk è vuoto, questo è davvero strano.</string>
@@ -88,13 +82,11 @@
     <string name="logs_cleared">Registro eventi svuotato correttamente.</string>
     <string name="pid">PID: %1$d</string>
     <string name="target_uid">Target UID: %1$d</string>
-
     <!-- MagiskHide -->
     <string name="show_system_app">Mostra app di sistema</string>
     <string name="show_os_app">Mostra app del sistema operativo</string>
     <string name="hide_filter_hint">Filtra per nome</string>
     <string name="hide_search">Cerca</string>
-
     <!--Module-->
     <string name="no_info_provided">(Nessuna informazione)</string>
     <string name="reboot_userspace">Riavvio veloce</string>
@@ -111,7 +103,6 @@
     <string name="suspend_text_zygisk">Modulo sospeso perché %1$s non è abilitato</string>
     <string name="zygisk_module_unloaded">Modulo Zygisk non caricato a causa di incompatibilità</string>
     <string name="module_empty">Nessun modulo installato</string>
-
     <!--Settings -->
     <string name="settings_dark_mode_title">Impostazioni tema</string>
     <string name="settings_dark_mode_message">Seleziona il tema che si adatta meglio al tuo stile!</string>
@@ -170,7 +161,6 @@
     <string name="setting_add_shortcut_summary">Aggiungi un collegamento alla schermata iniziale se il nome e l\'icona sono difficili da riconoscere dopo aver nascosto l\'app</string>
     <string name="settings_doh_title">DNS over HTTPS</string>
     <string name="settings_doh_description">Aggira il DNS poisoning in alcune nazioni</string>
-
     <string name="multiuser_mode">Modalità multiutente</string>
     <string name="settings_owner_only">Solo per il proprietario del dispositivo</string>
     <string name="settings_owner_manage">Gestito dal proprietario del dispositivo</string>
@@ -178,7 +168,6 @@
     <string name="owner_only_summary">Solo il proprietario possiede i permessi di root</string>
     <string name="owner_manage_summary">Solo il proprietario può gestire l\'accesso root e ricevere le richieste dalle app</string>
     <string name="user_independent_summary">Ogni utente ha le proprie regole di root indipendenti</string>
-
     <string name="mount_namespace_mode">Modalità mount namespace</string>
     <string name="settings_ns_global">Namespace globale</string>
     <string name="settings_ns_requester">Namespace ereditato</string>
@@ -186,7 +175,6 @@
     <string name="global_summary">Tutte le sessioni di root erediteranno il namespace globale</string>
     <string name="requester_summary">Le sessioni di root erediteranno il namespace del loro richiedente</string>
     <string name="isolate_summary">Ogni sessione di root avrà il suo namespace isolato</string>
-
     <!--Notifications-->
     <string name="update_channel">Aggiornamenti di Magisk</string>
     <string name="progress_channel">Notifiche di avanzamento</string>
@@ -196,7 +184,6 @@
     <string name="magisk_update_title">È disponibile un aggiornamento di Magisk!</string>
     <string name="updated_title">Magisk è stato aggiornato</string>
     <string name="updated_text">Tocca per aprire l\'app</string>
-
     <!--Toasts, Dialogs-->
     <string name="yes">Sì</string>
     <string name="no">No</string>
@@ -234,11 +221,10 @@
     <string name="app_not_found">Non è stata trovata un\'app per gestire questa azione</string>
     <string name="reboot_apply_change">Riavvia per applicare le modifiche</string>
     <string name="restore_app_confirmation">L\'app nascosta verrà sostituita con la versione originale. Sei sicuro di voler continuare?</string>
-
     <!--Delta-->
     <string name="direct_install_system">Installa direttamente nella partizione del sistema</string>
     <string name="reboot_core_only">Riavvia in modalità core-only</string>
-    <string name="settings_magiskhide_title">MagiskHide</string> 
+    <string name="settings_magiskhide_title">MagiskHide</string>
     <string name="settings_magiskhide_summary">Nascondi Magisk da diverse forme di rilevamento</string>
     <string name="settings_unload_magisk_title">Disabilita Magisk</string>
     <string name="settings_unload_magisk_summary">Ferma temporaneamente il Magisk daemon e ripristina tutte le modifiche di magisk</string>
@@ -246,6 +232,6 @@
     <string name="settings_riru_title">Riru core</string>
     <string name="settings_riru_summary">Aggiungi il modulo del Riru core</string>
     <string name="settings_riru_toast">Modulo del Riru core aggiunto</string>
-
-
+    <string name="su_request_string1">Permetti </string>
+    <string name="su_request_string2"> di ottenere i privilegi di SuperUser\?</string>
 </resources>

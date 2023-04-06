@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!--Sections-->
     <string name="modules">Module</string>
     <string name="superuser">Superuser</string>
@@ -9,7 +9,6 @@
     <string name="section_home">Startseite</string>
     <string name="section_theme">Themen</string>
     <string name="denylist">Verweigerungsliste</string>
-
     <!--Home-->
     <string name="no_connection">Keine Verbindung verfügbar</string>
     <string name="app_changelog">Änderungen</string>
@@ -19,7 +18,6 @@
     <string name="hide">Verstecken</string>
     <string name="home_package">Paket</string>
     <string name="home_app_title">App</string>
-
     <string name="home_notice_content">Laden Sie Magisk NUR von der offiziellen Github Seite herunter. Dateien aus unbekannten Quellen können bösartig sein!</string>
     <string name="home_support_title">Unterstütze uns</string>
     <string name="home_follow_title">Folge uns</string>
@@ -30,7 +28,6 @@
     <string name="invalid_update_channel">Ungültiger Update-Kanal</string>
     <string name="uninstall_magisk_title">Magisk deinstallieren</string>
     <string name="uninstall_magisk_msg">Alle Module werden deaktiviert/entfernt!\nRoot wird entfernt!\nDeine Daten werden potentiell verschlüsselt, wenn sie nicht bereits verschlüsselt sind!</string>
-
     <!--Install-->
     <string name="keep_force_encryption">Erzwungene Verschlüsselung beibehalten</string>
     <string name="keep_dm_verity">AVB 2.0/dm-verity beibehalten</string>
@@ -43,20 +40,22 @@
     <string name="manager_download_install">Tippen zum Herunterladen und Installieren</string>
     <string name="direct_install">Direkte Installation (empfohlen)</string>
     <string name="install_inactive_slot">In inaktiven Slot installieren (nach OTA)</string>
-    <string name="install_inactive_slot_msg">Dein Gerät wird gezwungen, nach einem Neustart in den inaktiven Slot zu booten! Diese Option nur verwenden, wenn OTA abgeschlossen ist.\nWeiter?</string>
+    <string name="install_inactive_slot_msg">Dein Gerät wird gezwungen, nach einem Neustart in den inaktiven Slot zu booten!
+\nDiese Option nur verwenden, wenn OTA abgeschlossen ist.
+\nWeiter\?</string>
     <string name="setup_title">Zusätzliche Einstellungen</string>
     <string name="select_patch_file">Eine Datei auswählen und patchen</string>
     <string name="patch_file_msg">Raw Image (*.img) oder ein ODIN tarfile (*.tar) auswählen</string>
     <string name="reboot_delay_toast">Neustart in 5 Sekunden…</string>
     <string name="flash_screen_title">Installieren</string>
-
     <!--Superuser-->
     <string name="su_request_title">Superuser-Anfrage</string>
     <string name="touch_filtered_warning">Weil eine App eine Superuser-Anfrage verdeckt, kann Magisk deine Antwort nicht verifizieren</string>
     <string name="deny">Verweigern</string>
     <string name="prompt">Fragen</string>
     <string name="grant">Gewähren</string>
-    <string name="su_warning">Zugriff auf dein Gerät gewähren. Verweigere den Zugriff, wenn du nicht sicher bist!</string>
+    <string name="su_warning">Zugriff auf dein Gerät gewähren.
+\nVerweigere den Zugriff, wenn du nicht sicher bist!</string>
     <string name="forever">Für immer</string>
     <string name="once">Einmalig</string>
     <string name="tenmin">10 Minuten</string>
@@ -72,31 +71,26 @@
     <string name="su_snack_log_on">Protokollierung für %1$s ist an</string>
     <string name="su_snack_log_off">Protokollierung für %1$s ist aus</string>
     <string name="su_revoke_title">Widerrufen?</string>
-    <string name="su_revoke_msg">Bestätigen, dass %1$s-Rechte widerufen werden?</string>
+    <string name="su_revoke_msg">Bestätige Widerruf von Superuser-Rechten der App %1$s</string>
     <string name="toast">Toast</string>
     <string name="none">Keine</string>
-
     <string name="superuser_toggle_notification">Benachrichtigungen</string>
     <string name="superuser_toggle_revoke">Widerruf</string>
     <string name="superuser_policy_none">Bisher hat noch keine App um die Erlaubnis des Superusers gebeten.</string>
-
     <!--Logs-->
-    <string name="log_data_none">Du bist protokollfrei, versuche deine SU-fähigen Apps mehr zu nutzen.</string>
-    <string name="log_data_magisk_none">Magisk-Protokolle sind leer, das ist seltsam.</string>
+    <string name="log_data_none">Du bist protokollfrei, versuche deine SU-fähigen Apps mehr zu nutzen</string>
+    <string name="log_data_magisk_none">Magisk-Protokolle sind leer, das ist seltsam</string>
     <string name="menuSaveLog">Protokoll speichern</string>
     <string name="menuClearLog">Protokoll jetzt löschen</string>
-    <string name="logs_cleared">Protokoll erfolgreich gelöscht.</string>
+    <string name="logs_cleared">Protokoll erfolgreich gelöscht</string>
     <string name="pid">PID: %1$d</string>
     <string name="target_uid">Ziel-UID: %1$d</string>
-
     <!--SafetyNet-->
-
     <!--MagiskHide-->
     <string name="show_system_app">System-Apps anzeigen</string>
     <string name="show_os_app">OS-Apps anzeigen</string>
     <string name="hide_filter_hint">Nach Namen filtern</string>
     <string name="hide_search">Suche</string>
-
     <!--Module-->
     <string name="no_info_provided">(Keine Informationen verfügbar)</string>
     <string name="reboot_userspace">Sanfter Neustart</string>
@@ -113,7 +107,6 @@
     <string name="suspend_text_zygisk">Modul ausgesetzt, weil %1$s nicht aktiviert ist</string>
     <string name="zygisk_module_unloaded">Zygisk-Modul aufgrund von Inkompatibilität nicht geladen</string>
     <string name="module_empty">Kein Modul installiert</string>
-
     <!--Settings-->
     <string name="settings_dark_mode_title">Themen-Modus</string>
     <string name="settings_dark_mode_message">Modus auswählen, der am besten zu deinem Stil passt!</string>
@@ -137,7 +130,7 @@
     <string name="settings_update_custom_msg">Benutzerdefinierte URL einfügen</string>
     <string name="settings_zygisk_summary">Teile von Magisk im Zygoten-Daemon ausführen</string>
     <string name="settings_denylist_title">Verweigerungsliste erzwingen</string>
-    <string name="settings_denylist_summary">Bei Prozessen, die auf der Verweigerungsliste stehen, werden alle Magisk-Änderungen rückgängig gemacht.</string>
+    <string name="settings_denylist_summary">Bei Prozessen, die auf der Verweigerungsliste stehen, werden alle Magisk-Änderungen rückgängig gemacht</string>
     <string name="settings_denylist_error">Für diese Funktion muss %1$s aktiviert sein</string>
     <string name="settings_denylist_config_title">Verweigerungsliste konfigurieren</string>
     <string name="settings_denylist_config_summary">Auswahl der Prozesse, die in die Verweigerungsliste aufgenommen werden sollen</string>
@@ -172,7 +165,6 @@
     <string name="setting_add_shortcut_summary">Hinzufügen einer hübschen Startbildschirm-Verknüpfung, falls der Name und das Symbol nach dem Ausblenden der App schwer zu erkennen sind</string>
     <string name="settings_doh_title">DNS über HTTPS</string>
     <string name="settings_doh_description">Umgehung des DNS-Poisoning in einigen Ländern</string>
-
     <string name="multiuser_mode">Mehrbenutzermodus</string>
     <string name="settings_owner_only">Nur der Gerätebesitzer</string>
     <string name="settings_owner_manage">Durch Gerätebesitzer verwaltet</string>
@@ -180,7 +172,6 @@
     <string name="owner_only_summary">Nur der Besitzer hat Root-Zugriff</string>
     <string name="owner_manage_summary">Nur der Besitzer verwaltet den Root-Zugriff und erhält Zugriffsanfragen</string>
     <string name="user_independent_summary">Jeder Nutzer hat seine eigenen Root-Regeln</string>
-
     <string name="mount_namespace_mode">Mount Namespace Modus</string>
     <string name="settings_ns_global">Globaler Namespace</string>
     <string name="settings_ns_requester">Geerbter Namespace</string>
@@ -188,7 +179,6 @@
     <string name="global_summary">Alle Root-Sitzungen benutzen den global angelegten Namespace</string>
     <string name="requester_summary">Root-Sitzungen erben den Namespace des Abfragenden</string>
     <string name="isolate_summary">Jede Root-Sitzung hat ihren isolierten Namespace</string>
-
     <!--Notifications-->
     <string name="update_channel">Magisk Updates</string>
     <string name="progress_channel">Fortschrittsmitteilungen</string>
@@ -198,7 +188,6 @@
     <string name="magisk_update_title">Magisk Update verfügbar!</string>
     <string name="updated_title">Magisk aktualisiert</string>
     <string name="updated_text">Tippen, um die App zu öffnen</string>
-
     <!--Toasts, Dialogs-->
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
@@ -208,7 +197,7 @@
     <string name="release_notes">Anmerkungen zur Veröffentlichung</string>
     <string name="flashing">Flashen…</string>
     <string name="done">Fertig!</string>
-    <string name="failure">Fehlgeschlagen</string>
+    <string name="failure">Fehlgeschlagen!</string>
     <string name="hide_app_title">Magisk-App verstecken…</string>
     <string name="open_link_failed_toast">Keine App zum öffnen des Links gefunden</string>
     <string name="complete_uninstall">Vollständig deinstallieren</string>
@@ -231,13 +220,11 @@
     <string name="unsupport_nonroot_stub_title">@string/settings_restore_app_title</string>
     <string name="external_rw_permission_denied">Speichererlaubnis erteilen, um diese Funktion zu aktivieren</string>
     <string name="install_unknown_denied">Unbekannte Apps installieren erlauben, um diese Funktion zu aktivieren</string>
-
     <string name="add_shortcut_title">Verknüpfung zum Startbildschirm hinzufügen</string>
     <string name="add_shortcut_msg">Nachdem du diese App versteckst, wird der Name und das Symbol eventuell schwer zu erkennen sein. Möchtest du zum Startbildschirm eine schöne Verknüpfung hinzufügen?</string>
     <string name="app_not_found">Keine App gefunden, die diese Aktion verarbeitet</string>
     <string name="reboot_apply_change">Neustart zum Änderungen übernehmen</string>
     <string name="restore_app_confirmation">Dadurch wird die versteckte App wieder zur ursprünglichen App. Willst du das wirklich tun?</string>
-
     <!--Delta-->
     <string name="direct_install_system">Direkte Installation in die Systempartition</string>
     <string name="reboot_core_only">Starten Sie im Nur-Kern-Modus neu</string>
@@ -259,5 +246,25 @@
     <string name="settings_anti_bootloop_summary">Starten Sie im Nur-Kern-Modus neu, wenn der Zygote-Prozess viele Male nicht gestartet werden konnte</string>
     <string name="settings_coreonly_title">Core-Only-Modus</string>
     <string name="settings_coreonly_summary">Nur Kernfunktionen wie MagiskSU (Root-Zugriff) und MagiskHide sind verfügbar und im Nur-Kern-Modus werden keine Module geladen. Ein Neustart ist erforderlich, um wirksam zu werden.</string>
-
+    <string name="su_request_string2"> Superuser-Rechte zu bekommen\?</string>
+    <string name="settings_magiskhide_whitelist_title2">MagiskHideAll</string>
+    <string name="settings_clean_hidelist_title">Versteckliste aufräumen</string>
+    <string name="settings_clean_hidelist_summary">Entferne alle deinstallierten Apps von der Versteckliste</string>
+    <string name="settings_clean_hidelist_toast">Versteckliste ist jetzt aufgeräumt</string>
+    <string name="settings_sulist_title">SuList aktivieren</string>
+    <string name="settings_sulist">SuList</string>
+    <string name="settings_sulist_config_title">SuList einrichten</string>
+    <string name="settings_sulist_config_summary">Wähle die Prozesse aus, die auf der SuList sein sollen</string>
+    <string name="settings_sulist_error_zygisk">Diese Funktion kann nicht gleichzeitig mit Zygisk verwendet werden</string>
+    <string name="settings_sulist_enforced">SuList ist aktiviert</string>
+    <string name="new_zygisk_loader">Neues Zygisk-Ladesystem</string>
+    <string name="settings_logcat_monitor_title">Logcat bewachen</string>
+    <string name="settings_logcat_monitor_summary">Bewache Logcat, statt ptrace zu verwenden, um die Erstellung von App-Prozessen zu erkennen. Es ist schwerer erkennbar, jedoch ist es auch unzuverlässig.</string>
+    <string name="settings_logcat_monitor_no_need">Bei aktiviertem Zygisk ist dies nicht nötig</string>
+    <string name="su_request_string1">Erlaube </string>
+    <string name="post_notifications_denied">Benachrichtigungsberechtigung zulassen, um diese Funktion zu aktivieren</string>
+    <string name="settings_magiskhide_whitelist_summary2">(Nur zum Debuggen) Erzwinge MagiskHide, alle Apps zu verstecken, die nicht auf SuList sind</string>
+    <string name="settings_sulist_summary">Magisk ist nur für Prozesse auf der SuList sichtbar</string>
+    <string name="settings_sulist_error_magiskhide">Diese Funktion benötigt Magisk Hide</string>
+    <string name="settings_new_zygisk_loader_summary">Verwende experimentelle Art, Zygisk zu laden. Dies kann Probleme mit einigen Modulen verursachen.</string>
 </resources>

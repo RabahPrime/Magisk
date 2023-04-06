@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!--Sections-->
     <string name="modules">मॉड्यूल</string>
     <string name="superuser">सुपर यूज़र</string>
@@ -9,7 +9,6 @@
     <string name="section_home">होम</string>
     <string name="section_theme">थीम</string>
     <string name="denylist">अस्वीकार सूची</string>
-
     <!--Home-->
     <string name="no_connection">कोई कनेक्शन उपलब्ध नहीं है</string>
     <string name="app_changelog">बदलाव</string>
@@ -19,7 +18,6 @@
     <string name="hide">छिपाएँ</string>
     <string name="home_package">पैकेज</string>
     <string name="home_app_title">ऐप</string>
-
     <string name="home_notice_content">मैजिस्क केवल आधिकारिक गिटहब पृष्ठ पेज से डाउनलोड करें। अज्ञात स्रोतों से फ़ाइलें दुर्भावनापूर्ण हो सकती हैं!</string>
     <string name="home_support_title">हमें सहयोग दीजिये</string>
     <string name="home_follow_title">अनुसरण करें</string>
@@ -30,7 +28,6 @@
     <string name="invalid_update_channel">अमान्य अपडेट चैनल</string>
     <string name="uninstall_magisk_title">मैजिस्क को अनइंस्टॉल करें</string>
     <string name="uninstall_magisk_msg">सभी मॉड्यूल्स को निष्क्रिय/हटा दिया जाएगा!\n रूट को हटा दिया जाएगा!\n आपका डेटा संभावित रूप से एन्क्रिप्ट किया गया है यदि पहले से नहीं है!</string>
-
     <!--Install-->
     <string name="keep_force_encryption">फ़ोर्स एन्क्रिप्शन को संरक्षित रखें</string>
     <string name="keep_dm_verity">AVB 2.0/dm-verity को संरक्षित रखें</string>
@@ -49,7 +46,6 @@
     <string name="patch_file_msg">एक रॉ छवि (* .img) या एक ODIN tarfile (* .tar) का चयन करें</string>
     <string name="reboot_delay_toast">5 सेकंड में रिबूट हो रहा है...</string>
     <string name="flash_screen_title">इंस्टॉलेशन</string>
-
     <!--Superuser-->
     <string name="su_request_title">सुपरयूज़र अनुरोध</string>
     <string name="touch_filtered_warning">चूंकि एक ऐप सुपरयूज़र अनुरोध को अस्पष्ट कर रहा है, इसलिए मैजिस्क आपकी प्रतिक्रिया को सत्यापित नहीं कर सकता</string>
@@ -75,11 +71,9 @@
     <string name="su_revoke_msg"> %1$s के अधिकारों को रद्द करने की पुष्टि करें?</string>
     <string name="toast">पॉप-अप सूचना</string>
     <string name="none">कोई नहीं</string>
-
     <string name="superuser_toggle_notification">सूचनाएं</string>
     <string name="superuser_toggle_revoke">अधिकार वापस लें</string>
     <string name="superuser_policy_none">किसी भी ऐप ने अभी तक सुपरयूज़र की अनुमति नहीं मांगी है।</string>
-
     <!--Logs-->
     <string name="log_data_none">कोई लॉग नहीं, अपने सुपरयूज़र सक्षम एप्लिकेशन का अधिक उपयोग करने का प्रयास करें।</string>
     <string name="log_data_magisk_none">मैजिस्क लॉग खाली हैं, यह अजीब है।</string>
@@ -88,15 +82,12 @@
     <string name="logs_cleared">लॉग सफलतापूर्वक साफ़ किया गया।</string>
     <string name="pid">PID: %1$d</string>
     <string name="target_uid">लक्षित UID: %1$d</string>
-
     <!--SafetyNet-->
-
     <!-- MagiskHide -->
     <string name="show_system_app">सिस्टम ऐप्स दिखाएं</string>
     <string name="show_os_app">OS एप्लिकेशन दिखाएं</string>
     <string name="hide_filter_hint">नाम से फ़िल्टर करें</string>
     <string name="hide_search">खोजें</string>
-
     <!--Module -->
     <string name="no_info_provided">(कोई जानकारी नहीं दी गई)</string>
     <string name="reboot_userspace">सॉफ्ट रिबूट</string>
@@ -113,7 +104,6 @@
     <string name="suspend_text_zygisk">%1$s अक्षम होने के कारण मॉड्यूल निलंबित</string>
     <string name="zygisk_module_unloaded">Zygisk मॉड्यूल असंगतता के कारण लोड होने में असमर्थ</string>
     <string name="module_empty">कोई मॉड्यूल इंस्टॉल्ड नहीं</string>
-
     <!--Settings -->
     <string name="settings_dark_mode_title">थीम मोड</string>
     <string name="settings_dark_mode_message">ऐसी थीम का चयन करें जो आपकी शैली के अनुकूल हो!</string>
@@ -172,7 +162,6 @@
     <string name="setting_add_shortcut_summary">ऐप को छिपाने के बाद नाम और आइकन को पहचानना मुश्किल है, तो होम स्क्रीन में एक सुंदर शॉर्टकट जोड़ें</string>
     <string name="settings_doh_title">HTTPS पर DNS</string>
     <string name="settings_doh_description">कुछ राष्ट्रों में चल रही DNS विषाक्तता का समाधान</string>
-
     <string name="multiuser_mode">बहु उपयोगकर्ता मोड</string>
     <string name="settings_owner_only">केवल डिवाइस का मालिक</string>
     <string name="settings_owner_manage">डिवाइस मालिक द्वारा प्रबंधित</string>
@@ -180,7 +169,6 @@
     <string name="owner_only_summary">केवल मालिक के पास ही रूट की पहुँच है</string>
     <string name="owner_manage_summary">केवल मालिक रूट एक्सेस का प्रबंधन कर सकते हैं और अनुरोध संकेत प्राप्त कर सकते हैं</string>
     <string name="user_independent_summary">प्रत्येक उपयोगकर्ता का अपना अलग रूट नियम होता है</string>
-
     <string name="mount_namespace_mode">माउंट नेमस्पेस मोड</string>
     <string name="settings_ns_global">ग्लोबल नेमस्पेस</string>
     <string name="settings_ns_requester">इनहेरिट नेमस्पेस</string>
@@ -188,7 +176,6 @@
     <string name="global_summary">सभी रूट सत्र ग्लोबल नेमस्पेस का उपयोग करते हैं</string>
     <string name="requester_summary">रूट सत्रों को उनके अनुरोधकर्ताओं के नेमस्पेस विरासत में मिलेंगे</string>
     <string name="isolate_summary">प्रत्येक रूट सत्र का अपना अलग आइसोलेटेड नेमस्पेस होगा</string>
-
     <!--Notifications-->
     <string name="update_channel">मैजिस्क अपडेट</string>
     <string name="progress_channel">प्रगति सूचनाएँ</string>
@@ -198,7 +185,6 @@
     <string name="magisk_update_title">मैजिस्क अपडेट उपलब्ध है!</string>
     <string name="updated_title">मैजिस्क अपडेट पूरा हुआ</string>
     <string name="updated_text">ऐप खोलने के लिए टैप करें</string>
-
     <!--Toasts, Dialogs-->
     <string name="yes">हाँ</string>
     <string name="no">नहीं</string>
@@ -236,8 +222,6 @@
     <string name="app_not_found">इस एक्शन को संभालने के लिए कोई एप्लिकेशन नहीं मिली</string>
     <string name="reboot_apply_change">परिवर्तन लागू करने के लिए रीबूट करें</string>
     <string name="restore_app_confirmation">यह छिपे हुए ऐप को मूल ऐप पर वापस बहाल कर देगा। क्या आप वाकई ऐसा करना चाहते हैं?</string>
-
-
     <!--Delta-->
     <string name="direct_install_system">सीधे सिस्टम विभाजन पर स्थापित करें</string>
     <string name="reboot_core_only">केवल मुख्य मोड में रीबूट करें</string>
@@ -255,5 +239,29 @@
     <string name="settings_magiskhide_whitelist_summary">पहले रूट किए जा चुके ऐप्स से मैजिक को छोड़कर सभी ऐप्स से मैजिक छिपाएं</string>
     <string name="settings_magiskhide_dualspace_title">मैजिक हाईड ड्यूल स्पेस</string>
     <string name="settings_magiskhide_dualspace_summary">डुअल स्पेस में सभी ऐप्स से मैजिक छिपाएं।</string>
-
+    <string name="settings_anti_bootloop_title">बुटलूप सुरक्षा</string>
+    <string name="settings_coreonly_title">कोर-ओनली मोड</string>
+    <string name="settings_clean_hidelist_title">हाइड लिस्ट को साफ़ करें</string>
+    <string name="settings_clean_hidelist_summary">सभी गैर-मौजूद और अनइंस्टॉल किए गए ऐप्स को हाइड लिस्ट से निकालें।</string>
+    <string name="settings_clean_hidelist_toast">हाइड लिस्ट अब साफ़ है।</string>
+    <string name="settings_sulist">एसयू लिस्ट</string>
+    <string name="settings_sulist_title">एसयू लिस्ट को लागू करें।</string>
+    <string name="settings_sulist_error_zygisk">यह विशेषता zygisk के साथ सह-अस्तित्व में नहीं रह सकती</string>
+    <string name="su_request_string1">"अनुमति  है। "</string>
+    <string name="su_request_string2"> सुपरयूजर विशेषाधिकार प्राप्त करने के लिए\?</string>
+    <string name="post_notifications_denied">इस कार्यक्षमता को सक्षम करने के लिए सूचनाओं की अनुमति दें</string>
+    <string name="settings_magiskhide_whitelist_summary2">(केवल डिबगिंग के लिए) Force MagiskHide सुपरयूज़र सूची में मौजूद ऐप्स को छोड़कर सभी ऐप्स को हैंडल करता है</string>
+    <string name="settings_anti_bootloop_summary">Zygote प्रक्रिया कई बार शुरू करने में विफल होने पर कोर-ओनली मोड में रीबूट हो जाऐगा।</string>
+    <string name="settings_coreonly_summary">MagiskSU (रूट एक्सेस) और MagiskHide जैसी केवल प्रमुख विशेषताएँ उपलब्ध हैं और केवल-कोर मोड में कोई मॉड्यूल लोड नहीं होगा। प्रभावी होने के लिए रीबूट आवश्यक है।</string>
+    <string name="settings_sulist_config_title">एसयू लिस्ट कंफीग्योर करें।</string>
+    <string name="settings_sulist_summary">Magisk केवल एसयू लिस्ट मे प्रक्रियाओं को ही दिखेगा।</string>
+    <string name="settings_sulist_config_summary">एसयू लिस्ट में प्रक्रियाओं को शामिल करने के लिया चयन करें</string>
+    <string name="settings_magiskhide_whitelist_title2">सभी को magiskhide करे</string>
+    <string name="settings_sulist_error_magiskhide">इस सुविधा को सक्षम करने के लिए Magiskhide की आवश्यकता है</string>
+    <string name="settings_sulist_enforced">एसयू लिस्ट लागू है</string>
+    <string name="new_zygisk_loader">नए zygisk लोडर</string>
+    <string name="settings_logcat_monitor_title">मॉनिटर लॉगकैट</string>
+    <string name="settings_logcat_monitor_no_need">Zygisk के सक्षम होने पर कोई ज़रूरत नहीं है</string>
+    <string name="settings_new_zygisk_loader_summary">Zygisk load करने के नए तरीका प्रयोग करे। यह सुविधा प्रायोगिक है और यह कुछ हुकिंग मॉड्यूल को तोड़ (सही से काम न करना) सकता है।</string>
+    <string name="settings_logcat_monitor_summary">ऐप प्रक्रिया के निर्माण का पता लगाने के लिए ptrace के बजाय मॉनिटर लॉगकेट करे। यह ptrace की तुलना में कम पता लगाने योग्य है लेकिनअविश्वसनीय है।</string>
 </resources>

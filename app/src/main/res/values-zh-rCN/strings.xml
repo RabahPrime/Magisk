@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!--Sections-->
     <string name="modules">模块</string>
     <string name="superuser">超级用户</string>
@@ -9,7 +9,6 @@
     <string name="section_home">主页</string>
     <string name="section_theme">主题</string>
     <string name="denylist">排除列表</string>
-
     <!--Home-->
     <string name="no_connection">无法连接</string>
     <string name="app_changelog">更新日志</string>
@@ -19,7 +18,6 @@
     <string name="hide">不再显示</string>
     <string name="home_package">包名</string>
     <string name="home_app_title">App</string>
-
     <string name="home_notice_content">仅从官方 GitHub 页面下载 Magisk。未知来源的文件可能具有恶意行为！</string>
     <string name="home_support_title">支持开发</string>
     <string name="home_follow_title">关注我们</string>
@@ -29,8 +27,8 @@
     <string name="home_latest_version">最新</string>
     <string name="invalid_update_channel">无效的更新通道</string>
     <string name="uninstall_magisk_title">卸载 Magisk</string>
-    <string name="uninstall_magisk_msg">所有模块将被停用或删除！超级用户权限丢失！\n如果设备尚未加密，用户数据可能被自动加密。</string>
-
+    <string name="uninstall_magisk_msg">所有模块将被停用或删除！超级用户权限丢失！
+\n如果设备尚未加密，用户数据可能被自动加密。</string>
     <!--Install-->
     <string name="keep_force_encryption">保持强制加密</string>
     <string name="keep_dm_verity">保留 AVB 2.0/dm-verity</string>
@@ -49,7 +47,6 @@
     <string name="patch_file_msg">选择一个原始映像文件（*.img）或一个 Odin 包（*.tar）</string>
     <string name="reboot_delay_toast">设备将在 5 秒后重启</string>
     <string name="flash_screen_title">安装</string>
-
     <!--Superuser-->
     <string name="su_request_title">超级用户请求</string>
     <string name="touch_filtered_warning">由于某个应用遮挡了超级用户请求界面，因此 Magisk 无法验证您的回应</string>
@@ -75,11 +72,9 @@
     <string name="su_revoke_msg">确认撤销授予 %1$s 的权限？</string>
     <string name="toast">消息提示</string>
     <string name="none">无</string>
-
     <string name="superuser_toggle_notification">通知</string>
     <string name="superuser_toggle_revoke">撤销</string>
     <string name="superuser_policy_none">尚无应用请求超级用户权限</string>
-
     <!--Logs-->
     <string name="log_data_none">没有超级用户权限使用日志</string>
     <string name="log_data_magisk_none">没有 Magisk 日志</string>
@@ -88,15 +83,12 @@
     <string name="logs_cleared">日志已清空</string>
     <string name="pid">PID: %1$d</string>
     <string name="target_uid">目标 UID: %1$d</string>
-
     <!--SafetyNet-->
-
     <!--MagiskHide-->
     <string name="show_system_app">显示系统应用</string>
     <string name="show_os_app">显示操作系统</string>
     <string name="hide_filter_hint">按名称过滤</string>
     <string name="hide_search">搜索</string>
-
     <!--Module-->
     <string name="no_info_provided">（未提供信息）</string>
     <string name="reboot_userspace">软重启</string>
@@ -113,7 +105,6 @@
     <string name="suspend_text_zygisk">%1$s 未启用，此模块暂停加载</string>
     <string name="zygisk_module_unloaded">存在兼容性问题，此模块未加载</string>
     <string name="module_empty">未安装任何模块</string>
-
     <!--Settings-->
     <string name="settings_dark_mode_title">主题模式</string>
     <string name="settings_dark_mode_message">选择一个模式</string>
@@ -172,7 +163,6 @@
     <string name="setting_add_shortcut_summary">在隐藏后难以识别名称和图标的情况下，添加快捷方式到桌面</string>
     <string name="settings_doh_title">安全 DNS（DoH）</string>
     <string name="settings_doh_description">解决某些地区的 DNS 污染问题</string>
-
     <string name="multiuser_mode">多用户模式</string>
     <string name="settings_owner_only">仅设备所有者</string>
     <string name="settings_owner_manage">由设备所有者管理</string>
@@ -180,7 +170,6 @@
     <string name="owner_only_summary">仅设备所有者有超级用户权限</string>
     <string name="owner_manage_summary">仅设备所有者能管理超级用户并接收权限请求提示</string>
     <string name="user_independent_summary">每个用户有独立的超级用户规则</string>
-
     <string name="mount_namespace_mode">挂载命名空间模式</string>
     <string name="settings_ns_global">全局命名空间</string>
     <string name="settings_ns_requester">继承命名空间</string>
@@ -188,7 +177,6 @@
     <string name="global_summary">所有 ROOT 会话使用全局挂载命名空间</string>
     <string name="requester_summary">ROOT 会话继承原进程的命名空间</string>
     <string name="isolate_summary">每个 ROOT 会话使用独立的命名空间</string>
-
     <!--Notifications-->
     <string name="update_channel">更新提示</string>
     <string name="progress_channel">下载进度</string>
@@ -198,7 +186,6 @@
     <string name="magisk_update_title">Magisk 已发布新版本！</string>
     <string name="updated_title">Magisk 已完成更新</string>
     <string name="updated_text">点按即可打开应用</string>
-
     <!--Toasts, Dialogs-->
     <string name="yes">是</string>
     <string name="no">否</string>
@@ -237,11 +224,10 @@
     <string name="app_not_found">找不到可处理此操作的应用</string>
     <string name="reboot_apply_change">重启后生效</string>
     <string name="restore_app_confirmation">即将把隐藏的 Magisk 应用恢复回原始应用，是否继续？</string>
-
     <!--Delta-->
     <string name="direct_install_system">安装至系统分区</string>
     <string name="reboot_core_only">重启到 核心模式</string>
-    <string name="settings_magiskhide_title">MagiskHide</string> 
+    <string name="settings_magiskhide_title">MagiskHide</string>
     <string name="settings_magiskhide_summary">隐藏 Magisk</string>
     <string name="settings_unload_magisk_title">禁用 Magisk</string>
     <string name="settings_unload_magisk_summary">临时停止 Magisk 守护进程并还原 Magisk 做出的更改</string>
@@ -277,9 +263,6 @@
     <string name="settings_logcat_monitor_no_need">Zygisk 开启时无需使用本功能</string>
     <string name="settings_logcat_monitor_summary">使用 logcat 而非 ptrace 监视应用进程的创建，logcat 比 ptrace 更难检测但不可靠</string>
     <string name="settings_logcat_monitor_title">logcat 监视</string>
-
-
-
-
-
+    <string name="su_request_string2"> 获取超级用户权限？</string>
+    <string name="su_request_string1">是否允许 </string>
 </resources>
