@@ -22,6 +22,7 @@ void perform_check_bootloop();
 int SDK_INT = -1;
 bool HAVE_32 = false;
 string MAGISKTMP;
+int tmpfs_fd = -1;
 
 bool RECOVERY_MODE = false;
 
@@ -341,6 +342,7 @@ static void daemon_entry() {
     char buf[64];
     xreadlink("/proc/self/exe", buf, sizeof(buf));
     MAGISKTMP = dirname(buf);
+    tmpfs_fd = xopen(MAGISKTMP.data(), O_DIRECTORY | O_RDONLY);
     xstat("/proc/self/exe", &self_st);
 
     // Get API level

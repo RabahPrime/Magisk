@@ -67,6 +67,8 @@ struct module_info {
 
 extern std::vector<module_info> *module_list;
 
+extern int tmpfs_fd;
+
 int connect_daemon(int req, bool create = false);
 
 // Poll control
