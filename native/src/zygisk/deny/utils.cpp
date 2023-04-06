@@ -487,7 +487,8 @@ bool is_deny_target(int uid, string_view process, int max_len) {
 
 static int inotify_fd = -1;
 static int data_system_wd = -1;
-static int system_server_pid = -1;
+static int system_server_pid = -1,
+           system_server_fd = -1;
 static bool is_process(int pid);
 
 static void new_zygote(int pid);
@@ -521,6 +522,13 @@ static vector<int> pid_list;
 /********
  * Utils
  ********/
+ 
+static int procfd_open(int pid) {
+    char path[128];
+    ssprintf(path, sizeof(path), "/proc/%d", pid);
+    return open(path, O_DIRECTORY | O_RDONLY);
+}
+
 
 static inline int read_ns(const int pid, struct stat *st) {
     char path[32];
@@ -725,17 +733,15 @@ static bool is_process(int pid) {
     return false;
 }
 
-static bool is_proc_alive(int pid) {
-    auto it = pid_map.find(pid);
-    char path[128];
-    struct stat st;
-    sprintf(path, "/proc/%d", pid);
-    if (stat(path, &st))
-        return false;
-    if (it != pid_map.end() &&
-        it->second.st_dev == st.st_dev &&
-        it->second.st_ino == st.st_ino)
+static bool is_system_server_died() {
+    if (system_server_fd == -1)
         return true;
+    if (faccessat(system_server_fd, "cmdline", F_OK, 0) != 0) {
+        close(system_server_fd);
+        system_server_fd = -1;
+        system_server_pid = -1;
+        return true;
+    }
     return false;
 }
 
@@ -926,6 +932,8 @@ void ProcessBuffer(struct logger_entry *buf) {
     new_daemon_thread(&check_process);
 }
 
+#define until(condition) while (bool(condition) == false)
+
 void proc_monitor() {
     monitor_thread = pthread_self();
     last_process[0] = '\0';
@@ -971,11 +979,14 @@ void proc_monitor() {
     start_monitor:
     pthread_sigmask(SIG_UNBLOCK, &unblock_set, nullptr);
     // wait until system_server start
-    while (system_server_pid == -1)
-        sleep(1);
-    if (!is_proc_alive(system_server_pid)) {
-        system_server_pid = -1;
+    until(system_server_pid > 0) sleep(1); {
+        LOGI("proc_monitor: system server PID=[%d]\n", system_server_pid);
+        system_server_fd = procfd_open(system_server_pid);
+    }
+    if (is_system_server_died()) {
+        LOGI("proc_monitor: system server died\n");
         pid_map.clear();
+        zygote_map.clear();
         goto start_monitor;
     }
     // now monitor zygote
@@ -1025,7 +1036,9 @@ void proc_monitor() {
             }
             {
                 pthread_sigmask(SIG_SETMASK, &orig_mask, nullptr);
-                if (!is_proc_alive(system_server_pid)) {
+                if (is_system_server_died()) {
+                    LOGI("proc_monitor: system server died\n");
+                    pid_map.clear();
                     zygote_map.clear();
                     goto start_monitor;
                 }
