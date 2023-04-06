@@ -82,7 +82,7 @@
                 gone="@{!item.isExpanded}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/l_50"
+                android:layout_marginTop="@dimen/l_75"
                 android:gravity="center"
                 android:orientation="horizontal"
                 tools:visibility="visible">
@@ -91,49 +91,52 @@
                     android:id="@+id/policy_notify"
                     style="@style/Widget.Material3.Button.TextButton.Icon"
                     isSelected="@{item.shouldNotify}"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:onClick="@{() -> item.toggleNotify()}"
                     android:text="@string/superuser_toggle_notification"
                     android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
                     android:textColor="@color/color_state_primary_transient"
-                    app:icon="@drawable/ic_notifications_md2"
+                    app:icon="@drawable/ic_notifications"
                     app:iconTint="@color/color_state_primary_transient"
                     app:tint="@color/color_state_primary_transient" />
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="@dimen/l2"
-                    android:background="@color/material_dynamic_neutral_variant60"/>
+                    android:background="?colorOnSurfaceVariant"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/policy_log"
                     style="@style/Widget.Material3.Button.TextButton.Icon"
                     isSelected="@{item.shouldLog}"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:onClick="@{() -> item.toggleLog()}"
                     android:text="@string/logs"
                     android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
                     android:textColor="@color/color_state_primary_transient"
-                    app:icon="@drawable/ic_bug_md2"
+                    app:icon="@drawable/ic_bug"
                     app:iconTint="@color/color_state_primary_transient"
                     app:tint="@color/color_state_primary_transient" />
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="@dimen/l2"
-                    android:background="@color/material_dynamic_neutral_variant60" />
+                    android:background="?colorOnSurfaceVariant" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/policy_delete"
                     style="@style/Widget_Rip.Material3.Button.TextButton.Icon.Error"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:onClick="@{() -> item.revoke()}"
                     android:text="@string/superuser_toggle_revoke"
                     android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
-                    app:icon="@drawable/ic_delete_md2"/>
+                    app:icon="@drawable/ic_delete"/>
 
             </LinearLayout>
 

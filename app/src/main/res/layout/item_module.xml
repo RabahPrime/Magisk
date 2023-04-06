@@ -37,7 +37,7 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 gone="@{!item.removed &amp;&amp; !item.updated}"
-                srcCompat="@{item.removed ? R.drawable.ic_delete_md2 : (item.updated ? R.drawable.ic_update_md2 : 0)}"
+                srcCompat="@{item.removed ? R.drawable.ic_delete : (item.updated ? R.drawable.ic_update : 0)}"
                 android:id="@+id/module_state_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -52,7 +52,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="?colorOnSurface"
-                tools:srcCompat="@drawable/ic_update_md2" />
+                tools:srcCompat="@drawable/ic_update" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -85,7 +85,6 @@
                     android:duplicateParentState="true"
                     android:text="@{@string/module_version_author(item.item.version, item.item.author)}"
                     android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                    android:textColor="?android:textColorSecondary"
                     app:layout_constraintEnd_toEndOf="@+id/module_title"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@+id/module_title"
@@ -117,16 +116,15 @@
                     android:maxLines="5"
                     android:text="@{item.item.description}"
                     android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                    android:textColor="?android:textColorSecondary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/module_version_author"
                     tools:lines="4"
                     tools:text="@tools:sample/lorem/random" />
 
-                <com.google.android.material.textview.MaterialTextView
+                <View
                     android:id="@+id/module_divider"
-                    android:background="@color/material_dynamic_neutral_variant60"
+                    android:background="?colorOnSurfaceVariant"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="@dimen/l1"
@@ -134,7 +132,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     style="@style/Widget.Material3.Button.TextButton.Icon"
-                    goneUnless="@{item.showUpdate}"
+                    gone="@{item.updateReady != true}"
                     android:id="@+id/module_update"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -143,15 +141,15 @@
                     android:focusable="true"
                     android:onClick="@{() -> viewModel.downloadPressed(item.item.updateInfo)}"
                     android:text="@string/update"
-                    app:icon="@drawable/ic_update_md2"
+                    app:icon="@drawable/ic_update"
                     app:layout_constraintBottom_toBottomOf="@+id/module_remove"
                     app:layout_constraintEnd_toStartOf="@+id/module_remove"
                     app:layout_constraintTop_toTopOf="@+id/module_remove"
-                    app:srcCompat="@drawable/ic_download_md2" />
+                    app:srcCompat="@drawable/ic_download" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/module_remove"
-                    style="@style/Widget_Rip.Material3.Button.TextButton.Icon.Error"
+                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/l_25"
@@ -160,11 +158,11 @@
                     android:focusable="true"
                     android:onClick="@{() -> item.delete()}"
                     android:text="@{item.removed ? @string/module_state_restore : @string/module_state_remove}"
-                    app:icon="@{item.removed ? @drawable/ic_restart : @drawable/ic_delete_md2}"
+                    app:icon="@{item.removed ? @drawable/ic_restart : @drawable/ic_delete}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/module_divider"
-                    tools:icon="@drawable/ic_delete_md2"
+                    tools:icon="@drawable/ic_delete"
                     tools:text="Remove" />
 
                 <androidx.constraintlayout.widget.Barrier
@@ -182,6 +180,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/l1"
                     android:layout_marginEnd="@dimen/l_50"
+                    android:layout_marginTop="@dimen/l_50"
+                    android:layout_marginBottom="@dimen/l_50"
                     android:text="@{item.noticeText}"
                     android:textAppearance="@style/TextAppearance.Material3.BodySmall"
                     android:textColor="@color/color_error_transient"
