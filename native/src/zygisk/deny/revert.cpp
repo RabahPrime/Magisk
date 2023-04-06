@@ -41,12 +41,19 @@ void root_mount(int pid) {
         tmpfs_mount("tmpfs", MAGISKTMP.data());
     }
 
-    for (auto file : {"magisk32", "magisk64", "magisk", "magiskpolicy"}) {
-        auto src = "/proc/1/root"s + MAGISKTMP + "/"s + file;
-        auto dest = MAGISKTMP + "/"s + file;
-        if (access(src.data(),F_OK) == 0){
-            cp_afc(src.data(), dest.data());
-            setfilecon(dest.data(), "u:object_r:" SEPOL_EXEC_TYPE ":s0");
+    { // recreate MAGISKTMP in private mount namespace
+        char tmpfs_fd_dir[1024]; 
+        if (tmpfs_fd >= 0) ssprintf(tmpfs_fd_dir, sizeof(tmpfs_fd_dir), "/proc/self/fd/%d", tmpfs_fd);
+        else ssprintf(tmpfs_fd_dir, sizeof(tmpfs_fd_dir), "/proc/1/root%s", MAGISKTMP.data());
+
+        for (auto file : {"magisk32", "magisk64", "magisk", "magiskpolicy"}) {
+            auto src = string(tmpfs_fd_dir) + "/"s + file;
+            auto dest = MAGISKTMP + "/"s + file;
+            if (access(src.data(),F_OK) == 0){
+                LOGD("su_mount: %s <- %s\n", dest.data(), src.data());
+                cp_afc(src.data(), dest.data());
+                setfilecon(dest.data(), "u:object_r:" SEPOL_EXEC_TYPE ":s0");
+            }
         }
     }
     
