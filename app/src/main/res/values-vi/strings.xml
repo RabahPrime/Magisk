@@ -272,5 +272,7 @@
     <string name="settings_logcat_monitor_title">Theo dõi logcat</string>
     <string name="settings_logcat_monitor_summary">Theo dõi logcat thay vì ptrace Zygote để phát hiện các ứng dụng khởi động. Ít bị phát hiện hơn nhưng không tin cậy.</string>
     <string name="settings_logcat_monitor_no_need">No need when Zygisk is enabled</string>
+	<string name="sulist_not_working_title">SuList không hoạt động</string>
+	<string name="sulist_not_working_msg">SuList không thể hoạt động vì hệ thống logcat của bạn bị hỏng hoặc daemon logcat không chạy</string>
 
 </resources>

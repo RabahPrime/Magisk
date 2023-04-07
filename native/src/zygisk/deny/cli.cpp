@@ -52,7 +52,7 @@ void denylist_handler(int client, const sock_cred *cred) {
         ls_list(client);
         return;
     case DenyRequest::STATUS:
-        if (denylist_enforced){
+        if (denylist_enforced && do_unmount){
         	res = DenyResponse::ENFORCED;
 		} else res = DenyResponse::NOT_ENFORCED;
         break;
@@ -119,10 +119,10 @@ int denylist_cli(int argc, char **argv) {
         res = DenyResponse::ERROR;
     switch (res) {
     case DenyResponse::NOT_ENFORCED:
-        fprintf(stderr, "SuList is not enforced\n");
+        fprintf(stderr, "SuList is not working\n");
         return 1;
     case DenyResponse::ENFORCED:
-    	fprintf(stderr, "SuList is enforced\n");
+    	fprintf(stderr, "SuList is working\n");
         return 0;
     case DenyResponse::ITEM_EXIST:
         fprintf(stderr, "Target already exists in sulist\n");

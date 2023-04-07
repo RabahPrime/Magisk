@@ -63,5 +63,8 @@ void revert_unmount(int pid = -1);
 void su_daemon(int pid);
 void unmount_zygote();
 
+// Indicator that logcat is working and zygote must be unmounted
+extern std::atomic<bool> do_unmount;
+
 extern std::atomic<bool> denylist_enforced;
 extern std::atomic<bool> logcat_monitor;

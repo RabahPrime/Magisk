@@ -25,8 +25,8 @@ object Const {
     val APP_IS_CANARY get() = Version.isCanary(BuildConfig.VERSION_CODE)
 
     object Version {
-        const val MIN_VERSION = "v22.0"
-        const val MIN_VERCODE = 22000
+        const val MIN_VERSION = "v25.2"
+        const val MIN_VERCODE = 25200
 
         fun atLeast_24_0() = Info.env.versionCode >= 24000 || isCanary()
         fun atLeast_25_0() = Info.env.versionCode >= 25000 || isCanary()

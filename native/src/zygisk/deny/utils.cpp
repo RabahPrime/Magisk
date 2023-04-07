@@ -490,6 +490,7 @@ static int data_system_wd = -1;
 static int system_server_pid = -1,
            system_server_fd = -1;
 static bool is_process(int pid);
+std::atomic<bool> do_unmount = false;
 
 static void new_zygote(int pid);
 void do_check_fork();
@@ -649,7 +650,7 @@ static void check_zygote(){
         if (!is_process(pid))
             goto not_zygote;
 
-        if (is_zygote(pid) && parse_ppid(pid) == 1 && system_server_pid > 0) {
+        if (do_unmount && is_zygote(pid) && parse_ppid(pid) == 1) {
             new_zygote(pid);
             return true;
         }
@@ -692,7 +693,7 @@ static void setup_inotify() {
     inotify_add_watch(inotify_fd, APP_DATA_DIR, IN_CREATE);
     DIR *dirfp = opendir(APP_DATA_DIR);
     if (dirfp) {
-   	    char buf[4098];
+           char buf[4098];
         struct dirent *dp;
         while ((dp = readdir(dirfp)) != nullptr) {
             ssprintf(buf, sizeof(buf) - 1, "%s/%s", APP_DATA_DIR, dp->d_name);
@@ -785,7 +786,7 @@ static void inotify_event(int) {
     PROCESS_EVENT
 }
 
-static void term_thread(int) {
+static void term_thread(int) { // unused
     LOGD("proc_monitor: cleaning up\n");
     zygote_map.clear();
     pid_map.clear();
@@ -927,9 +928,12 @@ void ProcessBuffer(struct logger_entry *buf) {
     auto *am_proc_start = reinterpret_cast<const android_event_am_proc_start *>(eventData);
     ssprintf(last_process, sizeof(last_process)-1, "%.*s",
            am_proc_start->process_name.length, am_proc_start->process_name.data);
-    fork_pid = am_proc_start->pid.data;
-    fork_uid = am_proc_start->uid.data;
-    new_daemon_thread(&check_process);
+    if (zygote_map.count(parse_ppid(am_proc_start->pid.data))) {
+        // zygote of this pid must be unmounted
+        fork_pid = am_proc_start->pid.data;
+        fork_uid = am_proc_start->uid.data;
+        new_daemon_thread(&check_process);
+    }
 }
 
 #define until(condition) while (bool(condition) == false)
@@ -977,6 +981,7 @@ void proc_monitor() {
     check_zygote();
 
     start_monitor:
+    do_unmount = false;
     pthread_sigmask(SIG_UNBLOCK, &unblock_set, nullptr);
     // wait until system_server start
     until(system_server_pid > 0) sleep(1); {
@@ -991,14 +996,6 @@ void proc_monitor() {
     }
     // now monitor zygote
     pthread_sigmask(SIG_SETMASK, &orig_mask, nullptr);
-    // First try find existing zygotes
-    check_zygote();
-    if (!is_zygote_done()) {
-        // Periodic scan every 250ms
-        timeval val { .tv_sec = 0, .tv_usec = 250000 };
-        itimerval interval { .it_interval = val, .it_value = val };
-        setitimer(ITIMER_REAL, &interval, nullptr);
-    }
     rescan_apps();
 
     /* Don't need when using am_proc_start
@@ -1030,8 +1027,19 @@ void proc_monitor() {
                 break;
             }
             if (first) [[unlikely]] {
+                pthread_sigmask(SIG_SETMASK, &orig_mask, nullptr);
                 first = false;
+                LOGI("proc_monitor: logcat is running\n");
                 logd_crash_count = 0;
+                do_unmount = true;
+                check_zygote();
+                if (!is_zygote_done()) {
+                    // Periodic scan every 250ms
+                    timeval val { .tv_sec = 0, .tv_usec = 250000 };
+                    itimerval interval { .it_interval = val, .it_value = val };
+                    setitimer(ITIMER_REAL, &interval, nullptr);
+                }
+                pthread_sigmask(SIG_UNBLOCK, &unblock_set, nullptr);
                 continue;
             }
             {
@@ -1048,16 +1056,22 @@ void proc_monitor() {
         }
         pthread_sigmask(SIG_SETMASK, &orig_mask, nullptr);
         if (logd_crash_count >= 30) {
-       	    if (logd_crash_count == 30)
-                LOGE("proc_monitor: restarting logd doesn't help, root access has been lost!\n");
+            if (logd_crash_count == 30) {
+                LOGE("proc_monitor: restarting logd doesn't help, sulist will not work\n");
+                if (do_unmount) { // give up
+                    LOGD("proc_monitor: kill system server\n");
+                    kill(system_server_pid, SIGKILL);
+                    system_server_pid = -1;
+                    goto start_monitor;
+                }
+            }
             goto next;
         }
-        logd_crash_count++;
-        if (logd_crash_count >= 5) {
-            LOGE("proc_monitor: failed to read logcat, try restart logd...\n");
-        	__system_property_set("ctl.restart", "logd");
-        }
+        LOGE("proc_monitor: failed to read logcat, try restart logd...\n");
+        __system_property_set("ctl.restart", "logd");
         next:
+        if (logd_crash_count <= 30)
+            logd_crash_count++;
         sleep(1);
         pthread_sigmask(SIG_UNBLOCK, &unblock_set, nullptr);
     }
