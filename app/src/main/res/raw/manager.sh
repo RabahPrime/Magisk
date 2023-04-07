@@ -251,7 +251,7 @@ grep_prop() { return; }
 ##############################
 
 is_delta(){
-if magisk -v | grep -q "\-delta"; then
+if magisk -v | grep -q "\-delta\-lite"; then
     return 0
 fi
 return 1

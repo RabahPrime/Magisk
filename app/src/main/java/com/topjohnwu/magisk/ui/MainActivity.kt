@@ -30,6 +30,7 @@ import com.topjohnwu.magisk.ui.home.HomeFragmentDirections
 import com.topjohnwu.magisk.utils.Utils
 import com.topjohnwu.magisk.view.MagiskDialog
 import com.topjohnwu.magisk.view.Shortcuts
+import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
@@ -180,10 +181,19 @@ class MainActivity : SplashActivity<ActivityMainBinding>() {
     }
 
     private fun showUnsupportedMessage() {
-        if (Info.env.isUnsupported) {
+        if (Info.env.isUnsupported || !Shell.cmd("is_delta").exec().isSuccess) {
             MagiskDialog(this).apply {
                 setTitle(R.string.unsupport_magisk_title)
                 setMessage(R.string.unsupport_magisk_msg, Const.Version.MIN_VERSION)
+                setButton(MagiskDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
+                setCancelable(false)
+            }.show()
+        }
+
+        if (Shell.cmd("is_delta").exec().isSuccess && !Shell.cmd("magisk --sulist status").exec().isSuccess) {
+            MagiskDialog(this).apply {
+                setTitle(R.string.sulist_not_working_title)
+                setMessage(R.string.sulist_not_working_msg)
                 setButton(MagiskDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
                 setCancelable(false)
             }.show()

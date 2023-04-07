@@ -279,5 +279,7 @@
     <string name="settings_logcat_monitor_title">Monitor logcat</string>
     <string name="settings_logcat_monitor_summary">Monitor logcat instead of ptrace to detect the creation of app process. It\'s less detectable than ptrace but unrealiable.</string>
     <string name="settings_logcat_monitor_no_need">No need when Zygisk is enabled</string>
+	<string name="sulist_not_working_title">SuList is not working</string>
+	<string name="sulist_not_working_msg">SuList cannot work because your logcat system is broken or logcat daemon is not running</string>
 
 </resources>
