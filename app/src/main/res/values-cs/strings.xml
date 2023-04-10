@@ -106,11 +106,7 @@
     <string name="update_available">Dostupná aktualizace</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Režim motivu</string>
-    <string name="settings_dark_mode_message">Vyberte režim, který nejlépe vyhovuje Vašemu stylu!</string>
-    <string name="settings_dark_mode_light">Světlý</string>
-    <string name="settings_dark_mode_system">Podle systému</string>
-    <string name="settings_dark_mode_dark">Tmavý</string>
+    <string name="settings_dark_theme_system">Podle systému</string>
     <string name="settings_download_path_title">Složka pro stahování</string>
     <string name="settings_download_path_message">Soubory budou uloženy do %1$s.</string>
     <string name="settings_hide_app_title">Skrýt aplikaci Magisk</string>

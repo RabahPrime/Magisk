@@ -112,6 +112,7 @@
     <string name="settings_dark_mode_system">Baseado no Sistema</string>
     <string name="settings_dark_mode_dark">Sempre Escuro</string>
     <string name="settings_download_path_title">Diretório dos Downloads</string>
+    <string name="settings_dark_theme_system">Baseado no Sistema</string>
     <string name="settings_download_path_message">Os arquivos serão salvos em %1$s</string>
     <string name="settings_hide_app_title">Ocultar o aplicativo do Magisk</string>
     <string name="settings_hide_app_summary">Instala um app proxy com ID de pacote aleatório e nome personalizado</string>

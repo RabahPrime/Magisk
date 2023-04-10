@@ -113,11 +113,7 @@
     <string name="module_empty">কোন মডিউল ইনস্টল করা নেই</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">থিম মোড</string>
-    <string name="settings_dark_mode_message">আপনার শৈলী সবচেয়ে উপযুক্ত মোড নির্বাচন করুন!</string>
-    <string name="settings_dark_mode_light">সবসময় আলো</string>
-    <string name="settings_dark_mode_system">সিস্টেম অনুসরণ করুন</string>
-    <string name="settings_dark_mode_dark">সবসময় অন্ধকার</string>
+    <string name="settings_dark_theme_system">সিস্টেম অনুসরণ করুন</string>
     <string name="settings_download_path_title">পাথ ডাউনলোড করুন</string>
     <string name="settings_download_path_message">ফাইলগুলি %1$s এ সংরক্ষণ করা হবে৷</string>
     <string name="settings_hide_app_title">ম্যাজিস্ক অ্যাপটি লুকান</string>

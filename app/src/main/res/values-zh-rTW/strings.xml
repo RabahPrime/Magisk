@@ -104,11 +104,7 @@
     <string name="zygisk_module_unloaded">此模組因不相容 Zygisk 而未載入</string>
     <string name="module_empty">未安裝任何模組</string>
     <!--Settings -->
-    <string name="settings_dark_mode_title">主題模式</string>
-    <string name="settings_dark_mode_message">選擇最符合您風格的模式！</string>
-    <string name="settings_dark_mode_light">淺色模式</string>
-    <string name="settings_dark_mode_system">跟隨系統</string>
-    <string name="settings_dark_mode_dark">深色模式</string>
+    <string name="settings_dark_theme_system">跟隨系統</string>
     <string name="settings_download_path_title">下載路徑</string>
     <string name="settings_download_path_message">檔案將被儲存在：%1$s</string>
     <string name="settings_hide_app_title">隱藏 Magisk</string>

@@ -103,11 +103,7 @@
     <string name="zygisk_module_unloaded">Modulo Zygisk non caricato a causa di incompatibilità</string>
     <string name="module_empty">Nessun modulo installato</string>
     <!--Settings -->
-    <string name="settings_dark_mode_title">Impostazioni tema</string>
-    <string name="settings_dark_mode_message">Seleziona il tema che si adatta meglio al tuo stile!</string>
-    <string name="settings_dark_mode_light">Chiaro</string>
-    <string name="settings_dark_mode_system">Adatta al sistema</string>
-    <string name="settings_dark_mode_dark">Scuro</string>
+    <string name="settings_dark_theme_system">Adatta al sistema</string>
     <string name="settings_download_path_title">Percorso di download</string>
     <string name="settings_download_path_message">I file verranno salvati in %1$s</string>
     <string name="settings_hide_app_title">Nascondi l\'app di Magisk</string>

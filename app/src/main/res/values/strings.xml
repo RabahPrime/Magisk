@@ -117,11 +117,11 @@
     <string name="module_empty">No module installed</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Theme Mode</string>
-    <string name="settings_dark_mode_message">Select mode which best suits your style!</string>
-    <string name="settings_dark_mode_light">Always Light</string>
-    <string name="settings_dark_mode_system">Follow System</string>
-    <string name="settings_dark_mode_dark">Always Dark</string>
+    <string name="settings_dark_theme_title">Dark Theme</string>
+    <string name="settings_dark_theme_dark">Always On</string>
+    <string name="settings_dark_theme_light">Always Off</string>
+    <string name="settings_dark_theme_system">Follow System</string>
+    <string name="settings_theme_color">Theme Color</string>
     <string name="settings_download_path_title">Download path</string>
     <string name="settings_download_path_message">Files will be saved to\n%1$s</string>
     <string name="settings_hide_app_title">Hide the Magisk app</string>
@@ -129,6 +129,8 @@
     <string name="settings_restore_app_title">Restore the Magisk app</string>
     <string name="settings_restore_app_summary">Unhide the app and restore the original APK</string>
     <string name="language">Language</string>
+    <string name="language_translate">Participate in the translation</string>
+    <string name="language_translate_description">Help us translate the app into your language</string>
     <string name="system_default">(System Default)</string>
     <string name="settings_check_update_title">Check Updates</string>
     <string name="settings_check_update_summary">Periodically check for updates in the background</string>
@@ -279,5 +281,19 @@
     <string name="settings_logcat_monitor_title">Monitor logcat</string>
     <string name="settings_logcat_monitor_summary">Monitor logcat instead of ptrace to detect the creation of app process. It\'s less detectable than ptrace but unrealiable.</string>
     <string name="settings_logcat_monitor_no_need">No need when Zygisk is enabled</string>
+
+    <!-- Theme Colors -->
+    <string name="color_dynamic">Dynamic</string>
+    <string name="color_dynamic_black">Dynamic Black</string>
+    <string name="color_carmine">Carmine</string>
+    <string name="color_blush">Blush</string>
+    <string name="color_magenta">Magenta</string>
+    <string name="color_lavender">Lavender</string>
+    <string name="color_periwinkle">Periwinkle</string>
+    <string name="color_cerulean">Cerulean</string>
+    <string name="color_turquoise">Turquoise</string>
+    <string name="color_viridian">Viridian</string>
+    <string name="color_chartreuse">Chartreuse</string>
+    <string name="color_citrine">Citrine</string>
 
 </resources>

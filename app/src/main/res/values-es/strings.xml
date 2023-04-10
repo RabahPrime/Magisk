@@ -113,6 +113,7 @@
     <string name="settings_dark_mode_light">Siempre claro</string>
     <string name="settings_dark_mode_system">Seguir al sistema</string>
     <string name="settings_dark_mode_dark">Siempre oscuro</string>
+    <string name="settings_dark_theme_system">Seguir al sistema</string>
     <string name="settings_download_path_title">Ruta de Descarga</string>
     <string name="settings_download_path_message">Los archivos se guardarán en %1$s</string>
     <string name="settings_hide_app_title">Esconder la app de Magisk</string>

@@ -42,8 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:scaleX="0.8"
-                android:scaleY="0.8"
+                android:paddingTop="@dimen/l1_50"
+                android:paddingBottom="@dimen/l1_50"
                 android:adjustViewBounds="true"
                 android:alpha=".05"
                 android:background="@null"
@@ -124,14 +124,15 @@
 
                 <View
                     android:id="@+id/module_divider"
-                    android:background="?colorOnSurfaceVariant"
+                    android:background="?colorSurface"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_margin="@dimen/l1"
+                    android:layout_marginTop="@dimen/l1"
+                    android:layout_marginBottom="@dimen/l1"
                     app:layout_constraintTop_toBottomOf="@+id/module_description" />
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Material3.Button.TextButton.Icon"
+                    style="@style/Widget_Rip.Material3.Button.TextButton.Icon2"
                     gone="@{item.updateReady != true}"
                     android:id="@+id/module_update"
                     android:layout_width="wrap_content"
@@ -149,7 +150,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/module_remove"
-                    style="@style/Widget.Material3.Button.TextButton.Icon"
+                    style="@style/Widget_Rip.Material3.Button.TextButton.Icon2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/l_25"

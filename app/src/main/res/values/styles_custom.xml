@@ -3,6 +3,14 @@
 
     <!--Buttons-->
 
+    <style name="Widget_Rip.Material3.Button.TextButton2" parent="Widget.Material3.Button.TextButton">
+        <item name="android:minWidth">@dimen/l_25</item>
+    </style>
+
+    <style name="Widget_Rip.Material3.Button.TextButton.Icon2" parent="Widget.Material3.Button.TextButton.Icon">
+        <item name="android:minWidth">@dimen/l_25</item>
+    </style>
+
     <style name="Widget_Rip.Material3.Button.TextButton.Icon.Error" parent="Widget.Material3.Button.TextButton.Icon">
         <item name="iconTint">@color/color_error_transient</item>
         <item name="android:textColor">@color/color_error_transient</item>
@@ -15,7 +23,11 @@
         <item name="android:textColor">@color/color_error_transient</item>
     </style>
 
-    <style name="Widget_Rip.Material3.Button.OutlinedButton.Icon2" parent="Widget.Material3.Button.OutlinedButton">
+    <style name="Widget_Rip.Material3.Button.OutlinedButton2" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">?colorPrimary</item>
+    </style>
+
+    <style name="Widget_Rip.Material3.Button.OutlinedButton.Icon2" parent="Widget.Material3.Button.OutlinedButton.Icon">
         <item name="strokeColor">?colorPrimary</item>
     </style>
 

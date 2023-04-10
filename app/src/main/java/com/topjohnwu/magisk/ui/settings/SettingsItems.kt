@@ -9,9 +9,11 @@ import androidx.databinding.Bindable
 import com.topjohnwu.magisk.BR
 import com.topjohnwu.magisk.BuildConfig
 import com.topjohnwu.magisk.R
+import com.topjohnwu.magisk.arch.UIActivity
 import com.topjohnwu.magisk.core.Config
 import com.topjohnwu.magisk.core.Const
 import com.topjohnwu.magisk.core.Info
+import com.topjohnwu.magisk.core.di.ServiceLocator
 import com.topjohnwu.magisk.core.tasks.HideAPK
 import com.topjohnwu.magisk.core.utils.BiometricHelper
 import com.topjohnwu.magisk.core.utils.MediaStoreUtils
@@ -22,6 +24,7 @@ import com.topjohnwu.magisk.databinding.DialogSettingsDownloadPathBinding
 import com.topjohnwu.magisk.databinding.DialogSettingsUpdateChannelBinding
 import com.topjohnwu.magisk.databinding.set
 import com.topjohnwu.magisk.ktx.activity
+import com.topjohnwu.magisk.ui.theme.Theme
 import com.topjohnwu.magisk.utils.Utils
 import com.topjohnwu.magisk.utils.asText
 import com.topjohnwu.magisk.view.MagiskDialog
@@ -29,22 +32,11 @@ import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-//// --- Customization
-//
-//object Customization : BaseSettingsItem.Section() {
-//    override val title = R.string.settings_customization.asText()
-//}
-//
-//object Theme : BaseSettingsItem.Blank() {
-//    override val icon = R.drawable.ic_paint
-//    override val title = R.string.section_theme.asText()
-//}
 
-// --- App
-
-object AppSettings : BaseSettingsItem.Section() {
-    override val title = R.string.home_app_title.asText()
+object LanguageTitle : BaseSettingsItem.Section() {
+    override val title = R.string.language.asText()
 }
+
 object Language : BaseSettingsItem.Selector() {
     override var value
         get() = index
@@ -78,6 +70,67 @@ object Language : BaseSettingsItem.Selector() {
             }
         }
     }
+}
+
+object LanguageTranslate : BaseSettingsItem.Blank() {
+    override val title = R.string.language_translate.asText()
+    override val icon = R.drawable.ic_translate
+    override val description = R.string.language_translate_description.asText()
+    val context get() = ServiceLocator.deContext
+    const val link = "https://translate.nift4.org/engage/magisk-delta/"
+}
+
+// --- Customization
+
+object Customization : BaseSettingsItem.Section() {
+    override val title = R.string.settings_customization.asText()
+}
+
+object ThemeColor : BaseSettingsItem.Blank() {
+    override val icon = R.drawable.ic_palette
+    override val title = R.string.settings_theme_color.asText()
+    override val description get () = Theme.selected.themeName
+}
+
+object DarkTheme : BaseSettingsItem.Selector() {
+    override val title = R.string.settings_dark_theme_title.asText()
+    override val icon = R.drawable.ic_dark_theme
+    override val entryRes = R.array.dark_theme
+    override var value by Config::darkThemeList
+
+    private var themeValue by Config::darkTheme
+    override fun onPressed(view: View, handler: Handler) {
+        handler.onItemPressed(view, this) {
+            MagiskDialog(view.activity).apply {
+                setTitle(R.string.settings_dark_theme_title)
+                setListItems(entries(view.resources)) {
+
+                    // MODE_NIGHT_FOLLOW_SYSTEM is -1 but first item's value
+                    // is 0 (which points to a deprecated theme value).
+                    var itFix = it
+                    if (it == 0) itFix = -1
+                    if (themeValue != itFix) {
+                        themeValue = itFix
+                        value = it
+                        notifyPropertyChanged(BR.description)
+                        (activity as UIActivity<*>).delegate.localNightMode = themeValue
+                        handler.onItemAction(view, this@DarkTheme)
+                    }
+                }
+                setButton(MagiskDialog.ButtonType.POSITIVE) {
+                    text = android.R.string.cancel
+                }
+                setCancelable(true)
+                show()
+            }
+        }
+    }
+}
+
+// --- App
+
+object AppSettings : BaseSettingsItem.Section() {
+    override val title = R.string.home_app_title.asText()
 }
 
 object Hide : BaseSettingsItem.Input() {

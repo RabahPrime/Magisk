@@ -21,13 +21,14 @@
         android:background="?selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
+        android:gravity="center"
         android:onClick="@{() -> listener.onClick(item.position)}"
         android:paddingStart="@dimen/l1"
         android:paddingTop="@dimen/l_75"
         android:paddingEnd="@dimen/l1"
         android:paddingBottom="@dimen/l_75"
         android:text="@{item.item}"
-        android:textAppearance="@style/AppearanceFoundation.Body"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
         tools:text="@tools:sample/lorem" />
 
 </layout>
