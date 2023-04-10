@@ -2,6 +2,7 @@ package com.topjohnwu.magisk.core
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
+import android.os.Build
 import android.util.Xml
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
@@ -12,7 +13,7 @@ import com.topjohnwu.magisk.core.repository.BoolDBPropertyNoWrite
 import com.topjohnwu.magisk.core.repository.DBConfig
 import com.topjohnwu.magisk.core.repository.PreferenceConfig
 import com.topjohnwu.magisk.core.utils.refreshLocale
-//import com.topjohnwu.magisk.ui.theme.Theme
+import com.topjohnwu.magisk.ui.theme.Theme
 import kotlinx.coroutines.GlobalScope
 import org.xmlpull.v1.XmlPullParser
 import java.io.File
@@ -58,7 +59,8 @@ object Config : PreferenceConfig, DBConfig {
         const val UPDATE_CHANNEL = "update_channel"
         const val CUSTOM_CHANNEL = "custom_channel"
         const val LOCALE = "locale"
-        const val DARK_THEME = "dark_theme_extended"
+        const val DARK_THEME = "dark_theme"
+        const val DARK_THEME_LIST = "dark_theme_list"
         const val REPO_ORDER = "repo_order"
         const val SHOW_SYSTEM_APP = "show_system"
         const val DOWNLOAD_DIR = "download_dir"
@@ -109,6 +111,13 @@ object Config : PreferenceConfig, DBConfig {
         // repo order
         const val ORDER_NAME = 0
         const val ORDER_DATE = 1
+
+        // dark mode
+        const val DARK_THEME_SYSTEM = -1
+        const val DARK_THEME_NO = 1
+        const val DARK_THEME_YES = 2
+        // for description entry
+        const val LIST_DARK_THEME_SYSTEM = 0
     }
 
     private val defaultChannel =
@@ -134,10 +143,11 @@ object Config : PreferenceConfig, DBConfig {
     var suAutoResponse by preferenceStrInt(Key.SU_AUTO_RESPONSE, Value.SU_PROMPT)
     var suNotification by preferenceStrInt(Key.SU_NOTIFICATION, Value.NOTIFICATION_TOAST)
     var updateChannel by preferenceStrInt(Key.UPDATE_CHANNEL, defaultChannel)
+    var darkTheme by preferenceStrInt(Key.DARK_THEME, Value.DARK_THEME_SYSTEM)
+    var darkThemeList by preferenceStrInt(Key.DARK_THEME_LIST, Value.LIST_DARK_THEME_SYSTEM)
 
     var safetyNotice by preference(Key.SAFETY, true)
-    var darkTheme by preference(Key.DARK_THEME, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-//    var themeOrdinal by preference(Key.THEME_ORDINAL, Theme.Base.ordinal)
+    var themeOrdinal by preference(Key.THEME_ORDINAL, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) Theme.Dynamic.ordinal else Theme.Blush.ordinal)
     var suReAuth by preference(Key.SU_REAUTH, false)
     var suTapjack by preference(Key.SU_TAPJACK, true)
     private var checkUpdatePrefs by preference(Key.CHECK_UPDATES, true)

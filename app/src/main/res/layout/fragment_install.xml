@@ -18,6 +18,9 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fadeScrollbars="true"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbars="vertical"
         android:clipToPadding="false"
         android:fillViewport="true"
         android:paddingTop="@dimen/internal_action_bar_size"
@@ -32,7 +35,7 @@
             android:layout_margin="@dimen/l1">
 
             <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Material3.CardView.Outlined"
+                style="@style/Widget.Material3.CardView.Filled"
                 gone="@{viewModel.skipOptions}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,12 +81,19 @@
 
                     </LinearLayout>
 
+                    <View
+                        gone="@{viewModel.step != 0}"
+                        android:background="?colorSurface"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"/>
+
                     <LinearLayout
                         gone="@{viewModel.step != 0}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/l1"
                         android:layout_marginEnd="@dimen/l1"
+                        android:layout_marginTop="@dimen/l_50"
                         android:layout_marginBottom="@dimen/l_50"
                         android:orientation="vertical"
                         tools:layout_gravity="center">
@@ -135,7 +145,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Material3.CardView.Outlined"
+                style="@style/Widget.Material3.CardView.Filled"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/l_75"
@@ -183,15 +193,21 @@
 
                     </LinearLayout>
 
+                    <View
+                        gone="@{viewModel.step != 1}"
+                        android:background="?colorSurface"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"/>
+
                     <RadioGroup
                         gone="@{viewModel.step != 1}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/l1"
                         android:layout_marginEnd="@dimen/l1"
+                        android:layout_marginTop="@dimen/l_50"
                         android:layout_marginBottom="@dimen/l_50"
-                        android:checkedButton="@={viewModel.method}"
-                        >
+                        android:checkedButton="@={viewModel.method}">
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/method_patch"

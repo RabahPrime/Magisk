@@ -156,7 +156,7 @@ class MainActivity : SplashActivity<ActivityMainBinding>() {
     }
 
     fun invalidateToolbar() {
-        //binding.mainToolbar.startAnimations()
+        binding.mainToolbar.startAnimations()
         binding.mainToolbar.invalidate()
     }
 

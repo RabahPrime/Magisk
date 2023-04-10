@@ -112,11 +112,7 @@
     <string name="zygisk_module_unloaded">Zygisk-moodulit ei laaditud ühildumatuse tõttu</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Teema režiim</string>
-    <string name="settings_dark_mode_message">Vali režiim, mis ühtib sinu stiiliga!</string>
-    <string name="settings_dark_mode_light">Alati hele</string>
-    <string name="settings_dark_mode_system">Järgi süsteemi</string>
-    <string name="settings_dark_mode_dark">Alati tume</string>
+    <string name="settings_dark_theme_system">Järgi süsteemi</string>
     <string name="settings_download_path_title">Allalaadimise failitee</string>
     <string name="settings_download_path_message">Failid salvestatakse kausta %1$s</string>
     <string name="settings_hide_app_title">Peida Magiski rakendus</string>

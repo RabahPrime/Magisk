@@ -106,6 +106,12 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <View
+                goneUnless="@{item.isExpanded}"
+                android:background="?colorSurface"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 goneUnless="@{item.isExpanded}"
                 app:items="@{item.processes}"

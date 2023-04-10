@@ -105,11 +105,7 @@
     <string name="update_available">עדכונים זמינים</string>
 
     <!--Settings -->
-    <string name="settings_dark_mode_title">מצב עיצוב</string>
-    <string name="settings_dark_mode_message">בחר מצב המתאים ביותר לסגנון שלך!</string>
-    <string name="settings_dark_mode_light">תמיד בהיר</string>
-    <string name="settings_dark_mode_system">בהתאם למערכת</string>
-    <string name="settings_dark_mode_dark">תמיד כהה</string>
+    <string name="settings_dark_theme_system">בהתאם למערכת</string>
     <string name="settings_download_path_title">נתיב הורדה</string>
     <string name="settings_download_path_message">הקבצים ישמרו אל %1$s</string>
     <string name="settings_hide_app_title">הסתר את היישום Magisk</string>

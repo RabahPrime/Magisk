@@ -114,11 +114,7 @@
     <string name="module_empty">モジュールをインストールしていません</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">テーマ</string>
-    <string name="settings_dark_mode_message">あなたの好きなスタイルを選びましょう！</string>
-    <string name="settings_dark_mode_light">ライトモード</string>
-    <string name="settings_dark_mode_system">システムに合わせる</string>
-    <string name="settings_dark_mode_dark">ダークモード</string>
+    <string name="settings_dark_theme_system">システムに合わせる</string>
     <string name="settings_download_path_title">ファイルの保存場所</string>
     <string name="settings_download_path_message">ファイルは %1$s に保存されます</string>
     <string name="settings_hide_app_title">Magisk アプリを隠す</string>

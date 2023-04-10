@@ -115,11 +115,7 @@
 
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Chế độ chủ đề</string>
-    <string name="settings_dark_mode_message">Chọn chế độ phù hợp nhất với phong cách của bạn!</string>
-    <string name="settings_dark_mode_light">Luôn sáng</string>
-    <string name="settings_dark_mode_system">Theo hệ thống</string>
-    <string name="settings_dark_mode_dark">Luôn tối</string>
+    <string name="settings_dark_theme_system">Theo hệ thống</string>
     <string name="settings_download_path_title">Đường dẫn tải xuống</string>
     <string name="settings_download_path_message">Các tệp sẽ được lưu vào %1$s</string>
     <string name="settings_hide_app_title">Ẩn ứng dụng Magisk</string>

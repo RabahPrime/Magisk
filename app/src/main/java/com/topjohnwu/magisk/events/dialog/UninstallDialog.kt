@@ -16,11 +16,11 @@ class UninstallDialog : DialogEvent() {
         dialog.apply {
             setTitle(R.string.uninstall_magisk_title)
             setMessage(R.string.uninstall_magisk_msg)
-            setButton(MagiskDialog.ButtonType.POSITIVE) {
+            setButton(MagiskDialog.ButtonType.NEGATIVE) {
                 text = R.string.restore_img
                 onClick { restore(dialog.context) }
             }
-            setButton(MagiskDialog.ButtonType.NEGATIVE) {
+            setButton(MagiskDialog.ButtonType.POSITIVE) {
                 text = R.string.complete_uninstall
                 onClick { completeUninstall(dialog) }
             }

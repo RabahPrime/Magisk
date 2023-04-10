@@ -114,11 +114,7 @@
     <string name="module_empty">Tidak ada modul terpasang</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Mode tema</string>
-    <string name="settings_dark_mode_message">Pilih mode yang paling cocok dengan gaya Anda!</string>
-    <string name="settings_dark_mode_light">Selalu terang</string>
-    <string name="settings_dark_mode_system">Ikuti sistem</string>
-    <string name="settings_dark_mode_dark">Selalu gelap</string>
+    <string name="settings_dark_theme_system">Ikuti sistem</string>
     <string name="settings_download_path_title">Lokasi unduhan</string>
     <string name="settings_download_path_message">File akan disimpan ke %1$s</string>
     <string name="settings_hide_app_title">Sembunyikan aplikasi Magisk</string>

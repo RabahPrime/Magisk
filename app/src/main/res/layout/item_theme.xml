@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.topjohnwu.magisk.ui.theme.ThemeViewModel" />
+
+        <variable
+            name="theme"
+            type="com.topjohnwu.magisk.ui.theme.Theme" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/WidgetFoundation.Card.Elevated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/l_75"
+        android:layout_marginStart="@dimen/l1"
+        android:layout_marginEnd="@dimen/l1"
+        android:onClick="@{() -> viewModel.saveTheme(theme)}"
+        app:cardCornerRadius="@dimen/l1_50"
+        app:strokeColor="?colorPrimary"
+        app:strokeWidth="@{theme.isSelected == true ? @dimen/l_25 : 0}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/theme_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="?dialogPreferredPadding"
+                android:layout_marginEnd="?dialogPreferredPadding"
+                android:layout_marginTop="?dialogPreferredPadding"
+                android:layout_marginBottom="@dimen/l_50"
+                android:paddingStart="@dimen/l_25"
+                android:paddingEnd="@dimen/l_25"
+                android:text="@{theme.themeName}"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/theme_icon"
+                app:layout_constraintBottom_toTopOf="@id/theme_colors"
+                tools:text="Dynamic" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/theme_colors"
+                style="@style/WidgetFoundation.Card.Elevated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="?dialogPreferredPadding"
+                android:layout_marginEnd="?dialogPreferredPadding"
+                android:layout_marginTop="@dimen/l_50"
+                android:layout_marginBottom="?dialogPreferredPadding"
+                app:cardBackgroundColor="?colorSurface"
+                app:strokeWidth="1dp"
+                app:strokeColor="?colorOnSecondary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/theme_name">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/l_125">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="?colorPrimary"
+                        android:padding="@dimen/l_25"
+                        app:shapeAppearanceOverlay="@style/RoundedImage" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="?colorSecondary"
+                        android:padding="@dimen/l_25"
+                        app:shapeAppearanceOverlay="@style/RoundedImage" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="?colorTertiary"
+                        android:padding="@dimen/l_25"
+                        app:shapeAppearanceOverlay="@style/RoundedImage" />
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="?colorPrimaryInverse"
+                        android:padding="@dimen/l_25"
+                        app:shapeAppearanceOverlay="@style/RoundedImage" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/WidgetFoundation.Card.Elevated"
+                android:id="@+id/theme_icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginEnd="?dialogPreferredPadding"
+                app:cardBackgroundColor="?colorSurface"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:strokeWidth="1dp"
+                app:strokeColor="?colorOnSecondary">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_theme_magisk"
+                    android:scaleX="0.75"
+                    android:scaleY="0.75"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

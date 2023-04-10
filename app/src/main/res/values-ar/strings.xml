@@ -103,11 +103,7 @@
     <string name="external_rw_permission_denied">امنحني إذن الولوج للذاكرة الداخلية</string>
 
     <!--Settings -->
-    <string name="settings_dark_mode_title">وضـعية الِسمات</string>
-    <string name="settings_dark_mode_message">حدد الوضـع الذي يناسب ذوقك</string>
-    <string name="settings_dark_mode_light">الوضـع المضيء</string>
-    <string name="settings_dark_mode_system">اتبّع النظام</string>
-    <string name="settings_dark_mode_dark">وضـع الظلام</string>
+    <string name="settings_dark_theme_system">اتبّع النظام</string>
     <string name="settings_download_path_title">مسار التحميل</string>
     <string name="settings_download_path_message">ستحمل الملفات إلى %1$s</string>
     <string name="language">اللغة</string>

@@ -115,11 +115,7 @@
     <string name="module_empty">未安装任何模块</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">主题模式</string>
-    <string name="settings_dark_mode_message">选择一个模式</string>
-    <string name="settings_dark_mode_light">明亮模式</string>
-    <string name="settings_dark_mode_system">跟随系统</string>
-    <string name="settings_dark_mode_dark">深色模式</string>
+    <string name="settings_dark_theme_system">跟随系统</string>
     <string name="settings_download_path_title">下载路径</string>
     <string name="settings_download_path_message">文件将保存到 %1$s</string>
     <string name="settings_hide_app_title">隐藏 Magisk 应用</string>

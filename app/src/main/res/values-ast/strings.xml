@@ -104,11 +104,7 @@
     <string name="zygisk_module_unloaded">El módulu de Zygisk nun cargó pola mor d\'haber incompatibilidaes</string>
     <string name="module_empty">Nun hai nengún módulu instaláu</string>
     <!--Settings-->
-    <string name="settings_dark_mode_title">Mou del estilu</string>
-    <string name="settings_dark_mode_message">¡Seleiciona\'l mou que meyor s\'adaute al to estilu!</string>
-    <string name="settings_dark_mode_light">Claridá</string>
-    <string name="settings_dark_mode_system">L\'estilu del sistema</string>
-    <string name="settings_dark_mode_dark">Escuridá</string>
+    <string name="settings_dark_theme_system">L\'estilu del sistema</string>
     <string name="settings_download_path_title">Camín de les descargues</string>
     <string name="settings_download_path_message">Los ficheros van guardase en «%1$s»</string>
     <string name="settings_hide_app_title">Anubrir Magisk</string>

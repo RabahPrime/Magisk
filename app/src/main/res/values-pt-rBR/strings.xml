@@ -110,11 +110,7 @@
     <string name="module_empty">Nenhum módulo instalado</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Modo de tema</string>
-    <string name="settings_dark_mode_message">Selecione o modo mais adequado ao seu estilo!</string>
-    <string name="settings_dark_mode_light">Sempre Claro</string>
-    <string name="settings_dark_mode_system">Baseado no Sistema</string>
-    <string name="settings_dark_mode_dark">Sempre Escuro</string>
+    <string name="settings_dark_theme_system">Baseado no Sistema</string>
     <string name="settings_download_path_title">Caminho para Baixar</string>
     <string name="settings_download_path_message">Os arquivos serão salvos em %1$s</string>
     <string name="settings_hide_app_title">Ocultar o app do Magisk</string>

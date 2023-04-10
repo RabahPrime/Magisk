@@ -21,12 +21,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
-            android:padding="@dimen/l1">
+            android:gravity="center">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/l1"
+                android:layout_marginEnd="@dimen/l1"
+                android:layout_marginTop="@dimen/l1"
+                android:layout_marginBottom="@dimen/l1"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
@@ -77,66 +80,91 @@
 
             </LinearLayout>
 
+            <View
+                gone="@{!item.isExpanded}"
+                android:background="?colorSurface"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
             <LinearLayout
                 android:id="@+id/policy_expand_container"
                 gone="@{!item.isExpanded}"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/l_75"
-                android:gravity="center"
                 android:orientation="horizontal"
                 tools:visibility="visible">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/policy_notify"
-                    style="@style/Widget.Material3.Button.TextButton.Icon"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     isSelected="@{item.shouldNotify}"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:onClick="@{() -> item.toggleNotify()}"
                     android:text="@string/superuser_toggle_notification"
                     android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
                     android:textColor="@color/color_state_primary_transient"
                     app:icon="@drawable/ic_notifications"
+                    app:iconGravity="textTop"
+                    app:iconPadding="6dp"
                     app:iconTint="@color/color_state_primary_transient"
                     app:tint="@color/color_state_primary_transient" />
 
                 <View
+                    android:background="?colorSurface"
                     android:layout_width="1dp"
-                    android:layout_height="@dimen/l2"
-                    android:background="?colorOnSurfaceVariant"/>
+                    android:layout_height="match_parent"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/policy_log"
-                    style="@style/Widget.Material3.Button.TextButton.Icon"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     isSelected="@{item.shouldLog}"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:onClick="@{() -> item.toggleLog()}"
                     android:text="@string/logs"
                     android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
                     android:textColor="@color/color_state_primary_transient"
                     app:icon="@drawable/ic_bug"
+                    app:iconGravity="textTop"
+                    app:iconPadding="6dp"
                     app:iconTint="@color/color_state_primary_transient"
                     app:tint="@color/color_state_primary_transient" />
 
                 <View
+                    android:background="?colorSurface"
                     android:layout_width="1dp"
-                    android:layout_height="@dimen/l2"
-                    android:background="?colorOnSurfaceVariant" />
+                    android:layout_height="match_parent"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/policy_delete"
-                    style="@style/Widget_Rip.Material3.Button.TextButton.Icon.Error"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:onClick="@{() -> item.revoke()}"
                     android:text="@string/superuser_toggle_revoke"
                     android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
-                    app:icon="@drawable/ic_delete"/>
+                    android:textColor="@color/color_error_transient"
+                    app:icon="@drawable/ic_delete"
+                    app:iconGravity="textTop"
+                    app:iconPadding="6dp"
+                    app:iconTint="@color/color_error_transient"
+                    app:tint="@color/color_error_transient" />
 
             </LinearLayout>
 

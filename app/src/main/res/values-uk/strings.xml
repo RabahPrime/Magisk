@@ -108,11 +108,7 @@
     <string name="update_available">Доступне оновлення</string>
 
     <!--Settings -->
-    <string name="settings_dark_mode_title">Режим теми</string>
-    <string name="settings_dark_mode_message">Виберіть режим, який вам найбільш до вподоби!</string>
-    <string name="settings_dark_mode_light">Завжди світлий</string>
-    <string name="settings_dark_mode_system">Слідувати системному</string>
-    <string name="settings_dark_mode_dark">Завжди темний</string>
+    <string name="settings_dark_theme_system">Слідувати системному</string>
     <string name="settings_download_path_title">Шлях завантаження</string>
     <string name="settings_download_path_message">Файли зберігатимуться в %1$s</string>
     <string name="settings_hide_app_title">Сховати застосунок Magisk</string>

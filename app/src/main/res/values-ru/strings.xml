@@ -114,11 +114,7 @@
     <string name="module_empty">Модули не установлены</string>
 
     <!--Settings-->
-    <string name="settings_dark_mode_title">Оттенок</string>
-    <string name="settings_dark_mode_message">Настройте оформление под себя!</string>
-    <string name="settings_dark_mode_light">Всегда светлый</string>
-    <string name="settings_dark_mode_system">Как в системе</string>
-    <string name="settings_dark_mode_dark">Всегда тёмный</string>
+    <string name="settings_dark_theme_system">Как в системе</string>
     <string name="settings_download_path_title">Папка для загрузок</string>
     <string name="settings_download_path_message">Файлы будут загружаться в %1$s</string>
     <string name="settings_hide_app_title">Скрытие приложения Magisk</string>
