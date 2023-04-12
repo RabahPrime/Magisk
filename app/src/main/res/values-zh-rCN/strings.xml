@@ -17,7 +17,7 @@
     <string name="not_available">无法获取</string>
     <string name="hide">不再显示</string>
     <string name="home_package">包名</string>
-    <string name="home_app_title">App</string>
+    <string name="home_app_title">管理器</string>
     <string name="home_notice_content">仅从官方 GitHub 页面下载 Magisk。未知来源的文件可能具有恶意行为！</string>
     <string name="home_support_title">支持开发</string>
     <string name="home_follow_title">关注我们</string>
@@ -107,7 +107,8 @@
     <!--Settings-->
     <string name="settings_dark_theme_system">跟随系统</string>
     <string name="settings_download_path_title">下载路径</string>
-    <string name="settings_download_path_message">文件将保存到 %1$s</string>
+    <string name="settings_download_path_message">文件将保存到
+\n%1$s</string>
     <string name="settings_hide_app_title">隐藏 Magisk 应用</string>
     <string name="settings_hide_app_summary">安装具有随机包名和自定义应用名称的代理应用</string>
     <string name="settings_restore_app_title">还原 Magisk 应用</string>
@@ -238,7 +239,7 @@
     <string name="settings_magiskhide_whitelist_title">MagiskHide 白名单模式</string>
     <string name="settings_anti_bootloop_summary">Zygote 进程多次启动失败时重启至核心模式</string>
     <string name="settings_anti_bootloop_title">Bootloop 保护</string>
-    <string name="settings_coreonly_summary">仅核心功能，例如 MagiskSU (即 Root 权限) 和 MagiskHide 可用，不加载任何模块。开启本开关并重启手机后可激活核心模式</string>
+    <string name="settings_coreonly_summary">仅核心功能，例如 MagiskSU (即 Root 权限) 和 MagiskHide 可用，任何模块都不会加载</string>
     <string name="settings_coreonly_title">核心模式</string>
     <string name="settings_magiskhide_whitelist_summary2">强制 MagiskHide 处理除超级用户列表外的所有应用（仅用于调试目的）</string>
     <string name="settings_magiskhide_whitelist_title2">全局 MagiskHide</string>
@@ -258,5 +259,24 @@
     <string name="settings_logcat_monitor_no_need">Zygisk 开启时无需使用本功能</string>
     <string name="settings_logcat_monitor_summary">使用 logcat 而非 ptrace 监视应用进程的创建，logcat 比 ptrace 更难检测但不可靠</string>
     <string name="settings_logcat_monitor_title">logcat 监视</string>
-    <string name="su_request_string1">是否允许 </string>
+    <string name="home_follow_and_support_title">关注 &amp; 支持我们</string>
+    <string name="uninstall">卸载</string>
+    <string name="settings_dark_theme_title">深色主题</string>
+    <string name="settings_dark_theme_light">始终关闭</string>
+    <string name="settings_theme_color">主题颜色</string>
+    <string name="language_translate">帮助翻译</string>
+    <string name="language_translate_description">帮助我们翻译此应用</string>
+    <string name="settings_dark_theme_dark">始终开启</string>
+    <string name="color_dynamic">动态取色</string>
+    <string name="color_dynamic_black">纯黑取色</string>
+    <string name="color_carmine">胭脂红</string>
+    <string name="color_blush">粉红</string>
+    <string name="color_magenta">品红</string>
+    <string name="color_lavender">薰衣草紫</string>
+    <string name="color_periwinkle">长春花蓝</string>
+    <string name="color_cerulean">蔚蓝</string>
+    <string name="color_turquoise">绿松石蓝</string>
+    <string name="color_viridian">常青绿</string>
+    <string name="color_chartreuse">黄绿</string>
+    <string name="color_citrine">茶晶黄</string>
 </resources>
