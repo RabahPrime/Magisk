@@ -241,7 +241,6 @@
     <string name="settings_anti_bootloop_summary">Starten Sie im Nur-Kern-Modus neu, wenn der Zygote-Prozess viele Male nicht gestartet werden konnte</string>
     <string name="settings_coreonly_title">Core-Only-Modus</string>
     <string name="settings_coreonly_summary">Nur Kernfunktionen wie MagiskSU (Root-Zugriff) und MagiskHide sind verfügbar und im Nur-Kern-Modus werden keine Module geladen. Ein Neustart ist erforderlich, um wirksam zu werden.</string>
-    <string name="su_request_string2"> Superuser-Rechte zu bekommen\?</string>
     <string name="settings_magiskhide_whitelist_title2">MagiskHideAll</string>
     <string name="settings_clean_hidelist_title">Versteckliste aufräumen</string>
     <string name="settings_clean_hidelist_summary">Entferne alle deinstallierten Apps von der Versteckliste</string>
@@ -256,7 +255,6 @@
     <string name="settings_logcat_monitor_title">Logcat bewachen</string>
     <string name="settings_logcat_monitor_summary">Bewache Logcat, statt ptrace zu verwenden, um die Erstellung von App-Prozessen zu erkennen. Es ist schwerer erkennbar, jedoch ist es auch unzuverlässig.</string>
     <string name="settings_logcat_monitor_no_need">Bei aktiviertem Zygisk ist dies nicht nötig</string>
-    <string name="su_request_string1">Erlaube </string>
     <string name="post_notifications_denied">Benachrichtigungsberechtigung zulassen, um diese Funktion zu aktivieren</string>
     <string name="settings_magiskhide_whitelist_summary2">(Nur zum Debuggen) Erzwinge MagiskHide, alle Apps zu verstecken, die nicht auf SuList sind</string>
     <string name="settings_sulist_summary">Magisk ist nur für Prozesse auf der SuList sichtbar</string>

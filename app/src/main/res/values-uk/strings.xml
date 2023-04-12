@@ -209,7 +209,6 @@
     <string name="app_not_found">Не знайдено застосунок, який повинен опрацювати цю дію</string>
     <string name="reboot_apply_change">Перезавантажити, щоб застосувати зміни</string>
     <string name="home_follow_title">Слідкуйте за нами</string>
-    <string name="su_request_string2"> отримати привілеї суперкористувача\?</string>
     <string name="zygisk_module_unloaded">Модуль Zygisk не завантажено через несумісність</string>
     <string name="module_empty">Модуль не встановлено</string>
     <string name="settings_logcat_monitor_no_need">Немає необхідності, коли ввімкнено Zygisk</string>
@@ -242,7 +241,6 @@
     <string name="settings_sulist_enforced">SuList is enforced</string>
     <string name="new_zygisk_loader">New Zygisk loader</string>
     <string name="settings_logcat_monitor_title">Монітор logcat</string>
-    <string name="su_request_string1">Дозволити </string>
     <string name="suspend_text_riru">Модуль призупинено, оскільки ввімкнено %1$s</string>
     <string name="suspend_text_zygisk">Модуль призупинено, оскільки %1$s не ввімкнено</string>
     <string name="updated_channel">Оновлення Завершено</string>

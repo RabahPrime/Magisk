@@ -255,7 +255,6 @@
     <string name="settings_sulist_error_zygisk">Esta función no puede coexistir con Zygisk</string>
     <string name="settings_sulist_error_magiskhide">Esta función necesita que MagiskHide esté activado</string>
     <string name="settings_sulist_enforced">SuList aplicado</string>
-    <string name="su_request_string1">Permitir </string>
     <string name="su_request_string2"> para obtener privilegios de SuperUsuario\?</string>
     <string name="post_notifications_denied">Otorgar permiso de notificaciones para habilitar esta funcionalidad</string>
     <string name="new_zygisk_loader">Nuevo cargador Zygisk</string>

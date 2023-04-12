@@ -242,7 +242,6 @@
     <string name="settings_sulist">एसयू लिस्ट</string>
     <string name="settings_sulist_title">एसयू लिस्ट को लागू करें।</string>
     <string name="settings_sulist_error_zygisk">यह विशेषता zygisk के साथ सह-अस्तित्व में नहीं रह सकती</string>
-    <string name="su_request_string1">"अनुमति  है। "</string>
     <string name="su_request_string2"> सुपरयूजर विशेषाधिकार प्राप्त करने के लिए\?</string>
     <string name="post_notifications_denied">इस कार्यक्षमता को सक्षम करने के लिए सूचनाओं की अनुमति दें</string>
     <string name="settings_magiskhide_whitelist_summary2">(केवल डिबगिंग के लिए) Force MagiskHide सुपरयूज़र सूची में मौजूद ऐप्स को छोड़कर सभी ऐप्स को हैंडल करता है</string>
