@@ -246,12 +246,10 @@
     <string name="settings_magiskhide_dualspace_title">Двойное пространство MagiskHide</string>
     <string name="settings_magiskhide_dualspace_summary">Скрыть Magisk для всех приложений в виртуальном пространстве</string>
     <string name="settings_logcat_monitor_summary">Отслеживайте logcat вместо ptrace, чтобы обнаружить создание процесса приложения. Это менее заметно, чем ptrace, но ненадежно.</string>
-    <string name="su_request_string1">Разрешить </string>
     <string name="settings_riru_summary">Добавить модуль кода Riru</string>
     <string name="settings_riru_toast">Добавлен модуль Riru core</string>
     <string name="settings_magiskhide_whitelist_summary">Доступ к Magisk могут получить только приложения, которым ранее были предоставлены права суперпользователя. Включение этой опции может привести к нестабильной работе системы и даже к худшему. Пожалуйста, включайте эту опцию только в случае необходимости.</string>
     <string name="settings_new_zygisk_loader_summary">Используйте новый способ загрузки Zygisk. Эта функция является экспериментальной и может сломать некоторые модули перехвата.</string>
-    <string name="su_request_string2"> получить привилегии суперпользователя\?</string>
     <string name="settings_magiskhide_title">MagiskHide</string>
     <string name="settings_riru_title">Riru core</string>
     <string name="settings_magiskhide_whitelist_title2">MagiskHideAll</string>
