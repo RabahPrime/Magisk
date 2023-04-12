@@ -241,7 +241,6 @@
     <string name="settings_anti_bootloop_summary">Redémarre en mode Core-Only si le processus zygote n\'a pas réussi à se lancer à plusieurs reprises lors du démarrage de votre smartphone</string>
     <string name="settings_coreonly_title">Mode Core-only</string>
     <string name="settings_coreonly_summary">Seules les fonctionnalités de base telles que MagiskSU (accès root) et MagiskHide sont disponibles et aucun module ne se chargera en mode Core uniquement. Le redémarrage est nécessaire pour prendre effet.</string>
-    <string name="su_request_string2"> pour obtenir les privilèges Super Utilisateur \?</string>
     <string name="settings_magiskhide_whitelist_title2">MagiskHideAll</string>
     <string name="settings_magiskhide_whitelist_summary2">(Pour le débogage seulement) Force MagiskHide à gérer toutes les applications à l\'exception des applications figurant sur la liste Super Utilisateur</string>
     <string name="settings_clean_hidelist_summary">Supprime de la hidelist toutes les applications inexistantes ou désinstallées</string>

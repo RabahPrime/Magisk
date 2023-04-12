@@ -252,7 +252,6 @@
     <string name="settings_clean_hidelist_toast">A HideList agora está limpa</string>
     <string name="settings_logcat_monitor_title">Monitorar Logcat</string>
     <string name="settings_logcat_monitor_no_need">Não é necessário enquanto Zygisk estiver habilitado</string>
-    <string name="su_request_string2"> obtenha privilégios de SuperUsuário\?</string>
     <string name="settings_magiskhide_whitelist_title2">MagiskHideAll</string>
     <string name="settings_magiskhide_whitelist_summary2">(Somente depuração) Forçar o uso do MagiskHide em todos os aplicativos exceto os que estiverem presentes na SuList</string>
     <string name="settings_coreonly_summary">Apenas funcionalidades principais como MagiskSU (Acesso enraizado) e MagiskHide estarão disponíveis e nenhum módulo será carregado no modo Somente Núcleo. É necessário reiniciar para entrar em vigor.</string>

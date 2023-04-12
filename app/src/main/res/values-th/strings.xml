@@ -161,7 +161,6 @@
     <string name="suspend_text_zygisk">โมดูลหยุดทำงานเพราะ %1$s ปิดใช้งานอยู่</string>
     <string name="zygisk_module_unloaded">โมดูล Zygisk ไม่ทำงานเนื่องจากความเข้ากันไม่ได้</string>
     <string name="module_empty">ไม่มีโมดูลติดตั้งอยู่</string>
-    <string name="settings_dark_mode_system">เลือกตามระบบ</string>
     <string name="settings_download_path_title">เส้นทางการดาวน์โหลด</string>
     <string name="settings_hide_app_title">ซ่อนแอพ Magisk</string>
     <string name="settings_restore_app_title">คืนค่าแอพ Magisk</string>
