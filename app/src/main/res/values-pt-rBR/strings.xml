@@ -49,7 +49,6 @@
     <string name="reboot_delay_toast">Reiniciando em 5 segundos…</string>
     <string name="flash_screen_title">Instalação</string>
     <!--Superuser-->
-    <string name="su_request_title">Solicitação de SuperUsuário</string>
     <string name="touch_filtered_warning">Devido a um app estar obstruindo a solicitação de SuperUsuário, o Magisk não pôde receber sua resposta</string>
     <string name="deny">Recusar</string>
     <string name="prompt">Perguntar</string>
@@ -258,7 +257,6 @@
     <string name="settings_clean_hidelist_toast">A HideList agora está limpa</string>
     <string name="settings_logcat_monitor_title">Monitorar Logcat</string>
     <string name="settings_logcat_monitor_no_need">Não é necessário enquanto Zygisk estiver habilitado</string>
-    <string name="su_request_string1">Permitir que </string>
     <string name="su_request_string2"> obtenha privilégios de SuperUsuário\?</string>
     <string name="settings_magiskhide_whitelist_title2">MagiskHideAll</string>
     <string name="settings_magiskhide_whitelist_summary2">(Somente depuração) Forçar o uso do MagiskHide em todos os aplicativos exceto os que estiverem presentes na SuList</string>

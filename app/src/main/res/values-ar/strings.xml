@@ -217,11 +217,9 @@
     <string name="settings_sulist_enforced">يتم فرض SuList</string>
     <string name="home_app_title">تطبيق</string>
     <string name="home_follow_title">تابعنا</string>
-    <string name="su_request_string1">سماح </string>
     <string name="patch_vbmeta">باتش vbmeta في boot img</string>
     <string name="denylist">قائمة الممنوعات</string>
     <string name="home_notice_content">قم بتنزيل ماجسيتك من صفحة GitHub الرسمية فقط. يمكن أن تكون الملفات من مصادر غير معروفة ضارة!</string>
-    <string name="su_request_string2"> للحصول على صلاحية الروت؟</string>
     <string name="touch_filtered_warning">نظرًا لأن تطبيق يحجب طلب صلاحية الروت ، لا يمكن لـ Magisk التحقق من طلبك</string>
     <string name="show_os_app">إظهار جميع البرامج</string>
     <string name="suspend_text_riru">تم تعليق الوحدة بسبب تمكين %1$s</string>

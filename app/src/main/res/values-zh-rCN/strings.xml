@@ -258,6 +258,5 @@
     <string name="settings_logcat_monitor_no_need">Zygisk 开启时无需使用本功能</string>
     <string name="settings_logcat_monitor_summary">使用 logcat 而非 ptrace 监视应用进程的创建，logcat 比 ptrace 更难检测但不可靠</string>
     <string name="settings_logcat_monitor_title">logcat 监视</string>
-    <string name="su_request_string2"> 获取超级用户权限？</string>
     <string name="su_request_string1">是否允许 </string>
 </resources>

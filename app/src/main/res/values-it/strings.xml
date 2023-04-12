@@ -227,6 +227,5 @@
     <string name="settings_riru_title">Riru core</string>
     <string name="settings_riru_summary">Aggiungi il modulo del Riru core</string>
     <string name="settings_riru_toast">Modulo del Riru core aggiunto</string>
-    <string name="su_request_string1">Permetti </string>
     <string name="su_request_string2"> di ottenere i privilegi di SuperUser\?</string>
 </resources>

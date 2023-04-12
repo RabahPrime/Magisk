@@ -47,9 +47,7 @@
     <string name="patch_file_msg">Selecione um arquivo imagem (*.img) ou um arquivo tar (*.tar)</string>
     <string name="reboot_delay_toast">Reiniciando em 5 segundos…</string>
     <string name="flash_screen_title">Instalação</string>
-    <string name="su_request_title">Solicitação de SuperUsuário</string>
     <string name="su_request_string1">Permitir que </string>
-    <string name="su_request_string2"> obtenha privilégios de SuperUsuário\?</string>
     <string name="touch_filtered_warning">Devido a um app estar obstruindo a solicitação de SuperUsuário, o Magisk não pôde receber sua resposta</string>
     <string name="deny">Recusar</string>
     <string name="prompt">Perguntar</string>
@@ -95,11 +93,8 @@
     <string name="suspend_text_riru">Módulo suspendido porque %1$s está ativo</string>
     <string name="suspend_text_zygisk">Módulo suspendido porque %1$s está desativado</string>
     <string name="module_empty">Nenhum módulo instalado</string>
-    <string name="settings_dark_mode_title">Modo de tema</string>
     <string name="settings_dark_mode_message">Selecione o modo mais adequado ao seu estilo!</string>
-    <string name="settings_dark_mode_light">Sempre Claro</string>
     <string name="settings_dark_mode_system">Baseado no Sistema</string>
-    <string name="settings_dark_mode_dark">Sempre Escuro</string>
     <string name="settings_download_path_title">Diretório dos Downloads</string>
     <string name="settings_hide_app_title">Ocultar o aplicativo do Magisk</string>
     <string name="settings_hide_app_summary">Instala um app proxy com ID de pacote aleatório e nome personalizado</string>

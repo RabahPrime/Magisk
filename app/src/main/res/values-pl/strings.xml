@@ -216,7 +216,6 @@
     <string name="reboot_apply_change">Uruchom ponownie by zastosować zmiany</string>
     <string name="restore_app_confirmation">To przywróci ukrytą aplikację z powrotem do orginalnej aplikacji. Czy na pewno chcesz to zrobić?</string>
     <string name="home_follow_title">Śledź nas</string>
-    <string name="su_request_string2"> na uzyskanie uprawnień SuperUser\?</string>
     <string name="su_request_string1">Zezwolić </string>
     <string name="module_empty">Brak zainstalowanych modułów</string>
     <string name="post_notifications_denied">Aby włączyć tę funkcję, przyznaj uprawnienia do powiadomień</string>

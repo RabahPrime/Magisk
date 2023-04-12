@@ -251,9 +251,7 @@
     <string name="settings_logcat_monitor_title">Theo dõi logcat</string>
     <string name="settings_logcat_monitor_summary">Theo dõi logcat thay vì ptrace Zygote để phát hiện các ứng dụng khởi động. Ít bị phát hiện hơn nhưng không tin cậy.</string>
     <string name="settings_logcat_monitor_no_need">Không cần khi Zygisk được kích hoạt</string>
-    <string name="su_request_string1">Cho phép </string>
     <string name="home_follow_title">Theo dõi chúng tôi</string>
-    <string name="su_request_string2"> để lấy quyền SuperUser\?</string>
     <string name="post_notifications_denied">Cấp quyền thông báo để kích hoạt chức năng này</string>
     <string name="settings_magiskhide_title">MagiskHide</string>
     <string name="settings_magiskhide_whitelist_title">Danh sách trắng MagiskHide</string>

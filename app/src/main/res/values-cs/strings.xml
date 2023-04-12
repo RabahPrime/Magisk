@@ -209,7 +209,6 @@
     <string name="settings_coreonly_title">Režim jádra</string>
     <string name="settings_coreonly_summary">V režimu jádra jsou k dispozici pouze základní funkce, jako je MagiskSU (root access) a MagiskHide, a také se nenačtou žádné moduly. Pro aktivování je vyžadován restart zařízení.</string>
     <string name="denylist">DenyList</string>
-    <string name="su_request_string1">Povolit aplikaci </string>
     <string name="su_request_string2"> oprávnění SuperUser\?</string>
     <string name="patch_vbmeta">Patchnout vbmeta do boot obrazu</string>
     <string name="module_empty">Není nainstalován žádný modul</string>

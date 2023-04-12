@@ -51,7 +51,6 @@
     <string name="reboot_delay_toast">Memulai ulang dalam 5 detik…</string>
     <string name="flash_screen_title">Instalasi</string>
     <!--Superuser-->
-    <string name="su_request_title">Permintaan Superuser</string>
     <string name="touch_filtered_warning">Karena terdapat aplikasi yang menghalangi dialog permintaan Superuser, Magisk tidak dapat memverifikasi respons Anda</string>
     <string name="deny">Tolak</string>
     <string name="prompt">Ajukan</string>
@@ -254,10 +253,8 @@
     <string name="settings_logcat_monitor_title">Pemantauan Logcat</string>
     <string name="settings_logcat_monitor_summary">Mendeteksi proses aplikasi melalui logcat daripada ptrace. Logcat sulit dideteksi namun tidak dapat bekerja lebih baik daripada ptrace</string>
     <string name="settings_logcat_monitor_no_need">Tidak diperlukan apabila Zygisk sudah aktif</string>
-    <string name="su_request_string1">Izinkan </string>
     <string name="settings_riru_summary">Tambahkan Riru code modul</string>
     <string name="settings_riru_toast">Ditambahkan Riru core modul</string>
-    <string name="su_request_string2"> untuk mendapatkan hak istimewa SuperUser\?</string>
     <string name="settings_riru_title">Inti Riru</string>
     <string name="settings_magiskhide_whitelist_title">MagiskHide Daftar Putih</string>
     <string name="settings_magiskhide_whitelist_title2">MagiskHideAll</string>

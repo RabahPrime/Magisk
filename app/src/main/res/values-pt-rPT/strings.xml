@@ -49,7 +49,6 @@
     <string name="reboot_delay_toast">Reiniciando em 5 segundos…</string>
     <string name="flash_screen_title">Instalação</string>
     <!--Superuser-->
-    <string name="su_request_title">Solicitação de SuperUsuário</string>
     <string name="touch_filtered_warning">Devido a um app estar obstruindo a solicitação de SuperUsuário, o Magisk não pôde receber sua resposta</string>
     <string name="deny">Recusar</string>
     <string name="prompt">Perguntar</string>
@@ -225,7 +224,6 @@
     <string name="app_not_found">Nenhum app encontrado para realizar esta ação</string>
     <string name="reboot_apply_change">Reinicie para aplicar as mudanças</string>
     <string name="restore_app_confirmation">Isso irá restaurar o app oculto do Magisk de volta para o app original. Deseja realmente fazer isso?</string>
-    <string name="su_request_string1">Permitir que </string>
     <string name="su_request_string2"> ganhe privilégios de SuperUsuário\?</string>
     <string name="reboot_core_only">Reiniciar em modo Somente Núcleo</string>
     <string name="direct_install_system">Instalação direta na partição sistema</string>
