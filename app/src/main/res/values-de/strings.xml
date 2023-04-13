@@ -50,7 +50,7 @@
     <string name="flash_screen_title">Installieren</string>
     <!--Superuser-->
     <string name="touch_filtered_warning">Weil eine App eine Superuser-Anfrage verdeckt, kann Magisk deine Antwort nicht verifizieren</string>
-    <string name="deny">Verweigern</string>
+    <string name="deny">Nicht erlauben</string>
     <string name="prompt">Fragen</string>
     <string name="grant">Gewähren</string>
     <string name="su_warning">Zugriff auf dein Gerät gewähren.
@@ -260,4 +260,25 @@
     <string name="settings_sulist_summary">Magisk ist nur für Prozesse auf der SuList sichtbar</string>
     <string name="settings_sulist_error_magiskhide">Diese Funktion benötigt Magisk Hide</string>
     <string name="settings_new_zygisk_loader_summary">Verwende experimentelle Art, Zygisk zu laden. Dies kann Probleme mit einigen Modulen verursachen.</string>
+    <string name="color_dynamic">Dynamisch</string>
+    <string name="color_lavender">Lavendel</string>
+    <string name="uninstall">Deinstallieren</string>
+    <string name="home_follow_and_support_title">Folge &amp; Unterstütze uns</string>
+    <string name="su_request_string">Erlaube <b>%1$s</b>, Superuser-Rechte zu haben\?</string>
+    <string name="settings_dark_theme_title">Dunkles Theme</string>
+    <string name="settings_dark_theme_dark">Immer an</string>
+    <string name="settings_dark_theme_light">Immer aus</string>
+    <string name="settings_theme_color">Theme Farbe</string>
+    <string name="language_translate">An der Übersetzung mitwirken</string>
+    <string name="language_translate_description">Helfen Sie uns, die App in Ihre Sprache zu übersetzen</string>
+    <string name="color_carmine">Carmine</string>
+    <string name="color_magenta">Magenta</string>
+    <string name="color_periwinkle">Immergrün</string>
+    <string name="color_cerulean">Himmelblau</string>
+    <string name="color_turquoise">Türkis</string>
+    <string name="color_viridian">Viridian</string>
+    <string name="color_chartreuse">Kartusche</string>
+    <string name="color_citrine">Zitrone</string>
+    <string name="color_dynamic_black">Dynamisch schwarz</string>
+    <string name="color_blush">Rouge</string>
 </resources>
