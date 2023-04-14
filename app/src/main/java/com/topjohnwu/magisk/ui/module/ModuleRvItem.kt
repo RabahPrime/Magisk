@@ -27,9 +27,7 @@ class LocalModuleRvItem(
         val isRiru = item.isRiru
         val zygiskUnloaded = isZygisk && item.zygiskUnloaded
 
-        showNotice = zygiskUnloaded ||
-            (Info.isZygiskEnabled && isRiru) ||
-            (!Info.isZygiskEnabled && isZygisk)
+        showNotice = false
         noticeText =
             when {
                 zygiskUnloaded -> R.string.zygisk_module_unloaded.asText()

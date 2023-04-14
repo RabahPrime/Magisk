@@ -419,6 +419,7 @@ static void collect_modules(bool open_zygisk) {
             return;
 
         module_info info;
+        /*
         {
             // Ignore zygisk modules when zygisk is not enabled
             if (faccessat(modfd, "zygisk", F_OK, 0) == 0) {
@@ -426,6 +427,7 @@ static void collect_modules(bool open_zygisk) {
                 return;
             }
         }
+        */
         // Load sepolicy.rule if possible
         string module_mnt_dir = MAGISKTMP + "/" MODULEMNT "/" + entry->d_name;
         string module_rule = MAGISKTMP + "/" MIRRDIR "/sepolicy.rules/" + entry->d_name;
