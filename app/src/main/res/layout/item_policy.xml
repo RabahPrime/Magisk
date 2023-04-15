@@ -12,10 +12,11 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        style="@style/Widget.Material3.CardView.Filled"
+        style="@style/WidgetR.CardView.Elevated.NoShadow2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> item.toggleExpand()}" >
+        android:onClick="@{() -> item.toggleExpand()}"
+        tools:layout_margin="@dimen/l1_25">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,62 +24,72 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/hide_expand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/l1"
-                android:layout_marginEnd="@dimen/l1"
-                android:layout_marginTop="@dimen/l1"
-                android:layout_marginBottom="@dimen/l1"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:nextFocusRight="@id/hide_expand_icon"
+                android:onClick="@{() -> item.toggleExpand()}">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/policy_app_icon"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
+                    android:layout_margin="@dimen/l1_25"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     srcCompat="@{item.icon}"
                     tools:srcCompat="@drawable/ic_logo" />
 
-                <LinearLayout
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/policy_app_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="@dimen/l1"
-                    android:layout_marginStart="@dimen/l1"
-                    android:orientation="vertical">
+                    android:layout_marginStart="@dimen/l1_25"
+                    android:layout_marginEnd="@dimen/l1_25"
+                    android:layout_marginTop="@dimen/l_50"
+                    android:text="@{item.title}"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                    android:textIsSelectable="false"
+                    app:layout_constraintBottom_toTopOf="@+id/policy_package_name"
+                    app:layout_constraintEnd_toStartOf="@+id/policy_indicator"
+                    app:layout_constraintStart_toEndOf="@+id/policy_app_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="@string/magisk" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/policy_app_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{item.title}"
-                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
-                        android:textIsSelectable="false"
-                        tools:text="@string/magisk" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/policy_package_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/l_25"
-                        android:text="@{item.packageName}"
-                        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                        android:textIsSelectable="false"
-                        tools:text="com.topjohnwu.magisk" />
-
-                </LinearLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/policy_package_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/l_25"
+                    android:layout_marginBottom="@dimen/l_50"
+                    android:text="@{item.packageName}"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    android:textIsSelectable="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/policy_app_name"
+                    app:layout_constraintStart_toStartOf="@+id/policy_app_name"
+                    app:layout_constraintTop_toBottomOf="@+id/policy_app_name"
+                    tools:text="com.topjohnwu.magisk" />
 
                 <com.google.android.material.materialswitch.MaterialSwitch
                     android:id="@+id/policy_indicator"
-                    android:layout_width="wrap_content"
+                    android:checked="@={item.enabled}"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/l_25"
+                    android:layout_marginEnd="@dimen/l1_25"
                     android:scaleX="0.9"
                     android:scaleY="0.9"
-                    android:checked="@={item.enabled}" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
                 gone="@{!item.isExpanded}"
@@ -96,15 +107,12 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/policy_notify"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    style="@style/WidgetR.Button.TextButton.Extended.Square"
                     isSelected="@{item.shouldNotify}"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:layout_gravity="center_vertical"
                     android:onClick="@{() -> item.toggleNotify()}"
                     android:text="@string/superuser_toggle_notification"
                     android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
@@ -113,24 +121,21 @@
                     app:iconGravity="textTop"
                     app:iconPadding="6dp"
                     app:iconTint="@color/color_state_primary_transient"
-                    app:tint="@color/color_state_primary_transient" />
+                    app:tint="@color/color_state_primary_transient"/>
 
                 <View
-                    android:background="?colorSurface"
                     android:layout_width="1dp"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:background="?colorSurface"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/policy_log"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    style="@style/WidgetR.Button.TextButton.Extended.Square"
                     isSelected="@{item.shouldLog}"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:layout_gravity="center_vertical"
                     android:onClick="@{() -> item.toggleLog()}"
                     android:text="@string/logs"
                     android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
@@ -142,29 +147,26 @@
                     app:tint="@color/color_state_primary_transient" />
 
                 <View
-                    android:background="?colorSurface"
                     android:layout_width="1dp"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:background="?colorSurface"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/policy_delete"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    style="@style/WidgetR.Button.TextButton.Extended.Square"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:layout_gravity="center_vertical"
                     android:onClick="@{() -> item.revoke()}"
                     android:text="@string/superuser_toggle_revoke"
                     android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
                     android:textColor="@color/color_error_transient"
-                    app:icon="@drawable/ic_delete"
+                    app:icon="@drawable/ic_close"
                     app:iconGravity="textTop"
                     app:iconPadding="6dp"
                     app:iconTint="@color/color_error_transient"
-                    app:tint="@color/color_error_transient" />
+                    app:tint="@color/color_error_transient"/>
 
             </LinearLayout>
 

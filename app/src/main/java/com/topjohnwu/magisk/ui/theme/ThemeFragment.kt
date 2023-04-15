@@ -31,7 +31,7 @@ class ThemeFragment : BaseFragment<FragmentThemeBinding>() {
         val view = binding.root.findViewById<LinearLayout>(R.id.theme_container)
 
         for(a in Theme.values()){
-            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.S && a == Theme.Dynamic)
+            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.S && ((a == Theme.Dynamic) || (a == Theme.DynamicBlack)))
                 continue
             val themed = ContextThemeWrapper(activity, a.themeRes)
             ItemThemeBindingImpl.inflate(LayoutInflater.from(themed), view, true).also {

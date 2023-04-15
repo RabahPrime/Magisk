@@ -42,7 +42,8 @@ class DenyListFragment : BaseFragment<FragmentDenyBinding>() {
         })
 
         binding.appList.apply {
-            addItemSpacing(R.dimen.l1, R.dimen.l_75, R.dimen.l1)
+            addEdgeSpacing(top = R.dimen.l0, bottom = R.dimen.l1_25)
+            addItemSpacing(R.dimen.l1_25, R.dimen.l1_25, R.dimen.l1_25)
             fixEdgeEffect()
         }
     }

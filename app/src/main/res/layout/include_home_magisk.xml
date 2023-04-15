@@ -17,10 +17,11 @@
 
 
     <com.google.android.material.card.MaterialCardView
-        style="@style/Widget.Material3.CardView.Outlined"
+        style="@style/WidgetR.CardView.Elevated.NoShadow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusable="false" >
+        android:focusable="false"
+        tools:layout_margin="@dimen/l1_25">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="fill_parent"
@@ -31,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="?dialogPreferredPadding"
+                android:layout_margin="@dimen/l1_25"
                 app:layout_constraintBottom_toTopOf="@+id/home_magisk_barrier"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -42,13 +43,16 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/l1"
                     android:text="@string/magisk"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleLarge"/>
+                    android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                    android:textSize="20sp"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/l_25"
                     android:text="@string/home_installed_version"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:textColor="?android:textColorSecondary"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/home_magisk_installed_version"
@@ -56,15 +60,16 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/l1"
                     android:text="@{viewModel.magiskInstalledVersion}"
-                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                    android:textColor="?android:textColorSecondary"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
                     tools:text="22.0 (22000)" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/l_25"
                     android:text="@string/zygisk"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:textColor="?android:textColorSecondary"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/home_device_details_zygisk"
@@ -72,72 +77,69 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/l1"
                     android:text="@{Info.isZygiskEnabled ? @string/yes : @string/no}"
-                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                    android:textColor="?android:textColorSecondary"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
                     tools:text="Yes" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/l_25"
                     android:text="Ramdisk"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:textColor="?android:textColorSecondary"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/home_device_details_ramdisk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{Info.ramdisk ? @string/yes : @string/no }"
-                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                    android:textColor="?android:textColorSecondary"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
                     tools:text="Yes" />
 
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button.Icon"
+                style="@style/WidgetR.Button.Icon"
                 gone="@{viewModel.magiskState != State.OUTDATED}"
                 android:id="@+id/home_magisk_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="?dialogPreferredPadding"
+                android:layout_margin="@dimen/l1_25"
                 android:onClick="@{() -> viewModel.onMagiskPressed()}"
                 android:text="@string/update"
                 app:icon="@drawable/ic_update"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/home_magisk_install"
-                style="@style/Widget_Rip.Material3.Button.OutlinedButton.Icon2"
+                style="@style/WidgetR.Button.OutlinedButton"
                 gone="@{viewModel.magiskState == State.OUTDATED}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="?dialogPreferredPadding"
+                android:layout_margin="@dimen/l1_25"
                 android:onClick="@{() -> viewModel.onMagiskPressed()}"
                 android:text="@string/install"
-                app:icon="@drawable/ic_install"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/home_magisk_uninstall"
-                style="@style/Widget_Rip.Material3.Button.OutlinedButton.Icon.Error"
+                style="@style/WidgetR.Button.OutlinedButton.Error"
                 goneUnless="@{Info.env.isActive}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="?dialogPreferredPadding"
+                android:layout_margin="@dimen/l1_25"
                 android:onClick="@{() -> viewModel.onDeletePressed()}"
                 android:text="@string/uninstall"
-                app:icon="@drawable/ic_delete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/home_magisk_barrier"/>
+                app:layout_constraintBottom_toTopOf="@id/home_magisk_barrier"/>
 
             <View
                 android:id="@+id/textView"
-                android:background="?colorOnSurfaceVariant"
+                android:background="?colorSurface"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_margin="?dialogPreferredPadding"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/home_magisk_barrier"
@@ -156,7 +158,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="?dialogPreferredPadding"
+                android:layout_margin="@dimen/l1_25"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/home_magisk_barrier">
@@ -167,13 +169,16 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/l1"
                     android:text="@string/home_app_title"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleLarge"/>
+                    android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                    android:textSize="20sp"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_latest_version"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:paddingBottom="@dimen/l_25"
+                    android:textColor="?android:textColorSecondary"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/home_manager_latest_version"
@@ -181,15 +186,16 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/l1"
                     android:text="@{viewModel.managerRemoteVersion}"
-                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                    android:textColor="?android:textColorSecondary"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
                     tools:text="22.0 (22000) (16)" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_installed_version"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:paddingBottom="@dimen/l_25"
+                    android:textColor="?android:textColorSecondary"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/home_manager_installed_version"
@@ -197,33 +203,34 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/l1"
                     android:text="@{viewModel.managerInstalledVersion}"
-                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                    android:textColor="?android:textColorSecondary"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
                     tools:text="22.0 (22000) (16)" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_package"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:paddingBottom="@dimen/l_25"
+                    android:textColor="?android:textColorSecondary"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/home_manager_internal_connection"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{context.packageName}"
-                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"                    android:textColor="?android:textColorSecondary"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
                     tools:text="com.topjohnwu.magisk" />
 
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/home_manager_update"
-                style="@style/Widget.Material3.Button.Icon"
+                style="@style/WidgetR.Button.Icon"
                 gone="@{viewModel.appState != State.OUTDATED}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="?dialogPreferredPadding"
+                android:layout_margin="@dimen/l1_25"
                 android:onClick="@{() -> viewModel.onManagerPressed()}"
                 android:text="@string/update"
                 app:icon="@drawable/ic_update"
@@ -244,11 +251,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/home_manager_install"
-                style="@style/Widget_Rip.Material3.Button.OutlinedButton.Icon2"
+                style="@style/WidgetR.Button.OutlinedButton"
                 gone="@{viewModel.appState != State.UP_TO_DATE}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="?dialogPreferredPadding"
+                android:layout_margin="@dimen/l1_25"
                 android:onClick="@{() -> viewModel.onManagerPressed()}"
                 android:text="@string/install"
                 app:icon="@drawable/ic_install"

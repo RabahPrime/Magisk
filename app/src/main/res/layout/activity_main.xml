@@ -45,13 +45,12 @@
                 android:layout_width="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_scrollFlags="noScroll"
-                app:subtitleTextAppearance="@style/TextAppearance.Material3.TitleLarge"
                 app:titleTextAppearance="@style/AppearanceFoundation.Title"
+                app:subtitleTextAppearance="@style/TextAppearance.Material3.BodySmall"
                 tools:layout_marginTop="24dp"
                 tools:title="Home" />
 
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <com.topjohnwu.magisk.widget.ConcealableBottomNavigationView
             android:id="@+id/main_navigation"

@@ -68,22 +68,23 @@
                 android:layout_marginBottom="@dimen/l_50"
                 android:gravity="center_horizontal"
                 android:text="@{Html.fromHtml(@string/su_request_string(viewModel.title))}"
-                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                android:textAppearance="@style/AppearanceFoundation.Large"
                 tools:text="@string/su_request_string"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center|center_vertical">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/package_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/l1"
                     android:singleLine="true"
                     android:ellipsize="middle"
+                    android:gravity="end"
                     android:text="@{viewModel.packageName}"
                     android:textAppearance="@style/TextAppearance.Material3.BodySmall"
                     tools:text="com.topjohnwu.magisk" />
@@ -97,7 +98,8 @@
                 <Spinner
                     android:id="@+id/timeout"
                     onTouch="@{() -> viewModel.spinnerTouched()}"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.Material3.BodySmall"
                     android:enabled="@{viewModel.grantEnabled}"

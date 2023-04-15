@@ -41,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:visibility="gone">
 
             <com.google.android.material.textview.MaterialTextView
                 goneUnless="@{viewModel.loading}"

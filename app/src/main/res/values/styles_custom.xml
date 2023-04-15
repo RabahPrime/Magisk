@@ -3,32 +3,77 @@
 
     <!--Buttons-->
 
-    <style name="Widget_Rip.Material3.Button.TextButton2" parent="Widget.Material3.Button.TextButton">
-        <item name="android:minWidth">@dimen/l_25</item>
+    <style name="WidgetR.Button" parent="Widget.Material3.Button">
+        <item name="android:minWidth">@dimen/l1</item>
     </style>
 
-    <style name="Widget_Rip.Material3.Button.TextButton.Icon2" parent="Widget.Material3.Button.TextButton.Icon">
-        <item name="android:minWidth">@dimen/l_25</item>
+    <style name="WidgetR.Button.Icon">
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">16dp</item>
     </style>
 
-    <style name="Widget_Rip.Material3.Button.TextButton.Icon.Error" parent="Widget.Material3.Button.TextButton.Icon">
-        <item name="iconTint">@color/color_error_transient</item>
+    <style name="WidgetR.Button.TextButton" parent="Widget.Material3.Button.TextButton">
+        <item name="android:minWidth">@dimen/l1</item>
+    </style>
+
+    <style name="WidgetR.Button.TextButton.Error">
         <item name="android:textColor">@color/color_error_transient</item>
-        <item name="android:text">@color/color_error_transient</item>
+        <item name="iconTint">@color/color_error_transient</item>
     </style>
 
-    <style name="Widget_Rip.Material3.Button.OutlinedButton.Icon.Error" parent="Widget.Material3.Button.OutlinedButton.Icon">
+    <style name="WidgetR.Button.TextButton.Icon" parent="Widget.Material3.Button.TextButton.Icon">
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+
+    <style name="WidgetR.Button.TextButton.Icon.Error">
+        <item name="android:textColor">@color/color_error_transient</item>
         <item name="iconTint">@color/color_error_transient</item>
+    </style>
+
+    <style name="WidgetR.Button.TextButton.Extended.Square.v21" parent="Widget.Material3.Button.TextButton">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:padding">12dp</item>
+        <item name="cornerRadius">@dimen/l1_25</item>
+    </style>
+
+    <style name="WidgetR.Button.TextButton.Extended.Square" parent="WidgetR.Button.TextButton.Extended.Square.v21" />
+
+    <style name="WidgetR.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minWidth">@dimen/l1</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="strokeColor">?colorPrimary</item>
+    </style>
+
+    <style name="WidgetR.Button.OutlinedButton.Error">
+        <item name="android:textColor">@color/color_error_transient</item>
         <item name="strokeColor">@color/color_error_transient</item>
-        <item name="android:textColor">@color/color_error_transient</item>
     </style>
 
-    <style name="Widget_Rip.Material3.Button.OutlinedButton2" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="strokeColor">?colorPrimary</item>
+    <!--Cards-->
+
+    <style name="WidgetR.CardView.Elevated.NoShadow.v21" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">?colorSurface</item>
+        <item name="cardCornerRadius">@dimen/l1_25</item>
+        <item name="cardElevation">1dp</item>
     </style>
 
-    <style name="Widget_Rip.Material3.Button.OutlinedButton.Icon2" parent="Widget.Material3.Button.OutlinedButton.Icon">
-        <item name="strokeColor">?colorPrimary</item>
+    <style name="WidgetR.CardView.Elevated.NoShadow" parent="WidgetR.CardView.Elevated.NoShadow.v21">
+        <item name="android:outlineProvider">none</item>
+    </style>
+
+    <!--
+        outlineProvider cuts off rounded corner boundaries, so we use
+        NoShadow2 for deny and policy (superuser) items, even though
+        it can't remove shadow from CardView under API 28 (Android 9).
+    -->
+
+    <style name="WidgetR.CardView.Elevated.NoShadow2" parent="WidgetR.CardView.Elevated.NoShadow.v21" />
+
+    <style name="WidgetR.CardView.Outlined" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardCornerRadius">@dimen/l1_25</item>
     </style>
 
 </resources>

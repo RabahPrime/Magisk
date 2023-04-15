@@ -167,13 +167,13 @@ object Restore : BaseSettingsItem.Blank() {
             MagiskDialog(view.activity).apply {
                 setTitle(R.string.settings_restore_app_title)
                 setMessage(R.string.restore_app_confirmation)
-                setButton(MagiskDialog.ButtonType.POSITIVE) {
+                setButton(MagiskDialog.ButtonType.NEGATIVE) {
                     text = android.R.string.ok
                     onClick {
                         handler.onItemAction(view, this@Restore)
                     }
                 }
-                setButton(MagiskDialog.ButtonType.NEGATIVE) {
+                setButton(MagiskDialog.ButtonType.POSITIVE) {
                     text = android.R.string.cancel
                 }
                 setCancelable(true)
@@ -185,6 +185,7 @@ object Restore : BaseSettingsItem.Blank() {
 
 object AddShortcut : BaseSettingsItem.Blank() {
     override val title = R.string.add_shortcut_title.asText()
+    override val icon = R.drawable.ic_app_shortcut
     override val description = R.string.setting_add_shortcut_summary.asText()
 }
 
@@ -512,6 +513,7 @@ object SUNotification : BaseSettingsItem.Selector() {
 
 object Reauthenticate : BaseSettingsItem.Toggle() {
     override val title = R.string.settings_su_reauth_title.asText()
+    override val icon = R.drawable.ic_perm_device_information
     override val description = R.string.settings_su_reauth_summary.asText()
     override var value by Config::suReAuth
 

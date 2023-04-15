@@ -228,10 +228,10 @@ class MainActivity : SplashActivity<ActivityMainBinding>() {
             MagiskDialog(this).apply {
                 setTitle(R.string.add_shortcut_title)
                 setMessage(R.string.add_shortcut_msg)
-                setButton(MagiskDialog.ButtonType.NEGATIVE) {
+                setButton(MagiskDialog.ButtonType.POSITIVE) {
                     text = android.R.string.cancel
                 }
-                setButton(MagiskDialog.ButtonType.POSITIVE) {
+                setButton(MagiskDialog.ButtonType.NEGATIVE) {
                     text = android.R.string.ok
                     onClick {
                         Shortcuts.addHomeIcon(this@MainActivity)

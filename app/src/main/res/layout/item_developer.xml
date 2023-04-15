@@ -21,7 +21,9 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_marginTop="@dimen/l_50"
-        android:layout_marginBottom="@dimen/l_50" >
+        android:layout_marginBottom="@dimen/l_50"
+        android:paddingStart="@dimen/l1_25"
+        android:paddingEnd="@dimen/l1_25" >
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
@@ -34,7 +36,6 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/l_25"
             android:text="•"
             android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
             android:textSize="18sp"/>

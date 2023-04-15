@@ -18,12 +18,11 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        style="@style/Widget.Material3.CardView.Filled"
+        style="@style/WidgetR.CardView.Elevated.NoShadow2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="false"
-        app:cardBackgroundColor="@color/color_card_background_color_selector"
-        tools:layout_marginBottom="@dimen/l1">
+        tools:layout_margin="@dimen/l1_25" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,38 +36,37 @@
                 android:background="?selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:nextFocusRight="@id/hide_expand_icon"
                 android:onClick="@{item::toggleExpand}">
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
                     gone="@{item.checkedPercent == 0}"
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="top"
-                    android:progress="@{item.checkedPercent}" />
+                    android:progress="@{item.checkedPercent}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/hide_icon"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:layout_margin="@dimen/l1"
+                    android:layout_margin="@dimen/l1_25"
                     android:src="@{item.info.iconImage}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0"
-                    tools:src="@drawable/ic_launcher" />
+                    tools:src="@drawable/ic_logo" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/hide_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/l1"
-                    android:ellipsize="middle"
-                    android:singleLine="true"
+                    android:layout_marginStart="@dimen/l1_25"
+                    android:layout_marginEnd="@dimen/l1_25"
+                    android:layout_marginTop="@dimen/l_50"
                     android:text="@{item.info.label}"
                     android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
                     app:layout_constraintBottom_toTopOf="@+id/hide_package"
@@ -85,6 +83,7 @@
                     android:text="@{item.info.packageName}"
                     android:textAppearance="@style/TextAppearance.Material3.BodySmall"
                     android:layout_marginTop="@dimen/l_25"
+                    android:layout_marginBottom="@dimen/l_50"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/hide_name"
                     app:layout_constraintStart_toStartOf="@+id/hide_name"
@@ -96,21 +95,13 @@
                     state="@={item.state}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="18dp"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
+                    android:layout_marginEnd="@dimen/l1_25"
                     android:nextFocusLeft="@id/hide_expand"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                goneUnless="@{item.isExpanded}"
-                android:background="?colorSurface"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 goneUnless="@{item.isExpanded}"
@@ -120,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="2"
+                tools:itemCount="4"
                 tools:listitem="@layout/item_hide_process" />
 
         </LinearLayout>

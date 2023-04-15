@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Buttons-->
+
+    <style name="WidgetR.Button.TextButton.Extended.Square.v28" parent="WidgetR.Button.TextButton.Extended.Square.v21">
+        <item name="cornerRadius">0dp</item>
+    </style>
+
+    <style name="WidgetR.Button.TextButton.Extended.Square" parent="WidgetR.Button.TextButton.Extended.Square.v28" />
+
+    <!--Cards-->
+
+    <style name="WidgetR.CardView.Elevated.NoShadow2.v28" parent="WidgetR.CardView.Elevated.NoShadow.v21">
+        <item name="android:outlineSpotShadowColor">@android:color/transparent</item>
+        <item name="android:outlineAmbientShadowColor">@android:color/transparent</item>
+    </style>
+
+    <style name="WidgetR.CardView.Elevated.NoShadow2" parent="WidgetR.CardView.Elevated.NoShadow2.v28" />
+
+</resources>
