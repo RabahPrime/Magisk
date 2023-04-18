@@ -231,7 +231,6 @@
     <string name="settings_sulist_enforced">SuList zorunlu yapıldı</string>
     <string name="su_request_string2"> yönetici haklarını alması için\?</string>
     <string name="denylist">Gizleme Listesi</string>
-    <string name="home_follow_title">Bizi takip et</string>
     <string name="patch_vbmeta">Boot imajındaki vbmeta\'yı yamala</string>
     <string name="su_request_string1">için </string>
     <string name="suspend_text_riru">%1$s etkinleştirildiği için modül askıya alındı</string>
