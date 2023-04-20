@@ -52,7 +52,7 @@
     <string name="touch_filtered_warning">Weil eine App eine Superuser-Anfrage verdeckt, kann Magisk deine Antwort nicht verifizieren</string>
     <string name="deny">Nicht erlauben</string>
     <string name="prompt">Fragen</string>
-    <string name="grant">Gewähren</string>
+    <string name="grant">Zulassen</string>
     <string name="su_warning">Zugriff auf dein Gerät gewähren.
 \nVerweigere den Zugriff, wenn du nicht sicher bist!</string>
     <string name="forever">Für immer</string>
@@ -109,7 +109,8 @@
     <!--Settings-->
     <string name="settings_dark_theme_system">System folgen</string>
     <string name="settings_download_path_title">Download-Verzeichnis</string>
-    <string name="settings_download_path_message">Dateien werden in %1$s gespeichert</string>
+    <string name="settings_download_path_message">Speichere Dateien in
+\n%1$s</string>
     <string name="settings_hide_app_title">Magisk-App verstecken</string>
     <string name="settings_hide_app_summary">Proxy-App mit zufälliger Paket-ID und benutzerdefiniertem App-Label installieren</string>
     <string name="settings_restore_app_title">Magisk-App wiederherstellen</string>
@@ -240,7 +241,7 @@
     <string name="settings_anti_bootloop_title">Bootloop-Schutz</string>
     <string name="settings_anti_bootloop_summary">Starten Sie im Nur-Kern-Modus neu, wenn der Zygote-Prozess viele Male nicht gestartet werden konnte</string>
     <string name="settings_coreonly_title">Core-Only-Modus</string>
-    <string name="settings_coreonly_summary">Nur Kernfunktionen wie MagiskSU (Root-Zugriff) und MagiskHide sind verfügbar und im Nur-Kern-Modus werden keine Module geladen. Ein Neustart ist erforderlich, um wirksam zu werden.</string>
+    <string name="settings_coreonly_summary">Nur Kernfunktionen wie MagiskSU (Root-Zugriff) und MagiskHide sind verfügbar und in diesem Modus werden keine Module geladen.</string>
     <string name="settings_magiskhide_whitelist_title2">MagiskHideAll</string>
     <string name="settings_clean_hidelist_title">Versteckliste aufräumen</string>
     <string name="settings_clean_hidelist_summary">Entferne alle deinstallierten Apps von der Versteckliste</string>
