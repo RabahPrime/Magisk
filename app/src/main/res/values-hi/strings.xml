@@ -250,7 +250,7 @@
     <string name="settings_sulist_config_title">एसयू लिस्ट कंफीग्योर करें</string>
     <string name="settings_sulist_summary">Magisk केवल एसयू लिस्ट मे प्रक्रियाओं को ही दिखेगा</string>
     <string name="settings_sulist_config_summary">एसयू लिस्ट में प्रक्रियाओं को शामिल करने के लिया चयन करें</string>
-    <string name="settings_magiskhide_whitelist_title2">सभी मैजिस्कहाइड करें</string>
+    <string name="settings_magiskhide_whitelist_title2">सभी मजिस्क हाईड</string>
     <string name="settings_sulist_error_magiskhide">इस सुविधा को सक्षम करने के लिए Magiskhide की आवश्यकता है</string>
     <string name="settings_sulist_enforced">एसयू लिस्ट लागू है</string>
     <string name="new_zygisk_loader">नए zygisk लोडर</string>
