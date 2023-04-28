@@ -33,8 +33,11 @@
             android:paddingStart="@{item.icon == 0 ? @dimen/l1_25 : 0}"
             android:paddingEnd="@{!item.showSwitch ? @dimen/l1_25 : 0}"
             android:paddingTop="@{!item.description.empty ? @dimen/l1 : 0}"
-            android:paddingBottom="@{!item.description.empty ? @dimen/l1 : 0}">
-            <!-- Preview is problematic, just use @dimen/l1 for preview of padding top and bottom -->
+            android:paddingBottom="@{!item.description.empty ? @dimen/l1 : 0}"
+            tools:paddingStart="0dp"
+            tools:paddingEnd="0dp"
+            tools:paddingTop="@dimen/l1"
+            tools:paddingBottom="@dimen/l1">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/icon"

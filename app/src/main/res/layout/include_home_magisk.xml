@@ -99,6 +99,18 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/home_magisk_install"
+                style="@style/WidgetR.Button.OutlinedButton"
+                gone="@{viewModel.magiskState == State.OUTDATED}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/l1_25"
+                android:onClick="@{() -> viewModel.onMagiskPressed()}"
+                android:text="@string/install"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.google.android.material.button.MaterialButton
                 style="@style/WidgetR.Button.Icon"
                 gone="@{viewModel.magiskState != State.OUTDATED}"
                 android:id="@+id/home_magisk_update"
@@ -108,18 +120,6 @@
                 android:onClick="@{() -> viewModel.onMagiskPressed()}"
                 android:text="@string/update"
                 app:icon="@drawable/ic_update"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/home_magisk_install"
-                style="@style/WidgetR.Button.OutlinedButton"
-                gone="@{viewModel.magiskState == State.OUTDATED}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/l1_25"
-                android:onClick="@{() -> viewModel.onMagiskPressed()}"
-                android:text="@string/install"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -225,6 +225,18 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/home_manager_install"
+                style="@style/WidgetR.Button.OutlinedButton"
+                gone="@{viewModel.appState != State.UP_TO_DATE}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/l1_25"
+                android:onClick="@{() -> viewModel.onManagerPressed()}"
+                android:text="@string/install"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_magisk_barrier" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/home_manager_update"
                 style="@style/WidgetR.Button.Icon"
                 gone="@{viewModel.appState != State.OUTDATED}"
@@ -248,19 +260,6 @@
                 app:layout_constraintEnd_toEndOf="@+id/home_manager_update"
                 app:layout_constraintStart_toStartOf="@+id/home_manager_update"
                 app:layout_constraintTop_toBottomOf="@+id/home_manager_update" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/home_manager_install"
-                style="@style/WidgetR.Button.OutlinedButton"
-                gone="@{viewModel.appState != State.UP_TO_DATE}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/l1_25"
-                android:onClick="@{() -> viewModel.onManagerPressed()}"
-                android:text="@string/install"
-                app:icon="@drawable/ic_install"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_magisk_barrier" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
