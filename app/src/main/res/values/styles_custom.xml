@@ -52,6 +52,10 @@
         <item name="strokeColor">@color/color_error_transient</item>
     </style>
 
+    <style name="WidgetR.Button.IconButton.Outlined" parent="Widget.Material3.Button.IconButton.Outlined">
+        <item name="strokeColor">?colorPrimary</item>
+    </style>
+
     <!--Cards-->
 
     <style name="WidgetR.CardView.Elevated.NoShadow.v21" parent="Widget.Material3.CardView.Elevated">

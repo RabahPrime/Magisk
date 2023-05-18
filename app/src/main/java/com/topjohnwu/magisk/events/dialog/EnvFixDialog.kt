@@ -16,7 +16,7 @@ class EnvFixDialog(private val vm: HomeViewModel) : DialogEvent() {
         dialog.apply {
             setTitle(R.string.env_fix_title)
             setMessage(R.string.env_fix_msg)
-            setButton(MagiskDialog.ButtonType.POSITIVE) {
+            setButton(MagiskDialog.ButtonType.NEGATIVE) {
                 text = android.R.string.ok
                 doNotDismiss = true
                 onClick {

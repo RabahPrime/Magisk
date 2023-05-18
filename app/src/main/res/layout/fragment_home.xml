@@ -64,7 +64,7 @@
                         android:textColor="?colorOnSurface" />
 
                     <com.google.android.material.button.MaterialButton
-                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        style="@style/WidgetR.Button.IconButton.Outlined"
                         android:id="@+id/home_notice_hide"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
