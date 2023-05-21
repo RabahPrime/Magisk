@@ -221,11 +221,11 @@ void mount_mirrors() {
             next_mountpoint:
             continue;
         }
-        if (std::find(mountpoint.begin(), mountpoint.end(), "/system") == mountpoint.end())) {
+        if (std::find(mountpoint.begin(), mountpoint.end(), "/system") == mountpoint.end()) {
             string mirror_path = mirror_dir + "/system";
             mkdirs(mirror_path.data(), 0);
-            if (mount_mirror("/system", mirror_path.data()))
-                LOGD("mount: %s\n", mirror_path);
+            if (mount_mirror("/system", mirror_path))
+                LOGD("mount: %s\n", mirror_path.data());
         }
         if (std::find(mountpoint.begin(), mountpoint.end(), "/persist") == mountpoint.end()) {
             string mirror_path = mirror_dir + "/persist";
@@ -263,7 +263,7 @@ void mount_mirrors() {
     if (access(SECURE_DIR, F_OK) == 0 || (SDK_INT < 24 && xmkdir(SECURE_DIR, 0700))) {
         auto src = MAGISKTMP + "/" MIRRDIR "/" MODULEROOT;
         auto dest = MAGISKTMP + "/" MODULEMNT; xmkdir(dest.data(), 0700); 
-        if (mount_recreate(src, dest)) {
+        if (mount_mirror(src, dest)) {
             restorecon();
             chmod(SECURE_DIR, 0700);
         }
