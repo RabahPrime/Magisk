@@ -612,7 +612,7 @@ static void post_fs_data() {
     mount_mirrors();
     prune_su_access();
 
-    LOGI("PATH=[%s]\n", getenv("PATH"));
+    initialize_denylist();
 
     if (access(SECURE_DIR, F_OK) != 0) {
         LOGE(SECURE_DIR " is not present, abort\n");
@@ -624,7 +624,6 @@ static void post_fs_data() {
         goto early_abort;
     }
 
-    initialize_denylist();
 
     if (getprop("persist.sys.safemode", true) == "1" ||
         getprop("ro.sys.safemode") == "1" || check_key_combo() || should_skip_all()) {
