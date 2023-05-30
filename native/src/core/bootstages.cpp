@@ -183,8 +183,8 @@ void mount_mirrors() {
     string mirror_dir = MAGISKTMP + "/" MIRRDIR;
     string worker_dir = MAGISKTMP + "/" WORKERDIR;
     mkdirs(worker_dir.data(), 0755);
-    xmount(worker_dir.data(), worker_dir.data(), nullptr, MS_BIND, nullptr);
-    xmount("", worker_dir.data(), nullptr, MS_PRIVATE, nullptr);
+    xmount("magisk", worker_dir.data(), "tmpfs", 0, "mode=755");
+    xmount(nullptr, worker_dir.data(), nullptr, MS_PRIVATE, nullptr);
     
     const char *include_parts[] = { MIRRORS, nullptr };
 
@@ -264,6 +264,7 @@ void mount_mirrors() {
         auto src = MAGISKTMP + "/" MIRRDIR "/" MODULEROOT;
         auto dest = MAGISKTMP + "/" MODULEMNT; xmkdir(dest.data(), 0700); 
         if (mount_mirror(src, dest)) {
+            xmount(nullptr, dest.data(), nullptr, MS_REMOUNT, nullptr);
             restorecon();
             chmod(SECURE_DIR, 0700);
         }

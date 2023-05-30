@@ -80,8 +80,6 @@ void root_mount(int pid) {
 
     mount_mirrors();
 
-    xmount(MIRRDIR "/" MODULEROOT, MODULEMNT, nullptr, MS_BIND, nullptr);
-
     chdir("/");
 
     su_mount();
@@ -119,7 +117,7 @@ void revert_unmount(int pid) {
     // unmount sekeleton node
     lazy_unmount(MAGISKTMP.data());
     for (auto &info : parse_mount_info("self")) {
-        if (info.root.starts_with("/" INTLROOT "/")) {
+        if (info.source == "magisk") {
             targets.emplace_back(info.target);
         }
     }
