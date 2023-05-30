@@ -221,6 +221,7 @@ public:
             xsymlink("./magiskpolicy", dest.data());
         }
         create_and_mount("magisk", src);
+        xmount(nullptr, node_path().data(), nullptr, MS_REMOUNT | MS_BIND | MS_RDONLY, nullptr);
     }
 };
 
@@ -302,6 +303,9 @@ void load_modules() {
     }
 
     log_enabled = false;
+
+    auto worker_dir = MAGISKTMP + "/" WORKERDIR;
+    xmount(nullptr, worker_dir.data(), nullptr, MS_REMOUNT | MS_RDONLY, nullptr);
 }
 
 void su_mount() {
@@ -354,6 +358,9 @@ void su_mount() {
         root->prepare();
         root->mount();
     }
+
+    auto worker_dir = MAGISKTMP + "/" WORKERDIR;
+    xmount(nullptr, worker_dir.data(), nullptr, MS_REMOUNT | MS_RDONLY, nullptr);
 }
 
 /************************
@@ -405,7 +412,6 @@ static void foreach_module(Func fn) {
 static void collect_modules(bool open_zygisk) {
     foreach_module([=](int dfd, dirent *entry, int modfd) {
         if (faccessat(modfd, "remove", F_OK, 0) == 0) {
-        	
             LOGI("%s: remove\n", entry->d_name);
             auto uninstaller = MODULEROOT + "/"s + entry->d_name + "/uninstall.sh";
             if (access(uninstaller.data(), F_OK) == 0)
