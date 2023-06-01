@@ -157,8 +157,8 @@ void MagiskInit::mount_rules_dir() {
         LOGD("early-mount.d: %s -> %s\n", early_mount_dir.data(), MIRRDIR "/early-mount.d");
         xmount(early_mount_dir.data(), MIRRDIR "/early-mount.d", nullptr, MS_BIND, nullptr);
         xumount2(MIRRDIR "/rules", MNT_DETACH);
+        cp_afc(early_mount_dir.data(), INTLROOT "/early-mount.d");
     }
-    cp_afc(early_mount_dir.data(), INTLROOT "/early-mount.d");
 }
 
 bool LegacySARInit::mount_system_root() {
